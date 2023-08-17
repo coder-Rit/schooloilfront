@@ -1,0 +1,270 @@
+.profileImg_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    
+}
+.profileImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+
+}
+.profileImg_male{
+    border: 3px solid rgb(131, 131, 255);
+}
+.profileImg_female{
+    border: 3px solid hotpink;
+}
+.view_account_img{
+    width: 300px;
+    height: 300px;
+}
+.attendaceDivAtStudent{
+    display: flex;
+    justify-content: space-evenly;
+     align-items: center; 
+    gap: 5px;
+
+}
+.presentyDataDiv{ 
+    background-color: rgba(255, 255, 255, 0.294); 
+    border-radius: 17px;
+ }
+.filterDivAtStudent{
+    margin: 0 20px ;
+    display: flex;
+    justify-content: space-evenly;
+    align-self: center;
+    border: 1px solid black;
+    border-radius: 5px ;
+    padding: 10px 0px;
+    background-color: rgb(255, 255, 255); 
+}
+
+ 
+.allStudentDiv{  
+   border-radius: 20px;
+    margin-top: 20px;
+    border-radius: 15px;
+     
+   }
+.allStudentDiv>div:nth-child(1){  
+  border-radius: 15px 15px 0 0; 
+   }
+.allStudentDiv>div:nth-last-child(1){  
+  border-radius: 0 0 15px 15px; 
+   }
+
+   .banRed{
+background-color: rgba(255, 0, 0, 0.701);
+color: #dbb4ff;
+    }
+   .studnetDiv{
+    
+     
+    
+   }
+   
+   .sub_studnetDiv{
+    display: grid;
+    width: 100% ;
+    height: auto;
+    background-color: rgba(255, 255, 255, 0);
+      padding: 10px;
+     font-size: 16px;
+     cursor: pointer;
+    grid-template-columns: 20%  70% 10%;   
+    border: 1px solid transparent;   
+    align-items: center;
+   }
+   .sub_studnetDiv:hover {
+    background-color: rgba(142, 142, 142, 0.51);
+ 
+   }
+   .sub_studnetDiv>span{
+margin-left: 10px;
+     }
+ .studentName{ 
+    display: flex;
+    align-items: center;
+    
+     }
+    .profileImg_div{
+     }
+ 
+   .studnetDisv{ 
+    display: flex;
+    align-items: center;
+    } 
+    .div786{
+        
+         margin-top: 20px;
+        border-radius: 25px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .div786>div:nth-child(1){
+display: flex;
+gap: 10px;
+
+     }
+    .div786>div:nth-child(1)>div:nth-child(2){
+display: flex;
+gap: 10px;
+flex-direction: column;
+     }
+     .div786>div:nth-child(2)>:nth-child(1){
+         margin:  10px 0;
+        
+             }
+     .contactInfo{
+        display: flex;
+        gap: 5px;
+       
+
+     }
+    .profileImageDiv{
+       height: 40vw;
+       width: 40vw;
+       min-width: 40vw;
+       min-height: 40vw;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       border-radius: 50%;
+       -webkit-box-shadow: 0px 0px 111px -33px rgba(137, 43, 226, 0.709);
+       -moz-box-shadow: 0px 0px 111px -33px rgba(137, 43, 226, 0.662);
+       box-shadow: 0px 0px 111px -33px rgba(137, 43, 226, 0.644);
+       overflow: hidden;
+
+    }
+    .view_account_img{
+        height: 40vw;
+       width: 40vw;
+        
+         border-radius: 50%;
+    }
+    .progressbar{
+        background-color: #ffffff;
+     }
+    .CircularProgressbar .CircularProgressbar-path {
+        stroke: #8a2be2; 
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.5s ease 0s;
+    }
+    
+    .banBTN{
+        color: red;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        width: 100px;
+     }
+
+    .mobileDiv84392{
+ height: 100%;
+        font-size: 15px;
+        background-color: transparent;
+    }
+ .undispayBanded{
+    display: none;
+ }
+ .displayBandend{
+    display:inherit
+ }
+
+    @media only screen and (max-width: 420px){
+.attendaceDivAtStudent{
+    font-size: 4vw;
+}
+.fakeDiv_mobile_sutdnt{
+    height: 550px;
+}
+.filterDivAtStudent{
+    margin: 0  ;
+    display: flex;
+    justify-content: left;
+    align-self: center;
+    border: none;
+    border-radius: 5px ;
+    padding: 0;
+    gap: 5px;
+    margin: 20px 0px;
+    background-color: transparent; 
+}   
+.filterBTN{
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: none;
+}
+.presentyDataDiv{
+    padding-top: 10px ;
+}
+.presentyDataDiv>div:nth-child(1){
+    background-color: transparent;
+    width: 100%;
+padding-left: 10px;
+    
+}
+.presentyDataDiv>div:nth-child(2){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+.presentyDataDiv>div:nth-child(3){
+    background-color: transparent;
+    width: 100%;
+ border-top: 1px solid black;
+ display: flex;  
+ justify-content: space-around;
+ align-items: center;
+}
+.presentyDataDiv>div:nth-child(3)>div{ 
+ display: flex;  
+ flex-direction: column;
+ justify-content: space-around;
+ align-items: center;  
+ padding:  5px 10px;
+ width: 50%;
+}
+.presentyDataDiv>div:nth-child(3)>div:nth-child(2){ 
+  border-left: 1px solid black;
+}
+
+.paddingAdjester{
+    width: 10px;
+    height: 50vw;
+}
+
+ 
+ 
+    }
+.div4564313{
+    width: 100%;
+    border: 2px solid rgb(115, 115, 115);
+    border-radius: 7px;
+
+margin-top: 20px;
+}
+.div4564313>span{
+    width: 50%;
+    text-align: center;
+     padding: 5px 0px;
+}
+.option43213{
+    
+}
+ 
+.ActiveBTN{
+background-color: #8a2be2;
+}

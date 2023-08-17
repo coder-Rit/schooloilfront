@@ -1,0 +1,104 @@
+.flip-card {
+    background-color: transparent;
+    width: 40vw;
+    margin: auto;
+    height: 45vw;
+    perspective: 1000px;
+    margin-top: 20px;
+border-radius: 7px;
+  transform: scaleZ(30px);
+
+
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+
+    background: rgb(63, 94, 251);
+    background: linear-gradient(143deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+
+}
+
+.flip-card-front {
+    background-color: #bbbbbb00;
+    color: rgb(255, 255, 255);
+     border-radius: 7px;
+}
+
+.flip-card-back {
+    background-color: #297fb900;
+    color: white;
+    transform: rotateY(180deg);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 7px;
+    font-size: 12px;
+    padding: 10px;
+    text-align: center;
+
+}
+
+.updates_font1 {}
+
+.updates_font {
+
+    transform: scale(1.7, 1.7);
+    animation-name: breath;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background-color: transparent;
+
+}
+
+@keyframes breath {
+    0% {
+        transform: translateY(0px) scale(1.7, 1.7);
+
+    }
+
+    50% {
+        transform: translateY(5px) scale(1.7, 1.7);
+
+    }
+
+    100% {
+        transform: translateY(0px) scale(1.7, 1.7);
+
+    }
+}
+
+.color1 {
+    background-image: linear-gradient(to left top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+}
+
+.color2 {
+    background-image: linear-gradient(to left top, #150cb7, #7300b3, #a400ae, #cb00a8, #eb12a1);
+}
+
+.color3 {
+    background-image: linear-gradient(to right bottom, #b70c29, #d24f12, #e08400, #deb800, #cdeb12);
+}
+
+.color4 {
+    background-image: linear-gradient(to left top, #00f95f, #00fb9a, #00fbc8, #00f9eb, #00f4ff);
+}

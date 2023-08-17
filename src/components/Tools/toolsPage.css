@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Damion&family=Leckerli+One&family=Poppins&display=swap');
+
+
+
+.time_table_btns {
+
+   background-color: rgb(255, 255, 255); 
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+ padding: 10px;   
+ border-top: 1px solid rgba(255, 255, 255, 0.151);
+}
+
+ 
+
+
+.comName {
+   font-size: 2.5vw;
+   
+   text-shadow: 2px 2px 3px #892be26e;
+   background-color: white;
+   position: fixed;
+
+}
+
+.time_table_btns>button {
+   padding: 10px 20px;
+   margin: 20px 25px;
+}
+
+table {
+   bottom: 2px solid black;
+}
+
+.appName {
+   font-family: 'Leckerli One', cursive;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 40px;
+}
+
+/* .userAcountMainDiv {
+   display: grid;
+   grid-template-columns: 200px, 800px;
+
+} */
+
+.navLinksDiv {
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   position: fixed;
+   margin-top: 100px;
+
+}
+
+.iconNName_btn {
+   cursor: pointer;
+   color: rgb(0, 0, 0);
+   background-color: transparent;
+   padding: 10px 20px;
+   font-size: 1.1vw;
+   border-radius: 30px;
+   display: flex;
+   gap: 10px;
+   align-items: center;
+}
+
+.iconNName_btn:hover {
+
+   background-color: rgba(183, 183, 183, 0.547);
+   color: black;
+
+}
+
+.iconNName_btnSelected {
+   background-color: #8a2be2;
+   color: white;
+  
+   -webkit-box-shadow: 0px 0px 35px -10px #8a2be2;
+   -moz-box-shadow: 0px 0px 35px -10px #8a2be2;
+   box-shadow: 0px 0px 35px -10px #8a2be2;
+}
+
+@media only screen and (max-width: 768px){
+   .time_table_btns {
+      
+      width: 100vw;
+      display: flex; 
+      flex-wrap: nowrap; 
+      height: 65px;
+      margin-top: 0;
+      justify-content:center;
+      align-items: center; 
+   }
+   
+ .navLinksDiv{
+   display: flex;
+   height: auto;
+   width: 100%;
+   justify-content: space-evenly;
+   align-items: center;
+   flex-direction: row;  
+ position: fixed;
+ z-index: 5;   
+ margin-top: 0;
+}
+
+.iconNName_btn {
+   cursor: pointer;
+   
+    
+   padding: 0;
+   font-size: 1.1vw; 
+   display: flex;
+   gap: 10px;
+   align-items: center;
+}
+.iconNName_btnSelected {
+   background-color: transparent;
+   color:  #8a2be2;
+  
+   -webkit-box-shadow: none;
+   -moz-box-shadow: none;
+   box-shadow: none;
+}
+}

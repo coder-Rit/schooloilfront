@@ -1,0 +1,21 @@
+#registerImage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+#registerImage>img{
+    height: 200px;
+    width: 200px;
+
+    max-width: 200px;
+    max-height: 200px;
+}
+ 
+.heading864{
+    margin-top: 30px;
+}
+.hr4535{
+    margin: 40px 0;
+}

@@ -1,0 +1,130 @@
+ 
+.lectureSpan {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-wrap: none;
+
+}
+
+.p0 {
+
+ background-color: #3a0e56;    
+ margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-wrap: none;
+    color: white;
+}
+
+.currentDay {
+    border-radius: 10px 10px 0px 0px; 
+    border: 1px solid #3a0e56;
+    background-color: #3a0e56;
+    color: white;
+}
+
+.currentDay_td_pack {
+    border-left: 1px solid #3a0e56;
+    border-right: 1px solid #3a0e56;
+    background-color: rgba(193, 193, 193, 0);
+    padding: 0;
+
+}
+
+.currentDay_td_pack_lastElm {
+    border-bottom: 1px solid #3a0e56;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.notCurrentDay {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.tableDiv {
+
+    border-radius: 15px;
+    padding: 10px;
+     
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 1000px;
+}
+
+
+.table_th {
+
+    text-align: left;
+}
+
+.timeTableInput {
+    border: none;
+    border-radius: 10px;
+    background-color: #ffffffa5;
+    padding: 3px 6px;
+    margin: 2px;
+}
+
+@media only screen and (max-width: 768px) {
+    .tableDiv {
+
+        width: 100%;
+        font-size: 12px;
+        border-radius: 15px; 
+        background-color: transparent;
+        gap: 5px;
+      
+        
+        
+         
+    }
+ 
+    .userAcountMainDiv {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .tableDiv>table>tr>td>input:nth-child(n+1) {
+        width: auto;
+
+
+    }
+
+   
+
+    .timeTableDiv>tr>td {
+        
+    }
+
+    .timeTableDiv>tr>td>span {
+        padding: 2px 10px;
+        min-width: 80px;
+
+    }
+
+
+    .timeTableDiv>tr>td:nth-child(1)>span {
+
+        text-align: center;
+    }
+    .dic5656{
+        background-color: white;
+        border-radius: 15px;
+        padding: 10px 20px;
+         width: 125px;
+         text-align: center;
+        font-size: 18px;
+    }
+
+    .tableDiv>div:nth-child(2){
+      
+        padding: 20px 15px;
+        overflow-x: scroll;
+        font-size: 15px;
+    }
+
+}

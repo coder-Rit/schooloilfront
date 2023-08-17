@@ -1,0 +1,31 @@
+.popupBox {
+    width: 60vw;
+    position: absolute;
+    z-index: 99; 
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 20px;
+    background-image: linear-gradient(to right top, #ff7f7f, #ff9461, #ffb33a, #ffd900, #cfff00);   border-radius: 10px;
+   border: 2px solid rgba(0, 0, 0, 0.76);
+   position: absolute;
+   
+   display: block;
+   margin: 0 auto;
+   font-size: 18px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   font-weight: bolder;
+   
+   gap: 15px;
+}
+.popupBox>span{
+    width: 100%;
+    text-align: center;
+}
+.wanted_btn{
+    background-color:  #8a2be2;
+    color: white;
+}

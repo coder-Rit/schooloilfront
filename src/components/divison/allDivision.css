@@ -1,0 +1,116 @@
+
+.allDivisions{
+    display: flex;
+width: 100%;
+overflow-x: scroll;
+      
+ }
+
+body ::-webkit-scrollbar {
+  display: none;
+}
+ .division{
+      border-radius: 10px;
+     margin: 15px;
+     padding: 7px;
+     opacity: 0.7;
+     transition: 0s;
+      /* display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column; */
+    
+  }
+
+ 
+  .divisionName{
+    font-size: 3vw;
+  }
+  .divisionYear{
+    font-size: 15px;
+  }
+  
+
+.divisionBTNSelected {
+  -webkit-box-shadow: 0px 0px 35px -10px #8a2be2;
+  -moz-box-shadow: 0px 0px 35px -10px #8a2be2;
+  box-shadow: 0px 0px 35px -10px #8a2be2 ;
+  border: 1px solid rgb(0, 0, 0);
+  opacity: 1;
+  transition: 0s;
+}
+.divisionBTNSelected_dark{
+  box-shadow: 0px 0px 35px -10px #8a2be2 ;
+  border: 1px solid white;
+  opacity: 1;
+  transition: 0s;
+
+  
+ }
+ .updateDivision_div{
+  display: flex;
+ }
+ @media only screen and (max-width: 768px){
+  .allDivisions{
+    gap: 5px;
+    margin-top: 10px;
+  }
+  .division{
+    border-radius: 10px;
+   margin: 2px;
+   padding: 0px;
+    background-color: rgb(255, 255, 255);  
+   color: #000;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+    
+}
+.division>div:nth-child(1){
+width: 100%;
+display: flex;
+justify-content: flex-end;
+}
+ .division>div>span{
+  
+background-color: rgb(255, 255, 255);
+width: auto;
+padding: 0 10px;
+border-radius: 0 10px 0 10px    ;
+text-align: center;
+color: black;
+font-size: 13px;
+font-weight: bolder;
+  }
+ .division>span:nth-child(2){
+  
+font-size: 35px;
+font-weight: bold;
+  }
+ .division>span:nth-child(3){
+  width: 100px;
+  text-align: center;
+font-size: 10px;
+   }
+ 
+.divisionIcons{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid white;
+  padding: 5px 0;
+  margin-top:  5px ;
+}
+.divisionIcons>div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+ .divisionIcons>div>span{
+   font-size: 7px;
+ }
+ }

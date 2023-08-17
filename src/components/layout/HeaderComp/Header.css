@@ -1,0 +1,39 @@
+.componentheader{
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+     border-bottom: 1px solid rgb(154, 154, 154);
+      
+      
+  }
+.componentheader> span {
+    display: flex;
+    align-items: center;
+ }
+.componentheader> span:nth-child(1) {
+    margin-left: 20px;
+   }
+.componentheader> span:nth-child(2) {
+
+color:#8a2be2;
+font-weight: 700;
+    
+   }
+ 
+.componentheader> span:nth-child(3) {
+  margin-right: 20px;
+ }
+
+ @media only screen and (max-width: 768px){
+    .componentheader{ 
+        width: 100vw;
+         border: none;
+         height: 45px;
+       z-index: 5;
+       position: fixed;
+       border-radius: 0px 0px 20px 20px;
+       
+     }
+ }

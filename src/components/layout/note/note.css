@@ -1,0 +1,25 @@
+.outterdiv {
+   
+     border-radius: 13px;
+   margin-top: 20px;
+}
+
+.noteDiv {
+    padding: 10px 20px;
+     border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+     
+    color: rgb(0, 0, 0);
+    font-weight: bold; 
+    font-size: 17px;
+    
+ }
+
+ 
+ #muiIcon_tip{
+    margin-top: 4px;
+ }
+ #muiIcon_error{
+    margin-top: 5px;
+ }
