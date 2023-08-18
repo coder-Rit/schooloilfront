@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:4000/",
+  "homepage": "https://github.com/coder-Rit/school-oil",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
@@ -16,6 +16,7 @@
     "cloudinary": "^1.31.0",
     "export-from-json": "^1.7.0",
     "fs": "^0.0.1-security",
+    "gh-pages": "^6.0.0",
     "http-proxy-middleware": "^2.0.6",
     "js-cookie": "^3.0.5",
     "json-as-xlsx": "^2.4.6",
@@ -40,6 +41,8 @@
     "xlsx": "^0.18.5"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
