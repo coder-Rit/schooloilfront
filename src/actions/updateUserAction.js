@@ -19,6 +19,7 @@ import {
 } from "../constants/userDetailConstants";
 import axios from "axios";
 import { MAKE_ALERT } from "../constants/alertConstants";
+import Cookies from 'js-cookie';
  
 export const updateUser = (userUpdatedDetail) => async (dispatch) => {
   try {
@@ -204,9 +205,9 @@ export const getUserDetailFaculty = (email) => async (dispatch) => {
   try {
     dispatch({ type: GET_USER_DETAIL_REQUEST });  
  
-     
+    const token = Cookies.get('token')
     const { data } = await axios.get(
-      `https://schooloil-api.onrender.com/api/v1/faculty/detail/${email}`, 
+      `https://schooloil-api.onrender.com/api/v1/faculty/detail/${email}/${token}`, 
        
     );
 

@@ -10,8 +10,8 @@ import { Checkbox } from "@mui/material";
 import { genrateOTP_email } from "../../actions/whatsAppAction";
 import axios from "axios";
 import DynoLogo from "../layout/Loader/DynoLogo";
-import { clearAlert } from '../../actions/alertAction';
-import 'react-toastify/dist/ReactToastify.css';
+import { clearAlert } from "../../actions/alertAction";
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 
 const Auth = (props) => {
@@ -25,7 +25,6 @@ const Auth = (props) => {
   const registerTabs = useRef(null);
 
   const { status, msg } = useSelector((state) => state.alert);
-
 
   const freeStyle = {
     span: { background: "#111111", color: "white" },
@@ -95,19 +94,16 @@ const Auth = (props) => {
   //register
   const registerSubmit = (e) => {
     e.preventDefault();
-    
-    if (OTP_state == OTP ) {
-      if(OTP ===''){
-        
+
+    if (OTP_state == OTP) {
+      if (OTP === "") {
         notify_error("Please Verify Email.");
-      }else{
-        
+      } else {
         dispatch(register(userData));
       }
-      
     } else {
       notify_error("Invalid OTP");
-     }
+    }
   };
 
   const startTimer = () => {
@@ -141,12 +137,9 @@ const Auth = (props) => {
         }, 5000);
       });
   };
- 
 
   //useEffect loops
   useEffect(() => {
-
-      
     if (isAuthenticated) {
       navigate("/user/account");
       // if (signUp) {
@@ -173,11 +166,8 @@ const Auth = (props) => {
     if (status === 0) {
       notify_error(msg);
     }
-    dispatch(clearAlert())
+    dispatch(clearAlert());
   }, [status]);
-
-
-  
 
   return (
     <Fragment>
@@ -186,18 +176,18 @@ const Auth = (props) => {
       ) : (
         <Fragment>
           <div className="LoginSignUpContainer" style={freeStyle.txt}>
-          <ToastContainer
-            position="top-center"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme={props.alertMode}
-          />
+            <ToastContainer
+              position="top-center"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme={props.alertMode}
+            />
             <div className="back">
               <img src={require("../../images/group.jpg")} alt="" />
             </div>
@@ -211,25 +201,30 @@ const Auth = (props) => {
                 <button ref={switcherTab}></button>
               </div>
               <form className="loginForm" ref={loginTab} onSubmit={LoginSubmit}>
-              <div style={{width:"300px",background:"white"}}>
-                <table style={{border:"1px solid black" ,fontSize:"15px"}} >
-  <tr >
-    <th style={{border:"1px solid black"}}>Roll</th>
-    <th style={{border:"1px solid black"}}>Email</th>
-    <th style={{border:"1px solid black"}}>Password</th>
-  </tr>
-  <tr>
-    <td style={{border:"1px solid black"}}>faculty</td>
-    <td style={{border:"1px solid black"}}>faculty@gmail.com</td>
-    <td style={{border:"1px solid black"}}>faculty@</td>
-  </tr>
-  <tr>
-    <td style={{border:"1px solid black"}}>Student</td>
-    <td style={{border:"1px solid black"}}>user23@gmail.com</td>
-    <td style={{border:"1px solid black"}}>user23@</td>
-  </tr>
-</table>
-
+                <div style={{ width: "300px", background: "white" }}>
+                  <table
+                    style={{ border: "1px solid black", fontSize: "15px" }}
+                  >
+                    <tr>
+                      <th style={{ border: "1px solid black" }}>Roll</th>
+                      <th style={{ border: "1px solid black" }}>Email</th>
+                      <th style={{ border: "1px solid black" }}>Password</th>
+                    </tr>
+                    <tr>
+                      <td style={{ border: "1px solid black" }}>faculty</td>
+                      <td style={{ border: "1px solid black" }}>
+                        faculty@gmail.com
+                      </td>
+                      <td style={{ border: "1px solid black" }}>faculty@</td>
+                    </tr>
+                    <tr>
+                      <td style={{ border: "1px solid black" }}>Student</td>
+                      <td style={{ border: "1px solid black" }}>
+                        user23@gmail.com
+                      </td>
+                      <td style={{ border: "1px solid black" }}>user23@</td>
+                    </tr>
+                  </table>
                 </div>
                 <label className="custom-field one">
                   <input
@@ -265,7 +260,7 @@ const Auth = (props) => {
                 <Link to="/password/forget" style={freeStyle.txt}>
                   Forget Password?
                 </Link>
-              
+
                 <input type="submit" value="Login" className="loginBtn" />
               </form>
 
@@ -309,7 +304,10 @@ const Auth = (props) => {
                   </span>
                 </label>
                 {
-                  <div className="flex_baselineEnd_center" style={{color:"white"}}>
+                  <div
+                    className="flex_baselineEnd_center"
+                    style={{ color: "white" }}
+                  >
                     <span
                       onClick={
                         msg2 === "Send OTP" || "Resend OTP" ? getOTP : null
@@ -358,8 +356,6 @@ const Auth = (props) => {
                     Password
                   </span>
                 </label>
-
-               
 
                 <input type="submit" value="Register" className="signUpBtn" />
               </form>

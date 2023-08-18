@@ -14,6 +14,7 @@ import {
   UPDATE_USER_REQUEST,
   LOG_OUT,
 } from "../constants/userConstants";
+import Cookies from 'js-cookie';
 import axios from "axios";
 import { MAKE_ALERT } from "../constants/alertConstants";
 
@@ -28,7 +29,8 @@ export const login = (email, password) => async (dispatch) => {
       config
     );
     console.log(data);
- 
+    
+    Cookies.set('token', data.Token, { expires: 7 });
      localStorage.setItem("login",JSON.stringify(true))
      dispatch({ type: LOGIN_SUCCESS, payload: data.user });
      dispatch({ type: MAKE_ALERT, payload1: 1,payload2:"Login successful" });

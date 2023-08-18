@@ -121,9 +121,11 @@ const UserAccount = (props) => {
     if (user.role === "student") {
       dispatch(getUserDetailbyEN(user.username, "student"));
     } else {
+      
       dispatch(getUserDetailFaculty(user.email));
     }
   };
+
   const loadDivision = () => {
     dispatch(get_division_by_data(userDetail));
   };
