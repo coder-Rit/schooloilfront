@@ -18,7 +18,7 @@ export const get_All_user = (tempOBJ) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_USER_DETAIL_REQUEST });
     const { data } = await axios.get(
-      `/api/v1/getstudents/${course}/${clgShortName}/${department}/${year}/${div}/${token}`
+      `https://schooloil-api.onrender.com/api/v1/getstudents/${course}/${clgShortName}/${department}/${year}/${div}/${token}`
       
     );
     console.log(data); 
@@ -50,7 +50,7 @@ export const get_faculty_members_by_data = (tempOBJ) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_USER_DETAIL_BY_DATA_REQUEST });
     const { data } = await axios.get(
-      `/api/v1/faculty/details/${clgShortName}/${department}/${course}/${year}/${token}`
+      `https://schooloil-api.onrender.com/api/v1/faculty/details/${clgShortName}/${department}/${course}/${year}/${token}`
       
     );
     console.log(data);

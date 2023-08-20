@@ -26,7 +26,7 @@ export const login = (email, password) => async (dispatch) => {
 
     const config = { Headers: { "Content-Type": "application/json" } };
      const { data } = await axios.post(
-      `/api/v1/login`,
+      `https://schooloil-api.onrender.com/api/v1/login`,
       { email, password },
       config
     );
@@ -54,7 +54,7 @@ export const register = (userData) => async (dispatch) => {
       Headers: { "Content-Type": "application/json" }, 
     };
 
-    const { data } = await axios.post(`/api/v1/signup`, userData, config);
+    const { data } = await axios.post(`https://schooloil-api.onrender.com/api/v1/signup`, userData, config);
     
     localStorage.setItem("login",JSON.stringify(true))
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
@@ -76,7 +76,7 @@ export const registerfaculty = (userData,user) => async (dispatch) => {
       Headers: { "Content-Type": "application/json" }, 
     };
 
-    const { data } = await axios.post(`/api/v1/signup/faculty`, userData, config);
+    const { data } = await axios.post(`https://schooloil-api.onrender.com/api/v1/signup/faculty`, userData, config);
     dispatch({ type: REGISTER_USER_SUCCESS, payload: user });
     
      dispatch({ type: MAKE_ALERT, payload1: 1,payload2:"Account created successfully." });
@@ -98,7 +98,7 @@ export const loadUser = () => async (dispatch) => {
     };
     
     console.log(token);
-    const { data } = await axios.get(`/api/v1/user/me/${token}`,config);
+    const { data } = await axios.get(`https://schooloil-api.onrender.com/api/v1/user/me/${token}`,config);
     
     localStorage.setItem("login",JSON.stringify(true))
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
@@ -114,7 +114,7 @@ export const storeUser = (data) => async (dispatch) => {
 
 export const  logOut_user = () => async (dispatch) => {
   try {
-    await axios.get(`/api/v1/logout`);
+    await axios.get(`https://schooloil-api.onrender.com/api/v1/logout`);
     dispatch({ type: LOAD_USER_FAIL });
     let theme =localStorage.getItem("theme")
     localStorage.clear()
@@ -136,7 +136,7 @@ export const updateUserBasicDetail = (updated_data) => async (dispatch) => {
     const config = { Headers: { "Content-Type": "application/json" } };
     console.log(updated_data);
     const { data } = await axios.put(
-      `/api/v1/user/update/${token}`,
+      `https://schooloil-api.onrender.com/api/v1/user/update/${token}`,
       updated_data,
       config
     );
@@ -160,7 +160,7 @@ export const change_password = (passOBJ, user) => async (dispatch) => {
   dispatch({ type: UPDATE_USER_REQUEST });
 
   try {
-    const { data } = await axios.put(`/api/v1/user/updatePass/${token}`, passOBJ);
+    const { data } = await axios.put(`https://schooloil-api.onrender.com/api/v1/user/updatePass/${token}`, passOBJ);
     console.log(data);
     dispatch({ type: UPDATE_USER_SUCCESS, payload: data.user });
     dispatch({ type: MAKE_ALERT, payload1: 1,payload2:"Password changed" });
@@ -181,10 +181,10 @@ export const is_user_exist = (email, OTP) => async (dispatch) => {
   try {
     console.log(email);
     const config = { Headers: { "Content-Type": "application/json" } };
-    const { data } = await axios.get(`/api/v1/user/isExist/${email}`,config  );
+    const { data } = await axios.get(`https://schooloil-api.onrender.com/api/v1/user/isExist/${email}`,config  );
     if (data.success == true) {
       try {
-        await axios.post(`/api/v1/user/gerateOTP/email`, {
+        await axios.post(`https://schooloil-api.onrender.com/api/v1/user/gerateOTP/email`, {
           username: data.username,
           email: email,
           OTP: OTP,
@@ -204,7 +204,7 @@ export const login_withoutPassAc = (email, sendedOTP,recivedOTP) => async (dispa
   try {
     console.log(email);
     const config = { Headers: { "Content-Type": "application/json" } };
-    const { data } = await axios.get(`/api/v1/user/login_withoutPass/${email}/${sendedOTP}/${recivedOTP}`,config  );
+    const { data } = await axios.get(`https://schooloil-api.onrender.com/api/v1/user/login_withoutPass/${email}/${sendedOTP}/${recivedOTP}`,config  );
     dispatch({ type: LOGIN_SUCCESS, payload: data.user });
     dispatch({ type: MAKE_ALERT, payload1: 1,payload2:"login successfull. please change you password" });
 

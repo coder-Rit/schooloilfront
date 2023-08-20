@@ -9,7 +9,7 @@ const token = cookies.get('token')
   console.log(tempOBJ);
      try {
         await axios.post(
-        `/api/v1/user/sendUpadate`,
+        `https://schooloil-api.onrender.com/api/v1/user/sendUpadate`,
         {tempOBJ}
 
         
@@ -23,7 +23,7 @@ const token = cookies.get('token')
  export const genrateOTP_email = (localData) => async (dispatch) => {
       try {
       const {data}=   await axios.post(
-        `/api/v1/user/gerateOTP/email`,localData
+        `https://schooloil-api.onrender.com/api/v1/user/gerateOTP/email`,localData
       );
 
       return data
@@ -36,7 +36,7 @@ const token = cookies.get('token')
  export const genrateOTP_mobile = (localData) => async (dispatch) => {
       try {
         await axios.post(
-        `/api/v1/user/genrateOTP/mobile`,localData
+        `https://schooloil-api.onrender.com/api/v1/user/genrateOTP/mobile`,localData
       );
    
      } catch (error) {

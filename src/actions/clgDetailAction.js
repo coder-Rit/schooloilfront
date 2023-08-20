@@ -16,7 +16,7 @@ export const getCollegeDetails = (clgCode) => async (dispatch) => {
    
    
     const { data } = await axios.get(
-      `/api/v1/collegeCode/${clgCode}/${token}` 
+      `https://schooloil-api.onrender.com/api/v1/collegeCode/${clgCode}/${token}` 
     );
 console.log(data.clgDetail);
         dispatch({ type: DETAIL_SUCCESS, payload: data.clgDetail });
@@ -32,7 +32,7 @@ export const getCollegeDetailsByName = (clgShortName) => async (dispatch) => {
     dispatch({ type: DETAIL_REQUEST }); 
    
     const { data } = await axios.get(
-      `/api/v1/clgShortName/${clgShortName}/${token}` 
+      `https://schooloil-api.onrender.com/api/v1/clgShortName/${clgShortName}/${token}` 
     );
 console.log(data.clgDetail);
         dispatch({ type: DETAIL_SUCCESS, payload: data.clgDetail });

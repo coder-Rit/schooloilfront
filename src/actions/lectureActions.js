@@ -25,7 +25,7 @@ export const create_lecture = (lectureData) => async (dispatch) => {
     const config = { Headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `/api/v1/user/genrateL/${token}`,
+      `https://schooloil-api.onrender.com/api/v1/user/genrateL/${token}`,
       lectureData,
       config
     );
@@ -51,7 +51,7 @@ export const get_all_recent_lectures = (givenData,howMuchOld) => async (dispatch
     dispatch({ type: GET_ALL_LECTURE_REQUEST });
 
     const { data } = await axios.get(
-      `/api/v1/user/getAllLectures/${id}/${from}/${to}/${token}`
+      `https://schooloil-api.onrender.com/api/v1/user/getAllLectures/${id}/${from}/${to}/${token}`
     ); 
     console.log(data);
 
@@ -85,7 +85,7 @@ export const add_user_to_mark_attendace =
       dispatch({ type: PUSH_ID_AND_UPDATE_REQUEST });
 
       const { data } = await axios.post(
-        `/api/v1/user/markMyAttendance/${updater}/${update}/${token}`
+        `https://schooloil-api.onrender.com/api/v1/user/markMyAttendance/${updater}/${update}/${token}`
       );
       console.log(data);
       dispatch({
@@ -109,7 +109,7 @@ export const find_lecture_by_id_and_replace_attendance =
       const config = { Headers: { "Content-Type": "application/json" } };
 
       const { data } = await axios.put(
-        `/api/v1/user/attendance/repace/${token}`,
+        `https://schooloil-api.onrender.com/api/v1/user/attendance/repace/${token}`,
         { id, array },
         config
       );
@@ -147,7 +147,7 @@ export const find_lecture_by_id_and_update_info =
       const config = { Headers: { "Content-Type": "application/json" } };
 
       const { data } = await axios.put(
-        `/api/v1/user/lecture/info/udpate/${token}`,
+        `https://schooloil-api.onrender.com/api/v1/user/lecture/info/udpate/${token}`,
         update,
         config
       );
@@ -181,7 +181,7 @@ export const delete_created_lecture = (id, lectures) => async (dispatch) => {
    try {
     dispatch({ type: DELETE_LECUTURE_REQUEST });
    const { data } = await axios.delete(
-    `/api/v1/user/lecture/${id}/${token}`
+    `https://schooloil-api.onrender.com/api/v1/user/lecture/${id}/${token}`
     );
 
     const index = lectures.findIndex((datab) => {
