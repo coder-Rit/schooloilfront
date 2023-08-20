@@ -5,6 +5,9 @@ import {
   CLEAR_ERRORS,
 } from "../constants/clgDetialConstants";
 import axios from "axios";
+import Cookies from 'universal-cookie'
+const cookies = new Cookies();
+const token = cookies.get('token')
 
 export const getCollegeDetails = (clgCode) => async (dispatch) => {
   try {
@@ -13,7 +16,7 @@ export const getCollegeDetails = (clgCode) => async (dispatch) => {
    
    
     const { data } = await axios.get(
-      `https://schooloil-api.onrender.com/api/v1/collegeCode/${clgCode}` 
+      `/api/v1/collegeCode/${clgCode}/${token}` 
     );
 console.log(data.clgDetail);
         dispatch({ type: DETAIL_SUCCESS, payload: data.clgDetail });
@@ -29,7 +32,7 @@ export const getCollegeDetailsByName = (clgShortName) => async (dispatch) => {
     dispatch({ type: DETAIL_REQUEST }); 
    
     const { data } = await axios.get(
-      `https://schooloil-api.onrender.com/api/v1/clgShortName/${clgShortName}` 
+      `/api/v1/clgShortName/${clgShortName}/${token}` 
     );
 console.log(data.clgDetail);
         dispatch({ type: DETAIL_SUCCESS, payload: data.clgDetail });

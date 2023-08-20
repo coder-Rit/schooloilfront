@@ -15,6 +15,9 @@ import {
   UPDATE_TIME_TABLE_SUCCESS,
 } from "../constants/timeTableConstants";
 
+import Cookies from 'universal-cookie'
+const cookies = new Cookies();
+const token = cookies.get('token')
 // create  time table
 export const create_time_table = (timeTable,division, divisions) => async (dispatch) => {
   try {
@@ -22,7 +25,7 @@ export const create_time_table = (timeTable,division, divisions) => async (dispa
     const config = { Headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `https://schooloil-api.onrender.com/api/v1/timeTable/update`,
+      `/api/v1/timeTable/update/${token}`,
       timeTable,
       config
     );
@@ -38,7 +41,7 @@ console.log(data);
     let newData = divisions;
  
     await axios.post(
-      `https://schooloil-api.onrender.com/api/v1/division/updateBydata`,
+      `/api/v1/division/updateBydata/${token}`,
       {
         dataForFinding: division._id,
         dataForUpdate: { timeTableID:  data.timeTable._id},
@@ -81,7 +84,7 @@ export const update_time_table_by_id_in_data =
       const config = { Headers: { "Content-Type": "application/json" } };
 
       const { data } = await axios.post(
-        `https://schooloil-api.onrender.com/api/v1/timeTable/update`,
+        `/api/v1/timeTable/update/${token}`,
         timeTableData,
         config
       );
@@ -119,7 +122,7 @@ export const setTimeTbaleDATA = (data) => async (dispatch) => {
 export const get_time_table_by_id = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_TIME_TABLE_BY_ID_REQUEST });
-    const { data } = await axios.get(`https://schooloil-api.onrender.com/api/v1/timeTable/${id}`);
+    const { data } = await axios.get(`/api/v1/timeTable/${id}/${token}`);
     console.log(data);
     localStorage.removeItem(id);
     localStorage.setItem("TT_" + id, JSON.stringify(data.timeTable));
