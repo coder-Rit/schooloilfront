@@ -94,103 +94,6 @@ const MyStudents = (props) => {
 
   return (
     <Fragment>
-{windowSizing.innerWidth >= 768?(
-   <div className="userAcountMainDiv" style={props.main.main}>
-         {/* <ToolsPage></ToolsPage> */}
- 
-      {/* <div>
-        <HeaderComp type="Student"></HeaderComp>
-        <Fragment style={props.main.sub_body}>
-          <AllDivisions type="student"  main={props.main}></AllDivisions>
-
-          <div className="allStudentDiv glassTheme">
-            {is_all_user_data_ready
-              ? userList
-                  .sort((a, b) => a.rollNumber - b.rollNumber)
-                  .map((betaData) => {
-                    if (betaData.status === "unBan") {
-                      return (
-                        <div className="studnetDiv">
-                          <div className="sub_studnetDiv" onClick={() => redirectToUserAccount(betaData)}>
-                            <div className="profileImg_div">
-                              <img
-                                src={betaData.avatar.url}
-                                className="profileImg"
-                                alt=""
-                              />
-                            </div>
-                            <span className="studnetDisv">
-                              {" "}
-                              {betaData.rollNumber}
-                            </span>
-                            <div className="studentName">
-                              <span>
-                                {betaData.personalInfo.fistName}&nbsp;
-                              </span>
-                              <span>
-                                {" "}
-                                {betaData.personalInfo.middleName}&nbsp;{" "}
-                              </span>
-                              <span> {betaData.personalInfo.lastName}</span>
-                            </div>
-                            <span className="studnetDisv">
-                              {" "}
-                              {betaData.personalInfo.gender}
-                            </span>
-                          </div>
-                        </div>
-                      );
-                    }
-                  })
-              : null}
-          </div>
-          <span>Banded Student</span>
-          <div className="allStudentDiv glassTheme banRed">
-
-          
-          {is_all_user_data_ready
-            ? userList
-                .sort((a, b) => a.rollNumber - b.rollNumber)
-                .map((betaData) => {
-                  if (betaData.status === "Ban") {
-                    return (
-                      <div className="studnetDiv">
-                        <div className="sub_studnetDiv" onClick={() => redirectToUserAccount(betaData)}>
-                          <div className="profileImg_div">
-                            <img
-                              src={betaData.avatar.url}
-                              className="profileImg"
-                              alt=""
-                            />
-                          </div>
-                          <span className="studnetDisv">
-                            {" "}
-                            {betaData.rollNumber}
-                          </span>
-                          <div className="studentName">
-                            <span>
-                              {betaData.personalInfo.fistName}&nbsp;
-                            </span>
-                            <span>
-                              {" "}
-                              {betaData.personalInfo.middleName}&nbsp;{" "}
-                            </span>
-                            <span> {betaData.personalInfo.lastName}</span>
-                          </div>
-                          <span className="studnetDisv">
-                            {" "}
-                            {betaData.personalInfo.gender}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  }
-                })
-            : null}
-             </div>
-        </Fragment>
-      </div> */}
-    </div>):(
 
 <div className="mobleDiv4865" style={props.main.main}>
 <HeaderComp type="Student"></HeaderComp>
@@ -270,10 +173,7 @@ const MyStudents = (props) => {
              <div className="fakeDiv_mobile_sutdnt"></div>
         </Fragment>
   </div>
-  <ToolsPage></ToolsPage>
 </div>
-
-    ) }
      
     
     </Fragment>

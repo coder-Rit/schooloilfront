@@ -69,24 +69,7 @@ const ClassForStudent = (props) => {
 
   return (
     <>
-      {windowSize.innerWidth >= 768 ? (
-        <div className="userAcountMainDiv" style={props.main.main}>
-          <div className="toolsNavigator">
-            <ToolsPage></ToolsPage>
-          </div>
-
-          {(isDividionGeted || isDivisionDataStored) && isUserDetailUpdated ? (
-            <TimeTableForStudent
-              id={division.timeTableID}
-              class={division.div}
-              userDetail={userDetail}
-            ></TimeTableForStudent>
-            
-          ) : null}
-          <HeaderComp type="Time Table"></HeaderComp>
-        </div>
-      ) : (
-        <div className="mobleDiv4865" style={props.main.main}>
+       <div className="mobleDiv4865" style={props.main.main}>
           <HeaderComp type="Time Table"></HeaderComp>
           {(isDividionGeted || isDivisionDataStored) && isUserDetailUpdated ? (
             <TimeTableForStudent
@@ -96,9 +79,7 @@ const ClassForStudent = (props) => {
               main={props.main}
             ></TimeTableForStudent>
           ) :   null}
-          <ToolsPage></ToolsPage>
         </div>
-      )}
     </>
   );
 };

@@ -3,11 +3,8 @@ import { useState, useEffect } from "react";
 import { Fragment, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./auth.css";
-import Loading from "../layout/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { login, register } from "../../actions/userActions";
-import { Checkbox } from "@mui/material";
-import { genrateOTP_email } from "../../actions/whatsAppAction";
 import axios from "axios";
 import DynoLogo from "../layout/Loader/DynoLogo";
 import { clearAlert } from "../../actions/alertAction";
@@ -54,7 +51,7 @@ const Auth = (props) => {
   });
 
   // data form reduc
-  const { loading, error, isAuthenticated, logIn, signUp } = useSelector(
+  const { loading,isAuthenticated } = useSelector(
     (state) => state.user
   );
 
@@ -95,11 +92,11 @@ const Auth = (props) => {
   const registerSubmit = (e) => {
     e.preventDefault();
 
+    dispatch(register(userData));
     if (OTP_state == OTP) {
       if (OTP === "") {
         notify_error("Please Verify Email.");
       } else {
-        dispatch(register(userData));
       }
     } else {
       notify_error("Invalid OTP");
@@ -141,6 +138,7 @@ const Auth = (props) => {
   //useEffect loops
   useEffect(() => {
     if (isAuthenticated) {
+      console.log("logg");
       navigate("/user/account");
       // if (signUp) {
       //   navigate("/update/userDetail");

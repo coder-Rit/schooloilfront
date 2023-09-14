@@ -78,74 +78,35 @@ const Divisions = (props) => {
 
   return (
     <Fragment>
-      {windowSizing.innerWidth >= 768 ? (
-        <div className="userAcountMainDiv" style={props.main.main}>
-          <ToolsPage></ToolsPage>
-
-          <div>
-
-
-
-            <HeaderComp type="Division"></HeaderComp>
-
-            {
-              <Fragment>
-                <>
-                  <div className="allDivisionsAtDivisionDiv_main">
-                    <AllDivisions type="division"></AllDivisions>
-
-                    <div className="div1543">
-                      <button
-                        variant="contained"
-                        className="btn_ligth AddnewDivision"
-                        onClick={redirectTo_update_division}
-                      >
-                        <AddIcon></AddIcon>&nbsp; Add new division
-                      </button>
-                    </div>
-                  </div>
-
-                  <div>
-                    <span>On backup Division</span>
-                    <AllDivisions type="division_onBackUp"  main={props.main}></AllDivisions>
-                  </div>
-                </>
-              </Fragment>
-            }
-          </div>
-        </div>
-      ) : (
-        <div className="mobleDiv4865" style={props.main.main}>
+      <div className="mobleDiv4865" style={props.main.main}>
            
-          <HeaderComp type="Division"></HeaderComp>
-          <div className=" mobileDiv5656 boxShodow mobileDiv665 " style={props.main.sub_body}>
-            <div className="allDivisionsAtDivisionDiv_main_mobile">
-              <div>
-                <AllDivisions type="division"  main={props.main}></AllDivisions>
-              </div>
-              <div className="flex_baselineEnd_center"><CachedIcon className="fontLink" onClick={loadDivisions} style={props.main.fontColor} ></CachedIcon></div>
-
-              <div className="flex_center_center top30">
-                <button
-                  variant="contained"
-                  className="btn_ligth flex_center_center "
-                  style={{width:"150px",height:"auto"}}
-                  onClick={redirectTo_update_division}
-                >
-                  <AddIcon></AddIcon>&nbsp;Add new division
-                </button>
-              </div>
+           <HeaderComp type="Division"></HeaderComp>
+           <div className=" mobileDiv5656 boxShodow mobileDiv665 " style={props.main.sub_body}>
+             <div className="allDivisionsAtDivisionDiv_main_mobile">
+               <div>
+                 <AllDivisions type="division"  main={props.main}></AllDivisions>
+               </div>
+               <div className="flex_baselineEnd_center"><CachedIcon className="fontLink" onClick={loadDivisions} style={props.main.fontColor} ></CachedIcon></div>
  
-              
-              <div className="fakeDiv_mobile">
-
-              </div>
-
-            </div>
-          </div>
-          <ToolsPage></ToolsPage>
-        </div>
-      )}
+               <div className="flex_center_center top30">
+                 <button
+                   variant="contained"
+                   className="btn_ligth flex_center_center "
+                   style={{width:"150px",height:"auto"}}
+                   onClick={redirectTo_update_division}
+                 >
+                   <AddIcon></AddIcon>&nbsp;Add new division
+                 </button>
+               </div>
+  
+               
+               <div className="fakeDiv_mobile">
+ 
+               </div>
+ 
+             </div>
+           </div>
+         </div>
     </Fragment>
   );
 };

@@ -59,30 +59,13 @@ const [Eff,setEff]=useState("")
     setEff("p0")
   }, 3000);
 
-
-  
-  // useEffect(() => {
-  //   console.log(divisions);
-
-  //   if (typeof divisions === "undefined") {
-  //     dispatch(getAllDivision(userDetail));
-
-      
-  //   }else{
-  //     if  ( typeof isDividionGeted ==="undefined" && JSON.stringify(divisions)  ===JSON.stringify([]) ) { 
-  //     dispatch(getAllDivision(userDetail));
-  //    } 
-
-  //   }
-    
-  //   }, [isUserDetailUpdated]);
+ 
 
   return (
     <div className="userAcountMainDiv" style={props.main.main}> 
 
     <div className="toolsNavigator" >
 
-    <ToolsPage></ToolsPage>
     </div>
       <div>
  

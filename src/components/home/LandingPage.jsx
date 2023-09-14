@@ -2,22 +2,19 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./homePage.css";
 
-
 const LandingPage = () => {
   const navigateTo = useNavigate();
 
   const redirectoTO_auth = () => {
     navigateTo("/user/auth");
   };
-  
-   
+
   useEffect(() => {
-    let st =JSON.parse(localStorage.getItem("login"))
+    let st = JSON.parse(localStorage.getItem("login"));
     if (st) {
       navigateTo("/user/account");
     }
-  
- }, [ ])
+  }, []);
 
   return (
     <>
@@ -35,6 +32,7 @@ const LandingPage = () => {
           <button onClick={redirectoTO_auth} className="btn_ligth langingBTN">
             SignUp/Login
           </button>
+           
           <div class="container z1">
             <div class="field">
               <div class="mouse"></div>

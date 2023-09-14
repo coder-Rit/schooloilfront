@@ -30,29 +30,7 @@ const Avalable_Divisions_For_Time_Table = (props) => {
     isDivisionDataStored,
   } = useSelector((state) => state.division);
 
-  // useEffect(() => {
-  //   if (isAuthenticated && typeof isUserDetailUpdated === "undefined") {
-  //     dispatch(getUserDetailFaculty(user.email));
-  //   }
-  // }, [isAuthenticated, isUserDetailUpdated]);
- 
- 
   
-
-  // useEffect(() => {
-  //   console.log(divisions);
-
-  //   if (typeof divisions === "undefined") {
-  //     dispatch(getAllDivision(userDetail));
-  //   } else {
-  //     if (
-  //       typeof isDividionGeted === "undefined" &&
-  //       JSON.stringify(divisions) === JSON.stringify([])
-  //     ) {
-  //       dispatch(getAllDivision(userDetail));
-  //     }
-  //   }
-  // }, [isUserDetailUpdated]);
 
   useEffect(() => {
     window.sessionStorage.clear();
@@ -60,23 +38,7 @@ const Avalable_Divisions_For_Time_Table = (props) => {
 
   return (
     <Fragment>
-      {windowSizing.innerWidth >= 768 ? (
-        <div className="userAcountMainDiv" style={props.main.main}>
-          <ToolsPage></ToolsPage>
-
-          <div>
-            <div>
-              <HeaderComp type="Division"></HeaderComp>
-              <AllDivisions
-                type="timeTable"
-                hitpoints="2"
-                main={props.main}
-              ></AllDivisions>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="mobleDiv4865" style={props.main.main}>
+       <div className="mobleDiv4865" style={props.main.main}>
           <HeaderComp type="Time Table"></HeaderComp>
           <div className=" mobileDiv5656 boxShodow" style={props.main.sub_body}>
             <AllDivisions
@@ -88,7 +50,6 @@ const Avalable_Divisions_For_Time_Table = (props) => {
           </div>
           <ToolsPage></ToolsPage>
         </div>
-      )}
     </Fragment>
   );
 };

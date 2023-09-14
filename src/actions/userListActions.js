@@ -8,9 +8,9 @@ import {
   GET_ALL_USER_DETAIL_REQUEST,
   GET_ALL_USER_DETAIL_SUCCESS,
 } from "../constants/userDetailConstants";
-import Cookies from 'universal-cookie'
-const cookies = new Cookies();
-const token = cookies.get('token')
+ 
+const baseUrl = ``
+
 // get selected userDetail
 export const get_All_user = (tempOBJ) => async (dispatch) => {
   const { course, year, div, clgShortName,department,id } = tempOBJ; 
@@ -18,7 +18,7 @@ export const get_All_user = (tempOBJ) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_USER_DETAIL_REQUEST });
     const { data } = await axios.get(
-      `https://schooloil-api.onrender.com/api/v1/getstudents/${course}/${clgShortName}/${department}/${year}/${div}/${token}`
+      `${baseUrl}/api/v1/getstudents/${course}/${clgShortName}/${department}/${year}/${div}`
       
     );
     console.log(data); 
@@ -50,7 +50,7 @@ export const get_faculty_members_by_data = (tempOBJ) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_USER_DETAIL_BY_DATA_REQUEST });
     const { data } = await axios.get(
-      `https://schooloil-api.onrender.com/api/v1/faculty/details/${clgShortName}/${department}/${course}/${year}/${token}`
+      `${baseUrl}/api/v1/faculty/details/${clgShortName}/${department}/${course}/${year}`
       
     );
     console.log(data);

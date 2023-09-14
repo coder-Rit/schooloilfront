@@ -1,0 +1,24 @@
+.navBox {
+    width: 75px;
+    height: 75px;
+    
+    margin: auto;
+}
+
+.navImg {
+    width: 30px;
+    
+}
+
+
+.navBox-container {
+    display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* see notes below */
+  grid-gap: 1em;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.tempBlock{
+    opacity: 0.3;
+}

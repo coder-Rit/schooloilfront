@@ -59,8 +59,7 @@ const ToolsPage = () => {
   const redirectTo_TimeTable = () => {
     if (userDetail === null) {
       navigateTo("/user/account");
-    }else{
-
+    }else{ 
       navigateTo("/user/tools/timeTable");
     }
   };
@@ -128,34 +127,19 @@ const ToolsPage = () => {
         }
       : { toolpage: {}, toolpage_buttons: {} }
     
-
-  // useEffect(() => {
-  //   if (isUserDetailUpdated) {
-  //     console.log(userDetail);
-  //     dispatch(getAllDivision(userDetail));
-
-  //   }
-  // }, [isUserDetailUpdated]);
+ 
 
   return (
     <Fragment>
       <div className="time_table_btns" style={styles.toolpage}>
-        <div className="appName">
-          <span className="comName" style={styles.toolpage}>
-            schoolOil
-          </span>
-        </div>
+         
 
         <div className="navLinksDiv">
           {isAuthenticated ? (
             user.role === "teacher" ? (
               <>
                 <div
-                  // className={
-                  //   window.location.pathname === "/user/tools/myLectures"
-                  //     ? "iconNName_btnSelected iconNName_btn"
-                  //     : "iconNName_btn"
-                  // }
+                  
                   onClick={() => {
                     redirectToMyLecture();
                   }}

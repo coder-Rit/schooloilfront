@@ -114,3 +114,22 @@ font-size: 10px;
    font-size: 7px;
  }
  }
+
+
+
+ 
+.backgroundImage
+{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: -5;
+  overflow: hidden;
+
+  
+}
+ 
+.bgImage{
+min-height: 100vh;
+min-width: 100vw;
+}

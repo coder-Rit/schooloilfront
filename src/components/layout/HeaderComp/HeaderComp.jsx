@@ -1,6 +1,5 @@
 import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { useNavigate } from "react-router-dom";
 import SettingsIcon from "@mui/icons-material/Settings";
 

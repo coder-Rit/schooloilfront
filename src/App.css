@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
+ 
 body {
   padding: 0;
   margin: 0;
@@ -7,8 +7,9 @@ body {
   font-family: 'Poppins', sans-serif;
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-  background-color: #D5D5D5;
-
+   /* background-color: #D5D5D5; */
+   background-color: #ffffff;
+  min-height: 100vh;
 
   -webkit-user-select: none;
   /* Safari */
@@ -17,6 +18,7 @@ body {
   user-select: none;
 }
 
+ 
 html {
   --scrollbarBG: #ffffff;
   --thumbBG: #000000;
@@ -58,9 +60,6 @@ body::-webkit-scrollbar-thumb {
   background-color: #ffffff;
   font-weight: 530;
   cursor: pointer;
-  -webkit-box-shadow: 0px 0px 44px -10px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 44px -10px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 44px -10px rgba(0, 0, 0, 0.75);
 }
 
 @media only screen and (max-width: 768px) {
@@ -393,6 +392,10 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   justify-content: center;
 }
+.flex__center {
+  display: flex;
+  align-items: center;
+}
 
 .flex_spaceBtw_center {
   display: flex;
@@ -433,7 +436,9 @@ body::-webkit-scrollbar-thumb {
 .gap40 {
   gap: 40px;
 }
-
+.margin0{
+margin: 0;
+}
 .margin_10_20 {
   margin: 10px 20px;
 }
@@ -448,10 +453,16 @@ body::-webkit-scrollbar-thumb {
 .overflow_X {
   overflow-x: scroll;
 }
+.top5{
+
+  margin-top: 5px;
+}
 .top10{
   position: relative;
   margin-top: 10px;
-
+}
+.top15{
+  margin-top: 15px;
 }
 .top20 {
   margin-top: 20px;
@@ -479,14 +490,29 @@ body::-webkit-scrollbar-thumb {
 .marginbot{
   margin-bottom: 300px;
 }
+.textRight{
+  text-align: right;
+}
+.textCenter{
+  text-align: center;
+}
 
 
+
+
+/* colors */
+.primarybg{
+  background-color: #8a2be2;
+}
 
 
 
 /* font class */
 .bold {
   font-weight: bold;
+}
+.unBold{
+  font-weight: normal;
 }
 
 .fontLink {
@@ -497,6 +523,7 @@ body::-webkit-scrollbar-thumb {
 .font_13 {
   font-size: 13px;
 }
+
 
 .hoverTo_red:hover {
   color: red;
@@ -514,15 +541,14 @@ body::-webkit-scrollbar-thumb {
 /* desing */
 .glassTheme {
   background-color: rgba(148, 148, 148, 0.204);
-  -webkit-box-shadow: 0px 0px 50px -9px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 50px -9px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 50px -9px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 10px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 10px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 10px -9px rgba(0, 0, 0, 0.75);
   border-radius: 15px;
 }
 .blur2{
   -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
-
+  backdrop-filter: blur(2px); 
 }
 .blur {
 

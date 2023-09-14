@@ -3,7 +3,6 @@ import HeaderComp from "../../layout/HeaderComp/HeaderComp";
 import ToolsPage from "../toolsPage";
 import readXlsxFile from "read-excel-file";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 
 import {
   addMultipleStudents,
@@ -36,14 +35,13 @@ const AddStudent = (props) => {
   const [year, set_year] = useState("0");
   const [div, set_div] = useState("0");
   const [dept, set_dept] = useState("0");
-  const [studentList, setstudentList] = useState([]);
   const [Name, setName] = useState("");
   const [PhoneNumber, set_PhoneNumber] = useState("");
   const [rollnumber, Set_rollnumber] = useState("");
   const [EnNumber, Set_EnNumber] = useState("");
   const [Search_EnNumber, Set_Search_EnNumber] = useState("");
 
-  const { isUserDetailUpdated, userDetail, loading } = useSelector(
+  const { userDetail } = useSelector(
     (state) => state.userDetail
   );
 
@@ -401,7 +399,6 @@ const AddStudent = (props) => {
           </div>
         </div>
       </div>
-      <ToolsPage></ToolsPage>
     </div>
   );
 };

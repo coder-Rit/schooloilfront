@@ -1,10 +1,7 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCollegeDetails } from '../../actions/clgDetailAction';
-import { getUserDetail } from '../../actions/updateUserAction';
-import Button from '@mui/material/Button';
 
 const SearchedClg = (props) => {
 

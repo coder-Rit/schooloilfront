@@ -129,14 +129,14 @@ const MyLecture = (props) => {
 
 
   //code fuctionalty
-  const get_studentsList = () => {
+  const get_studentsList = (params) => {
     const tempOBJ = {
       course: userDetail.course,
-      year: Selected_div.year,
-      div: Selected_div.div,
+      year: params.year,
+      div: params.div,
       clgShortName: userDetail.clgShortName,
       department: userDetail.department,
-      id:Selected_div._id
+      id:params._id
     };
     dispatch(get_All_user(tempOBJ));
   };
@@ -194,7 +194,7 @@ const MyLecture = (props) => {
 
     dispatch(get_all_recent_lectures(dataForReq));
 
-    get_studentsList();
+    get_studentsList(Selected_div);
   };
 
   const dataFromLast = (type, e) => {
@@ -554,412 +554,15 @@ const MyLecture = (props) => {
 
 
   useEffect(() => {
-    if (isDivisionUpdated) {
-      
-      setSelected_div(division)
-       
-    } 
-  }, [isDivisionUpdated])
+      setSelected_div(division);
+      console.log(division);
+      get_studentsList(division); 
+  }, [ ])
  
  
   return (
     <Fragment>
-      {false ? (
-        <>
-          <div className="userAcountMainDiv" style={props.main.main}>
-            <ToolsPage></ToolsPage>
-            <div>
-              {
-                <div>
-                  <>
-                    {/*division*/}
-                    <HeaderComp type="My Lectures"></HeaderComp>
-
-                    <div
-                      className="allDiv_filters_lists_alx_Div "
-                      style={props.main.sub_body}
-                    >
-                      <div className="allDivisions">
-                        {isDivisionUpdated &&
-                        isUserDetailUpdated &&
-                        isAuthenticated
-                          ? divisions.map((data) => {
-                              if (data.status === "inUse") {
-                                return (
-                                  <div className="division boxShodow">
-                                    <div className="divisionNameNYear">
-                                      <span className="divisionName">
-                                        {data.div}
-                                      </span>
-                                      <span className="divisionYear">
-                                        {data.year}
-                                      </span>
-                                      <span className="divisionYear">
-                                        {data.department}
-                                      </span>
-                                    </div>
-
-                                    <div>
-                                      <button
-                                        style={props.main.sub_body}
-                                        className={
-                                          Selected_div._id === data._id
-                                            ? "btn_ligth divisionBTNSelected"
-                                            : "btn_ligth"
-                                        }
-                                        onClick={(e) => {
-                                          setSelected_div(data);
-                                          batchListSetter(e, data);
-                                        }}
-                                      >
-                                        Select Division
-                                      </button>
-                                    </div>
-                                  </div>
-                                );
-                              }
-                            })
-                          : null}
-                      </div>
-
-                      {typeof Selected_div.batches !== "undefined" ? (
-                        <div className="filters_lists_alx_Div ">
-                          {/*filtes*/}
-                          <div className="filters_main_div">
-                            <div className="lectureDiv_Sort boxShodow">
-                              <div className="DateNInput_div">
-                                <span className="DateNInput">
-                                  <span>From :</span>
-                                  <input
-                                    type="date"
-                                    name="formDate"
-                                    value={queryForm.formDate}
-                                    onChange={queryFormChange}
-                                  />
-                                </span>
-                                <span className="DateNInput">
-                                  <span>To :</span>
-                                  <input
-                                    type="date"
-                                    value={queryForm.toDate}
-                                    name="toDate"
-                                    onChange={queryFormChange}
-                                  />
-                                </span>
-                                <button
-                                  style={props.main.sub_body}
-                                  className="btn_ligth"
-                                  ref={FetchBTN}
-                                  onClick={fetch}
-                                >
-                                  fetch
-                                </button>
-                              </div>
-                              <div className="orLines">
-                                <span>
-                                  <hr />
-                                </span>
-                                <h>or</h>
-                                <span>
-                                  <hr />
-                                </span>
-                              </div>
-                              <div>
-                                <span className="groupOfButtons">
-                                  <button
-                                    style={props.main.sub_body}
-                                    className="btn_ligth"
-                                    ref={todayBTN}
-                                    onClick={(e) => dataFromLast("today", e)}
-                                  >
-                                    Today
-                                  </button>
-                                  <button
-                                    style={props.main.sub_body}
-                                    className="btn_ligth"
-                                    ref={lastWeekBTN}
-                                    onClick={(e) => dataFromLast("week", e)}
-                                  >
-                                    Last Week
-                                  </button>
-                                  <button
-                                    style={props.main.sub_body}
-                                    className="btn_ligth"
-                                    ref={thisMonthBTN}
-                                    onClick={(e) => dataFromLast("month", e)}
-                                  >
-                                    This month
-                                  </button>
-                                </span>
-                              </div>
-                            </div>
-
-                            <div className="lectureDiv_Sort boxShodow">
-                              <div>
-                                <button
-                                  style={props.main.sub_body}
-                                  name="Lecture"
-                                  onClick={onFilterChange}
-                                  ref={lectureBTN}
-                                >
-                                  Lecture
-                                </button>
-                                <button
-                                  className="btn_ligth"
-                                  onClick={onFilterChange}
-                                  name="Practical"
-                                  ref={practicalBTN}
-                                >
-                                  Practical
-                                </button>
-                              </div>
-                              <span>
-                                {isUserDetailUpdated
-                                  ? userDetail.subject.map((data) => {
-                                      return (
-                                        <div>
-                                          <input
-                                            name="sortSubject"
-                                            id={data}
-                                            onChange={onFilterChange}
-                                            value={data}
-                                            type="radio"
-                                          />
-                                          <label htmlFor={data}>{data}</label>
-                                        </div>
-                                      );
-                                    })
-                                  : null}
-                              </span>
-                              <div>
-                                {typeof Selected_div.batches === "object"
-                                  ? batchesList.map((batchName) => {
-                                      return (
-                                        <button
-                                          variant="contained"
-                                          className={
-                                            selctedBatch === batchName
-                                              ? "divisionBTNSelected divisionBTN"
-                                              : "divisionBTN"
-                                          }
-                                          onClick={(e) => {
-                                            onFilterChange(e, batchName);
-                                          }}
-                                          name="batch"
-                                        >
-                                          {batchName}
-                                        </button>
-                                      );
-                                    })
-                                  : null}
-                              </div>
-                            </div>
-                          </div>
-
-                          <>
-                            <div className="allLectures_div boxShodow">
-                              {/*studnets maping*/}
-                              {(isAllLecturesGained &&
-                                is_all_user_data_ready) ||
-                              (isPresentyModified && is_all_user_data_ready)
-                                ? sortedLectures.map((betaData) => {
-                                    return (
-                                      <div className="lectureDiv_main">
-                                        <div className="lectureDiv">
-                                          <span>{betaData.batch}</span>
-                                          <span>{betaData.type}</span>
-
-                                          {editLEcture_state ===
-                                          betaData._id ? (
-                                            <>
-                                              <span>
-                                                <input
-                                                  type="text"
-                                                  value={currentSubject}
-                                                  onChange={(e) =>
-                                                    set_currentSubject(
-                                                      e.target.value
-                                                    )
-                                                  }
-                                                />
-                                              </span>
-                                              <span>
-                                                <input
-                                                  type="Date"
-                                                  onChange={(e) =>
-                                                    set_currentDate(
-                                                      e.target.value
-                                                    )
-                                                  }
-                                                />
-                                              </span>
-                                            </>
-                                          ) : (
-                                            <>
-                                              <span>
-                                                subject: {betaData.subject}
-                                              </span>
-                                              <span>
-                                                {new Date(
-                                                  betaData.timeStamp
-                                                ).toLocaleDateString()}
-                                              </span>
-                                            </>
-                                          )}
-
-                                          <span>
-                                            Attendace :{" "}
-                                            {getAttendancePersent(betaData)}%
-                                          </span>
-                                          <span className="lecturesController">
-                                            <div>
-                                              <button
-                                                style={props.main.sub_body}
-                                                className="btn_ligth"
-                                                onClick={() =>
-                                                  openRollnumbers(betaData)
-                                                }
-                                              >
-                                                Manual Attendace
-                                              </button>
-                                              <button
-                                                className="divisionBTNIcone"
-                                                onClick={() => {
-                                                  seteditLEcture_state(
-                                                    betaData._id
-                                                  );
-                                                  set_currentSubject(
-                                                    betaData.subject
-                                                  );
-                                                }}
-                                              >
-                                                <ModeEditIcon className="muiIcon"></ModeEditIcon>
-                                              </button>
-                                            </div>
-                                            {editLEcture_state ===
-                                            betaData._id ? (
-                                              <div>
-                                                <button
-                                                  style={props.main.sub_body}
-                                                  className="btn_ligth"
-                                                  onClick={() =>
-                                                    editLecture(betaData)
-                                                  }
-                                                >
-                                                  update
-                                                </button>
-                                                <button
-                                                  className="divisionBTNIcone"
-                                                  onClick={() =>
-                                                    deleteLecture(
-                                                      editLEcture_state
-                                                    )
-                                                  }
-                                                >
-                                                  <DeleteIcon></DeleteIcon>
-                                                </button>
-                                                <button
-                                                  className="divisionBTNIcone"
-                                                  onClick={() =>
-                                                    seteditLEcture_state("")
-                                                  }
-                                                >
-                                                  <ClearIcon></ClearIcon>
-                                                </button>
-                                              </div>
-                                            ) : null}
-                                          </span>
-                                        </div>
-
-                                        {selected_lecture_for_manul_attendace._id ===
-                                        betaData._id ? (
-                                          <div className="indivisualRollNumber_pack">
-                                            <div>
-                                              {is_all_user_data_ready
-                                                ? listOfStudentBatchViz.map(
-                                                    (data) => {
-                                                      return (
-                                                        <span
-                                                          onClick={() =>
-                                                            selectStudents(
-                                                              data._id
-                                                            )
-                                                          }
-                                                          className={
-                                                            listOFStudentID.includes(
-                                                              data._id
-                                                            )
-                                                              ? "indivisualRollNumber forPresentRoll"
-                                                              : "indivisualRollNumber forAbsentRoll"
-                                                          }
-                                                        >
-                                                          {data.rollNumber}
-                                                        </span>
-                                                      );
-                                                    }
-                                                  )
-                                                : null}
-                                            </div>
-
-                                            <div>
-                                              <button
-                                                style={props.main.sub_body}
-                                                className="btn_ligth"
-                                                onClick={markAttendace}
-                                              >
-                                                update
-                                              </button>
-                                              <button
-                                                className="divisionBTNIcone"
-                                                onClick={() =>
-                                                  seteditLEcture_state("")
-                                                }
-                                              >
-                                                <ClearIcon></ClearIcon>
-                                              </button>
-                                            </div>
-                                          </div>
-                                        ) : null}
-                                      </div>
-                                    );
-                                  })
-                                : null}
-                            </div>
-                            {/* download selction */}
-                            {is_all_user_data_ready ? (
-                              listOfStudentBatchViz.length != 0 ? (
-                                <div className="divisionDivforLecture boxShodow">
-                                  <div>
-                                    <span>Download Data</span>
-                                    <button
-                                      variant="contained"
-                                      onClick={download}
-                                      className="divisionBTN"
-                                    >
-                                      view Demo
-                                    </button>
-                                  </div>
-                                  <div>
-                                    {isViewDamo ? (
-                                      <DemoTable
-                                        sheet={data_for_table}
-                                      ></DemoTable>
-                                    ) : null}
-                                  </div>
-                                </div>
-                              ) : null
-                            ) : null}
-                          </>
-                        </div>
-                      ) : null}
-                    </div>
-                  </>
-                </div>
-              }
-            </div>
-          </div>
-        </>
-      ) : (
+       
         <div className="mobleDiv4865" style={props.main.main}>
            
 
@@ -1127,7 +730,7 @@ const MyLecture = (props) => {
             ) : null}
           </span>
 
-          <div className="mobileDiv5656 boxShodow " style={props.main.sub_body}>
+          <div className="mobileDiv5656 glassTheme " style={props.main.sub_body}>
             <div className="allDiv_filters_lists_alx_Div ">
               <div className="allDivisions">
                 {isDivisionUpdated && isUserDetailUpdated && isAuthenticated ? (
@@ -1152,8 +755,8 @@ const MyLecture = (props) => {
                             onClick={(e) => {
                               setSelected_div(data);
                               batchListSetter(e, data);
-                              get_studentsList();
-                              set_createNew_lecture(true);
+                              get_studentsList(data);
+                            
                               set_open_lecture_form(false);
                               set_more_filters(false);
                               set_display_list(false);
@@ -1183,7 +786,7 @@ const MyLecture = (props) => {
                 ) : null}
               </div>
 
-              {createNew_lecture ? (
+             
                 <div>
                   {open_lecture_form ? (
                     <div
@@ -1212,7 +815,7 @@ const MyLecture = (props) => {
                     </button>
                   )}
                 </div>
-              ) : null}
+              
 
               {typeof Selected_div.batches !== "undefined" ? (
                 <div className="filters_lists_alx_Div ">
@@ -1220,7 +823,7 @@ const MyLecture = (props) => {
                   
                   <div className="filters_main_div">
                     <div
-                      className="lectureDiv_Sort boxShodow"
+                      className="lectureDiv_Sort glassTheme"
                       style={props.main.div_box}
                     >
                       <div>
@@ -1300,7 +903,7 @@ const MyLecture = (props) => {
                                 >
                                   From
                                 </span>
-                              </label>
+                              </label>  
                               <label
                                 className="custom-field one"
                                 style={props.main.input.label}
@@ -1321,11 +924,12 @@ const MyLecture = (props) => {
                               </label>
                             </div>
                             <button
-                              className="btn_ligth"
+                              className="btn_ligth primarybg"
+                              style={{color:"white"}}
                               ref={FetchBTN}
                               onClick={fetch}
                             >
-                              fetch
+                              Fetch
                             </button>
                           </div>
                         </>
@@ -1348,7 +952,7 @@ const MyLecture = (props) => {
 
                     {more_filters ? (
                       <div
-                        className="lectureDiv_Sort boxShodow"
+                        className="lectureDiv_Sort glassTheme"
                         style={props.main.div_box}
                       >
                         <div>
@@ -1540,7 +1144,7 @@ const MyLecture = (props) => {
                         isAllLecturesGained ? (
                           sortedLectures.length != 0 ? (
                             <div
-                              className="divisionDivforLecture boxShodow"
+                              className="divisionDivforLecture glassTheme"
                               style={props.main.div_box}
                             >
                               <div className="flex_baselineEnd_center">
@@ -1567,9 +1171,8 @@ const MyLecture = (props) => {
 
             <div className="fakeDiv_mobile"></div>
           </div>
-          <ToolsPage></ToolsPage>
         </div>
-      )}
+      
     </Fragment>
   );
 };

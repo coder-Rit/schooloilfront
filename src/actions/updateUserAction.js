@@ -6,10 +6,10 @@ import {
   GET_USER_DETAIL_SUCCESSS,
   GET_USER_DETAIL_REQUEST,
   CLEAR_ERRORS,
-  GET_ALL_USER_DETAIL_FAIL,
+  
   GET_ALL_USER_DETAIL_SUCCESS,
   GET_ALL_USER_DETAIL_REQUEST,
-  SET_USER_DETAIL_TO_VIEW_ACCOUNT,
+  
   GET_USER_DETAIL_copy_FAIL,
   GET_USER_DETAIL_copy_REQUEST,
   GET_USER_DETAIL_copy_SUCCESSS,
@@ -19,17 +19,15 @@ import {
 } from "../constants/userDetailConstants";
 import axios from "axios";
 import { MAKE_ALERT } from "../constants/alertConstants";
-import Cookies from 'universal-cookie'
-const cookies = new Cookies();
-const token = cookies.get('token')
+
+
+const baseUrl = ``
 export const updateUser = (userUpdatedDetail) => async (dispatch) => {
   try {
  
-    const config = { Headers: { "Content-Type": "multipart/form-data" } }; 
     const { data } = await axios.post(
-      `https://schooloil-api.onrender.com/api/v1/updateNcreate/${token}`,
-      userUpdatedDetail,
-      config
+      `${baseUrl}/api/v1/updateNcreate`,
+      userUpdatedDetail
     );
     console.log(data);
    
@@ -50,11 +48,9 @@ export const updateUsers_Email = (userUpdatedDetail) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_USER_DETAIL_REQUEST });
 
-    const config = { Headers: { "Content-Type": "multipart/form-data" } }; 
     const { data } = await axios.post(
-      `https://schooloil-api.onrender.com/api/v1/updateStudentEmail/${token}`,
-      userUpdatedDetail,
-      config
+      `${baseUrl}/api/v1/updateStudentEmail`,
+      userUpdatedDetail 
     );
     
     let updatedUser = data.user
@@ -90,7 +86,7 @@ export const addMultipleStudents = (list) => async (dispatch) => {
   
   try {
      const { data } = await axios.post(
-      `https://schooloil-api.onrender.com/api/v1/addstudents/${token}` ,list
+      `${baseUrl}/api/v1/addstudents` ,list
     );
     console.log(data);
 
@@ -113,7 +109,7 @@ export const addMultipleStudents = (list) => async (dispatch) => {
 //     dispatch({ type: GET_USER_DETAIL_REQUEST });  
       
 //     const { data } = await axios.get(
-//       `https://schooloil-api.onrender.com/api/v1/user/detail/${email}` 
+//       `${baseUrl}/api/v1/user/detail/${email}` 
 //     );
 //     console.log(data);
 
@@ -137,7 +133,7 @@ export const getUserDetailbyEN = (enNumber,role) => async (dispatch) => {
     }
       
     const { data } = await axios.get(
-      `https://schooloil-api.onrender.com/api/v1/user/detail/${enNumber}/${token}` 
+      `/api/v1/user/detail/${enNumber}` 
     );
     console.log(data);
 
@@ -163,7 +159,7 @@ export const getUserDetail_copy = (email) => async (dispatch) => {
     dispatch({ type: GET_USER_DETAIL_copy_REQUEST });  
        
     const { data } = await axios.get(
-      `https://schooloil-api.onrender.com/api/v1/user/detail/${email}/${token}` 
+      `/api/v1/user/detail/${email}` 
     );
     
     dispatch({ type: GET_USER_DETAIL_copy_SUCCESSS, payload: data.userDetail });
@@ -181,9 +177,8 @@ export const updatefaculty = (userUpdatedDetail) => async (dispatch) => {
     console.log(userUpdatedDetail);
     const config = { Headers: { "Content-Type": "multipart/form-data" } };
     const { data } = await axios.post(
-      `https://schooloil-api.onrender.com/api/v1/update/faculty/${token}`,
-      userUpdatedDetail,
-      config
+      `${baseUrl}/api/v1/update/faculty`,
+      userUpdatedDetail  
     );
     console.log(data) 
     localStorage.removeItem("teacherDetail")
@@ -207,8 +202,7 @@ export const getUserDetailFaculty = (email) => async (dispatch) => {
     dispatch({ type: GET_USER_DETAIL_REQUEST });  
  
     const { data } = await axios.get(
-      `https://schooloil-api.onrender.com/api/v1/faculty/detail/${email}/${token}`, 
-       
+      `/api/v1/faculty/detail/${email}` 
     );
 
     localStorage.removeItem("teacherDetail")
@@ -240,8 +234,7 @@ export const find_student_by_id_and_update_role = (id,role) => async (dispatch) 
 
      const config = { Headers: { "Content-Type": "application/json" } };
     const { data } = await axios.put(
-      `https://schooloil-api.onrender.com/api/v1/user/student/update/role/${id}/${role}/${token}`, 
-      config
+      `${baseUrl}/api/v1/user/student/update/role/${id}/${role}` 
     );
     console.log(data.userDetail);
     dispatch({ type: FIND_USERDETAIL_BY_ID_UPDATE_ROLE_SUCCESSS, payload: data.userDetail });

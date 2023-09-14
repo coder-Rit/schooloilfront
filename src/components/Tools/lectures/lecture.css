@@ -16,15 +16,12 @@
    border-radius: 15px;
    margin: 15px;
    padding: 15px;
-   background-color: rgba(255, 255, 255, 0);
    display: flex;
    gap: 20px;
    flex-direction: column;
    justify-content: space-evenly;
    align-items: center;
 
-   box-shadow: 0px 0px 44px -10px rgba(0, 0, 0, 0.75);
-   background-color: silver;
 
 
 }
@@ -271,13 +268,7 @@ input[type='radio']:checked:after {
       border-radius: 20px;
       padding-top: 20px;
       padding-bottom: 20px;
-      margin: 10px 3px 3px 3px;
-      box-shadow: 0px 0px 44px -10px rgba(0, 0, 0, 0.75);
-      background-color: silver;
-      -webkit-backdrop-filter: blur(5px);
-      backdrop-filter: blur(3px);
-
-
+      margin: 10px 3px 3px 3px; 
    }
 
    .tableAt_lecturs_mobil {
@@ -405,9 +396,6 @@ input[type='radio']:checked:after {
    padding: 10px;
    display: flex;
    flex-direction: column;
-   background-color: silver;
-   -webkit-backdrop-filter: blur(5px);
-   backdrop-filter: blur(3px);
 }
 
 /* css for lectureBox coponent */
@@ -592,3 +580,23 @@ input[type='radio']:checked:after {
    overflow-y: scroll;
    height: 65vh;
 }
+
+
+.div98649{
+   padding: 10px 10px;
+   border-radius: 10px;
+   background-color: rgba(255, 255, 255, 0.644);
+}
+.div986499{
+   padding: 10px 5px;
+   border-radius: 10px;
+   background-color: rgba(255, 255, 255, 0.664);
+}
+
+.batchDiv {
+   display: grid;
+   grid-template-columns: repeat(2, 0.5fr);
+   grid-template-rows: repeat(2, 50px);
+   grid-column-gap: 5px;
+   grid-row-gap: 0px;
+   }

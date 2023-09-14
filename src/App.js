@@ -2,8 +2,8 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Auth from "./components/authentication/auth";
 import UpdateUserAccount from "./components/updateUser/updateUserAccount";
-import { useEffect, useRef, useState } from "react";
- import { loadUser, storeUser } from "./actions/userActions";
+import { useEffect } from "react";
+ import { loadUser} from "./actions/userActions";
 import HomePage from "./components/home/homePage";
  import Divisions from "./components/Tools/Divisons/divisions";
 import UpdateDivision_elem from "./components/Tools/Divisons/updateDivision";
@@ -19,7 +19,7 @@ import Settings from "./components/setting/Setting";
 import ForgetPass from "./components/authentication/ForgetPass";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getUserDetail,
+  
   getUserDetailFaculty,
   getUserDetailbyEN,
   store_faculty_local_data,
@@ -133,8 +133,7 @@ function App() {
     const a  = JSON.parse(localStorage.getItem("login"))
     if (a) {
       dispatch(loadUser());
-    }
-    
+    } 
     console.log("Hare krishna");
   }, []);
 

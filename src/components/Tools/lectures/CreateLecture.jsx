@@ -88,6 +88,8 @@ const CreateLecture = (props) => {
   //   }
   // }, [isFacultyListGainByData]);
 
+  const colorBlack ={color:"black"}
+
   useEffect(() => {
     console.log(4582);
 
@@ -102,109 +104,47 @@ const CreateLecture = (props) => {
   return (
     <>
       <div className="create_lecture_form" autoComplete="off">
-        <div>
-          <div>
+        <label>Type</label>
+        <div className="flex gap10" >
+          <div className="div98649 flex_center_center gap5 pointer">
             <input
               type="radio"
               name="type"
               value="Lecture"
               onClick={onFormDataChange}
             />
-            <label htmlFor="val3">Lecture</label>
+            <label htmlFor="val3"   style={colorBlack}>Lecture</label>
           </div>
-          <div>
+          <div  className="div98649 flex_center_center gap5 pointer">
             <input
               type="radio"
               name="type"
               value="Practical"
               onClick={onFormDataChange}
             />
-            <label htmlFor="val3">Practical</label>
+            <label htmlFor="val3"  style={colorBlack}>Practical</label>
           </div>
         </div>
 
+        
         <div>
-          {/* <label>
-                Faculty:
-                <input
-                  onChange={onFormDataChange}
-                  list="facultyList"
-                  value={formData.faculty}
-                  name="faculty"
-                  placeholder="Select faculty"
-                />
-              </label>
-              <datalist
-                id="facultyList"
-                name="faculty"
-                value={formData.faculty}
-                onChange={onFormDataChange}
-              >
-                <option value="" disabled selected>
-                  select faculty
-                </option>
-                ;
-                {faculty_list_state.map((data) => {
-                  return (
-                    <option key={data} value={data}>
-                      {data}
-                    </option>
-                  );
-                })}
-              </datalist> */}
-        </div>
+          <label>Batch</label>
+          <div className="batchDiv">
 
-        {/* <div>
-              <label>
-                Range:
-                <input
-                  onChange={onFormDataChange}
-                  list="range"
-                  type="Number"
-                  value={formData.range}
-                  name="range"
-                  min={5}
-                  max={50}
-                  placeholder="Range"
-                />
-              </label>
-              <datalist
-                id="range"
-                name="range"
-                value={formData.range}
-                onChange={onFormDataChange}
-              >
-                <option value="" disabled selected>
-                  select Range
-                </option>
-                <option  value={5}>
-               5
-                </option>
-                <option  value={10}>
-               10
-                </option>
-                <option  value={15}>
-               15
-                </option>
-                <option  value={20}>
-               20
-                </option>
-              </datalist>
-            </div> */}
-        <div>
-          <label> Batch</label>
+         
           {batchesList.map((data, index) => {
             console.log(props.selectedDivision);
             return (
-              <div>
+              <div  className="div986499 flex_baselineStart_center gap5 top10 pointer"> 
                 <input
                   type="radio"
                   name="batch"
                   value={props.selectedDivision.batches[data].name}
                   onClick={onFormDataChange}
                 />
+<div  style={colorBlack}>
 
-                <span>{props.selectedDivision.batches[data].name} </span>
+                <span >{props.selectedDivision.batches[data].name} </span>
                 <span>(</span>
 
                 <span>
@@ -212,15 +152,17 @@ const CreateLecture = (props) => {
                   {props.selectedDivision.batches[data].RollTo}
                 </span>
                 <span>)</span>
+</div>
               </div>
             );
           })}
+           </div>
         </div>
 
-        <div>
+        <div className="flex__center gap5" >
 
 
-        <label className="custom-field one" style={props.main.input.label}>
+        <div className="custom-field one " style={props.main.input.div}>
           <input
             onChange={onFormDataChange}
             value={
@@ -235,7 +177,7 @@ const CreateLecture = (props) => {
           <span class="placeholder" style={props.main.input.span}>
             Subject
           </span>
-        </label>
+        </div>
 
         <datalist id="SubjectsName" name="subject" value={formData.subject}>
           {userDetail.subject.map((data) => {
@@ -251,7 +193,7 @@ const CreateLecture = (props) => {
         <ClearIcon onClick={()=>setFormData({...formData,subject:""})}  ></ClearIcon>
         </span>
           </div>
-        <button className="btn_ligth" onClick={genrateLecture}>
+        <button className="btn_ligth primarybg " style={{color:"white"}} onClick={genrateLecture}>
           Create
         </button>
       </div>

@@ -24,18 +24,10 @@ const TimeTableForStudent = (props) => {
 
   return (
     <>
-      {windowSize.innerWidth >= 768 ? (
-        <div>
-          <TimetableComp props={props} classes="tableDiv"></TimetableComp>
-        </div>
-      ) : (
-        <>
-          <TimetableComp
+      <TimetableComp
             props={props}
             classes="tableDiv markDiv4564"
           ></TimetableComp>
-        </>
-      )}
     </>
   );
 };

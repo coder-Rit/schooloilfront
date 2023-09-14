@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { is_user_exist, login_withoutPassAc } from "../../actions/userActions";
-import { genrateOTP_email } from "../../actions/whatsAppAction";
 import axios from 'axios'
 import "./auth.css";
 

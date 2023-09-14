@@ -91,19 +91,7 @@ const TodaysLectures = (props) => {
 
   return (
     <>
-      {false ? (
-        <div className="userAcountMainDiv " style={props.main.main}>
-          <div className="toolsNavigator">
-            <ToolsPage></ToolsPage>
-          </div>
-
-          <div>
-            <h1>Today's Lectures</h1>
-            <hr />
-          </div>
-        </div>
-      ) : (
-        <div className="mobleDiv4865" style={props.main.main}>
+      <div className="mobleDiv4865" style={props.main.main}>
           <HeaderComp type="Mark Attendance"></HeaderComp>
           <div
             className="mobileDiv5656 markDiv4564"
@@ -127,9 +115,7 @@ const TodaysLectures = (props) => {
               ) : <span class="loader"></span>}
             </div>
           </div>
-          <ToolsPage></ToolsPage>
         </div>
-      )}
     </>
   );
 };

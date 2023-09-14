@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +12,6 @@ import Updates from "../updates/Updates"
 
 const Setting = (props) => {
   let dispatch = useDispatch();
-  let navigate = useNavigate();
   const windowSizing = useSizing();
 
   const { user, isAuthenticated, logedOut } = useSelector(
@@ -78,7 +76,6 @@ const Setting = (props) => {
     <Fragment>
       {windowSizing.innerWidth >= 768 ? (
         <div className="userAcountMainDiv" style={props.main.main}>
-          <ToolsPage></ToolsPage>
 
           <div className="div4661" style={props.main.sub_body}></div>
         </div>
@@ -173,7 +170,6 @@ const Setting = (props) => {
             <div className="fakeDiv_setting"></div>
           </div>
 
-          <ToolsPage></ToolsPage>
         </div>
       )}
     </Fragment>
