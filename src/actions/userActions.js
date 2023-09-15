@@ -16,34 +16,44 @@ import {
 } from "../constants/userConstants";
 import axios from "axios";
 import { MAKE_ALERT } from "../constants/alertConstants";
-import Cookies from 'universal-cookie'
+import Cookies from "universal-cookie";
+import { STORE_TOKEN } from "../constants/settingConstant";
 const cookies = new Cookies();
- 
 
-const baseUrl = ``
+let token = cookies.get("token");
+
+const baseUrl = `https://schooloil-api.onrender.com`;
 
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
     const config = { Headers: { "Content-Type": "application/json" } };
-     const { data } = await axios.post(
-      `${baseUrl}/api/v1/login`,
-      { email, password } 
+    const { data } = await axios.post(
+      `https://schooloil-api.onrender.com/api/v1/login`,
+      { email, password }
     );
     console.log(data);
-    //  cookies.set('token', data.Token,{path:"/",expires: (new Date(Date.now()+2592000000))});
-     localStorage.setItem("login",JSON.stringify(true))
-     dispatch({ type: LOGIN_SUCCESS, payload: data.user });
-     dispatch({ type: MAKE_ALERT, payload1: 1,payload2:"Login successful" });
-
+    cookies.set("token", data.Token, {
+      path: "/",
+      expires: new Date(Date.now() + 2592000000),
+    });
+    localStorage.setItem("login", JSON.stringify(true));
+    
+    
+    dispatch({ type: LOGIN_SUCCESS, payload: data.user });
+    dispatch({ type: MAKE_ALERT, payload1: 1, payload2: "Login successful" });
+    window.location.reload();
 
   } catch (error) {
     console.log(error);
 
-    dispatch({ type: LOGIN_FAIL, payload: error.response.data.msg  });
-    dispatch({ type: MAKE_ALERT, payload1: 0,payload2:error.response.data.msg });
-
+    dispatch({ type: LOGIN_FAIL, payload: error.response.data.msg });
+    dispatch({
+      type: MAKE_ALERT,
+      payload1: 0,
+      payload2: error.response.data.msg,
+    });
   }
 };
 
@@ -51,49 +61,67 @@ export const register = (userData) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_USER_REQUEST });
 
-    
+    const { data } = await axios.post(
+      `https://schooloil-api.onrender.com/api/v1/signup`,
+      userData
+    );
 
-    const { data } = await axios.post(`${baseUrl}/api/v1/signup`, userData);
-
-    localStorage.setItem("login",JSON.stringify(true))
+    localStorage.setItem("login", JSON.stringify(true));
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
-    dispatch({ type: MAKE_ALERT, payload1: 1,payload2:"Account created successfully. please update your account" });
-
+    dispatch({
+      type: MAKE_ALERT,
+      payload1: 1,
+      payload2: "Account created successfully. please update your account",
+    });
   } catch (error) {
     console.log(error.response);
     dispatch({ type: REGISTER_USER_FAIL, payload: error.response.data.msg });
-    dispatch({ type: MAKE_ALERT, payload1: 0,payload2:error.response.data.msg });
-
+    dispatch({
+      type: MAKE_ALERT,
+      payload1: 0,
+      payload2: error.response.data.msg,
+    });
   }
 };
 // faculty registation
-export const registerfaculty = (userData,user) => async (dispatch) => {
-   try {
+export const registerfaculty = (userData, user) => async (dispatch) => {
+  try {
     dispatch({ type: REGISTER_USER_REQUEST });
 
-    
-
-    const { data } = await axios.post(`${baseUrl}/api/v1/signup/faculty`, userData);
+    const { data } = await axios.post(
+      `https://schooloil-api.onrender.com/api/v1/signup/faculty`,
+      userData
+    );
     dispatch({ type: REGISTER_USER_SUCCESS, payload: user });
 
-     dispatch({ type: MAKE_ALERT, payload1: 1,payload2:"Account created successfully." });
-
+    dispatch({
+      type: MAKE_ALERT,
+      payload1: 1,
+      payload2: "Account created successfully.",
+    });
   } catch (error) {
     console.log(error.response);
     dispatch({ type: REGISTER_USER_FAIL, payload: error.response.data.msg });
-    dispatch({ type: MAKE_ALERT, payload1: 0,payload2:error.response.data.msg });
-
+    dispatch({
+      type: MAKE_ALERT,
+      payload1: 0,
+      payload2: error.response.data.msg,
+    });
   }
 };
 
 export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
-   
 
-    const { data } = await axios.get(`${baseUrl}/api/v1/user/me`);
+    
 
-    localStorage.setItem("login",JSON.stringify(true))
+    const { data } = await axios.post(
+      `https://schooloil-api.onrender.com/api/v1/user/me`,
+      { token }
+    );
+
+    localStorage.setItem("login", JSON.stringify(true));
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
   } catch (error) {
     console.log(error);
@@ -102,35 +130,35 @@ export const loadUser = () => async (dispatch) => {
 };
 export const storeUser = (data) => async (dispatch) => {
   dispatch({ type: LOAD_USER_SUCCESS, payload: data });
-
 };
 
-export const  logOut_user = () => async (dispatch) => {
-  try { 
-    await axios.get(`${baseUrl}/api/v1/logout`);
+export const logOut_user = () => async (dispatch) => {
+  try {
+    await axios.post(`https://schooloil-api.onrender.com/api/v1/logout`);
     dispatch({ type: LOAD_USER_FAIL });
-    let theme =localStorage.getItem("theme")
-    localStorage.clear()
-    localStorage.setItem("theme",theme)
-    localStorage.setItem("login",JSON.stringify(false))
-    cookies.remove('token');
-    dispatch({ type: MAKE_ALERT, payload1: 1,payload2:"Log out successfully" });
-
+    let theme = localStorage.getItem("theme");
+    localStorage.clear();
+    localStorage.setItem("theme", theme);
+    localStorage.setItem("login", JSON.stringify(false));
+    cookies.remove("token");
+    dispatch({
+      type: MAKE_ALERT,
+      payload1: 1,
+      payload2: "Log out successfully",
+    });
   } catch (error) {
     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.msg });
-    dispatch({ type: MAKE_ALERT, payload1: 0,payload2:"Fail to logout" });
-
+    dispatch({ type: MAKE_ALERT, payload1: 0, payload2: "Fail to logout" });
   }
 };
 
 export const updateUserBasicDetail = (updated_data) => async (dispatch) => {
-
   try {
     dispatch({ type: UPDATE_USER_REQUEST });
     const config = { Headers: { "Content-Type": "application/json" } };
     console.log(updated_data);
     const { data } = await axios.put(
-      `${baseUrl}/api/v1/user/update`,
+      `https://schooloil-api.onrender.com/api/v1/user/update`,
       updated_data,
       config
     );
@@ -145,24 +173,26 @@ export const updateUserBasicDetail = (updated_data) => async (dispatch) => {
   }
 };
 
-
-
-
-
 // changing password
 export const change_password = (passOBJ, user) => async (dispatch) => {
   dispatch({ type: UPDATE_USER_REQUEST });
 
   try {
-    const { data } = await axios.put(`${baseUrl}/api/v1/user/updatePass`, passOBJ);
+    const { data } = await axios.put(
+      `https://schooloil-api.onrender.com/api/v1/user/updatePass`,
+      passOBJ
+    );
     console.log(data);
     dispatch({ type: UPDATE_USER_SUCCESS, payload: data.user });
-    dispatch({ type: MAKE_ALERT, payload1: 1,payload2:"Password changed" });
+    dispatch({ type: MAKE_ALERT, payload1: 1, payload2: "Password changed" });
+  } catch (error) {
+    dispatch({
+      type: MAKE_ALERT,
+      payload1: 0,
+      payload2: "Unable to change password",
+    });
 
-   } catch (error) {
-    dispatch({ type: MAKE_ALERT, payload1: 0,payload2:"Unable to change password" });
-
-     dispatch({
+    dispatch({
       type: UPDATE_USER_FAIL,
       payload: error.response.data.msg,
       payload2: user,
@@ -175,44 +205,56 @@ export const is_user_exist = (email, OTP) => async (dispatch) => {
   try {
     console.log(email);
     const config = { Headers: { "Content-Type": "application/json" } };
-    const { data } = await axios.get(`${baseUrl}/api/v1/user/isExist/${email}`,config  );
+    const { data } = await axios.post(
+      `https://schooloil-api.onrender.com/api/v1/user/isExist/${email}`,
+      config
+    );
     if (data.success == true) {
       try {
-        await axios.post(`${baseUrl}/api/v1/user/gerateOTP/email`, {
-          username: data.username,
-          email: email,
-          OTP: OTP,
-        });
+        await axios.post(
+          `https://schooloil-api.onrender.com/api/v1/user/gerateOTP/email`,
+          {
+            username: data.username,
+            email: email,
+            OTP: OTP,
+          }
+        );
       } catch (error) {
         console.log(error);
       }
     }
   } catch (error) {
-    console.log( error.response.data);
+    console.log(error.response.data);
     dispatch({ type: LOGIN_FAIL, payload: error.response.data.msg });
   }
 };
 
 //checking is user exist or not
-export const login_withoutPassAc = (email, sendedOTP,recivedOTP) => async (dispatch) => {
-  try {
-    console.log(email);
-    const config = { Headers: { "Content-Type": "application/json" } };
-    const { data } = await axios.get(`${baseUrl}/api/v1/user/login_withoutPass/${email}/${sendedOTP}/${recivedOTP}`,config  );
-    dispatch({ type: LOGIN_SUCCESS, payload: data.user });
-    dispatch({ type: MAKE_ALERT, payload1: 1,payload2:"login successfull. please change you password" });
-
-
-
-  } catch (error) {
-     console.log(error.response.data.msg);
-    dispatch({ type: LOGIN_FAIL, payload: error.response.data.msg });
-    dispatch({ type: MAKE_ALERT, payload1: 0,payload2:error.response.data.msg  });
-
-  }
-};
-
-
+export const login_withoutPassAc =
+  (email, sendedOTP, recivedOTP) => async (dispatch) => {
+    try {
+      console.log(email);
+      const config = { Headers: { "Content-Type": "application/json" } };
+      const { data } = await axios.post(
+        `https://schooloil-api.onrender.com/api/v1/user/login_withoutPass/${email}/${sendedOTP}/${recivedOTP}`,
+        config
+      );
+      dispatch({ type: LOGIN_SUCCESS, payload: data.user });
+      dispatch({
+        type: MAKE_ALERT,
+        payload1: 1,
+        payload2: "login successfull. please change you password",
+      });
+    } catch (error) {
+      console.log(error.response.data.msg);
+      dispatch({ type: LOGIN_FAIL, payload: error.response.data.msg });
+      dispatch({
+        type: MAKE_ALERT,
+        payload1: 0,
+        payload2: error.response.data.msg,
+      });
+    }
+  };
 
 export const clareErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });

@@ -25,9 +25,13 @@ import {
 } from "../constants/divisionConstants";
 import axios from "axios";
  import { MAKE_ALERT } from "../constants/alertConstants";
- 
-const baseUrl = ``
+ import Cookies from 'universal-cookie'
+const cookies = new Cookies();
+const token = cookies.get('token');
 
+ 
+const baseUrl = `https://schooloil-api.onrender.com`
+ 
 
 
 export const updateDivision =
@@ -37,8 +41,8 @@ export const updateDivision =
       const config = { Headers: { "Content-Type": "application/json" } };
 
       const { data } = await axios.post(
-        `${baseUrl}/api/v1/division/update`,
-        {divisionData},
+        `https://schooloil-api.onrender.com/api/v1/division/update`,
+        {...divisionData,token},
         config
       );
       let newListOFDivision;
@@ -92,8 +96,8 @@ export const getAllDivision = (params) => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_DIVISION_REQUEST });
     const { data } = await axios.post(
-      `${baseUrl}/api/v1/divisions`,
-      { course, clgShortName, year, department,status:"inUse" },
+      `https://schooloil-api.onrender.com/api/v1/divisions`,
+      { course, clgShortName, year, department,status:"inUse",token },
       config
     );
     console.log(data);
@@ -139,7 +143,7 @@ export const setDivisionID = (id) => async (dispatch) => {
 export const getDivisionByID = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_DIVISION_BY_REQUEST });
-    const { data } = await axios.get(`${baseUrl}/api/v1/division/${id}`);
+    const { data } = await axios.post(`https://schooloil-api.onrender.com/api/v1/division/${id}`,{token} );
     console.log(data);
     dispatch({
       type: GET_DIVISION_BY_SUCCESS,
@@ -168,8 +172,8 @@ export const find_division_by_data_and_update =
       let newData = divisions;
       if (type === "div") {
         const { data } = await axios.post(
-          `${baseUrl}/api/v1/division/updateBydata`,
-          combinedData,
+          `https://schooloil-api.onrender.com/api/v1/division/updateBydata`,
+          {...combinedData,token},
           config
         );
 
@@ -205,7 +209,7 @@ export const find_division_by_data_and_update =
 
       // if (type === "timetable") {
       //   const { data } = await axios.post(
-      //     `${baseUrl}/api/v1/division/updateBydata`,
+      //     `https://schooloil-api.onrender.com/api/v1/division/updateBydata`,
       //     {
       //       dataForFinding: combinedData.division._id,
       //       dataForUpdate: combinedData.dataForUpdate,
@@ -251,8 +255,8 @@ export const get_division_by_data = (givenData) => async (dispatch) => {
   const { div, course, clgShortName, year } = givenData;
   try {
     dispatch({ type: GET_DIVISION_BY_REQUEST });
-    const { data } = await axios.get(
-      `${baseUrl}/api/v1/division/myDivision/${div}/${course}/${clgShortName}/${year}`
+    const { data } = await axios.post(
+      `https://schooloil-api.onrender.com/api/v1/division/myDivision/${div}/${course}/${clgShortName}/${year}`,{token} 
     );
 
     console.log(data);
@@ -275,10 +279,11 @@ export const find_division_by_id_and_update_En_number =
       const data2 = {
         id,
         en: enNumber,
+        token
       };
 
       const { data } = await axios.put(
-        `${baseUrl}/api/v1/division/enupdate`,
+        `https://schooloil-api.onrender.com/api/v1/division/enupdate`,
         data2,
         config
       );
@@ -300,7 +305,7 @@ export const delete_division = (id, divisions, index) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_DIVISION_REQUEST });
 
-    const { data } = await axios.delete(`${baseUrl}/api/v1/division/delete/${id}`);
+    const { data } = await axios.delete(`https://schooloil-api.onrender.com/api/v1/division/delete/${id}`,{token} );
     console.log(data);
 
     let newDivison = divisions;

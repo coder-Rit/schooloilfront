@@ -1,7 +1,6 @@
 import React, { Fragment, useRef, useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../layout/Loader/Loader";
 import "./userAccount.css";
 import {
   getUserDetail,
@@ -10,35 +9,24 @@ import {
   updateUsers_Email,
 } from "../../actions/updateUserAction";
 import { Navigate, useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ToolsPage from "../Tools/toolsPage";
+ 
 import HeaderComp from "../layout/HeaderComp/HeaderComp";
-import useSizing from "../../hooks/useSizing";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import Popup from "../layout/popups/Popup";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import TransgenderIcon from "@mui/icons-material/Transgender";
-import FemaleIcon from "@mui/icons-material/Female";
-import MaleIcon from "@mui/icons-material/Male";
 import PersonIcon from "@mui/icons-material/Person";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import SchoolIcon from "@mui/icons-material/School";
 import NumbersIcon from "@mui/icons-material/Numbers";
-import CakeIcon from "@mui/icons-material/Cake";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
 import CachedIcon from "@mui/icons-material/Cached";
-import AddIcon from "@mui/icons-material/Add";
-import EditIcon from "@mui/icons-material/Edit";
-import RemoveIcon from "@mui/icons-material/Remove";
+ 
 import UploadIcon from "@mui/icons-material/Upload";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import {
@@ -54,14 +42,12 @@ const UserAccount = (props) => {
   let dispatch = useDispatch();
   let navigate = useNavigate();
   let profileInfoDivRef = useRef(null);
-  const windowSizing = useSizing();
 
   //state
   const [userState, setUserState] = useState({
     username: "",
     clgShortName: "",
   });
-  const [currentHeigth, setcurrentHeigth] = useState(0);
   const [changeHeightState, setchangeHeightState] = useState(false);
   const [userDetailState, setUserDetailState] = useState({
     fistName: "",
@@ -77,33 +63,21 @@ const UserAccount = (props) => {
     department: "",
   });
 
-  const freeStyle = {
-    span: { background: "#111111", color: "white" },
-    input: {
-      border: "1px solid white",
-      background: "transparent",
-      color: "white",
-    },
-    txt: { color: "black" },
-  };
+  
   // data form redux
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const { userDetail, isUserDetailUpdated } = useSelector(
     (state) => state.userDetail
   );
 
+
   //destructured data
-  const { username } = userState;
   const {
     Name,
-
-    role,
-    rollNumber,
+ 
     enNumber,
-    phoneNumber,
-    department,
+  
     avatar,
-    clgShortName,
   } = userDetailState;
 
   const [userData, setUserData] = useState({
@@ -113,7 +87,6 @@ const UserAccount = (props) => {
 
     role: "teacher",
   });
-  const { Regusername, email, password } = userData;
 
   //   functionality
 
@@ -132,16 +105,9 @@ const UserAccount = (props) => {
   const loadDivision = () => {
     dispatch(get_division_by_data(userDetail));
   };
-  const registerDataChange = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
-  };
+  
 
-  const registerFacultyBTN = (e) => {
-    e.preventDefault();
-    dispatch(
-      registerfaculty({ ...userData, username: userData.Regusername }, user)
-    );
-  };
+   
 
   const chagenHeight = () => {
     if (changeHeightState) {
@@ -173,17 +139,7 @@ const UserAccount = (props) => {
     }
   }, [isUserDetailUpdated, isAuthenticated]);
 
-  // use Effect
-
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     if (user.role === "student") {
-  //       dispatch(getUserDetail(user.email));
-  //     } else if(user.role ==="teacher") {
-  //       dispatch(getUserDetailFaculty(user.email));
-  //     }
-  //   }
-  // }, [isAuthenticated]);
+  
 
   useEffect(() => {
     if (

@@ -17,8 +17,10 @@ import {
   PUSH_ID_AND_UPDATE_REQUEST,
   PUSH_ID_AND_UPDATE_SUCCESS,
 } from "../constants/lectureConstant"; 
-const baseUrl = ``
-
+import Cookies from 'universal-cookie'
+const cookies = new Cookies();
+const token = cookies.get('token');
+const baseUrl = `https://schooloil-api.onrender.com`
 
 
 // create create_lecture
@@ -28,8 +30,8 @@ export const create_lecture = (lectureData) => async (dispatch) => {
     const config = { Headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
-      `${baseUrl}/api/v1/user/genrateL`,
-      lectureData,
+      `https://schooloil-api.onrender.com/api/v1/user/genrateL`,
+      {...lectureData,token},
       config
     );
     console.log(data);
@@ -53,8 +55,8 @@ export const get_all_recent_lectures = (givenData,howMuchOld) => async (dispatch
   try {
     dispatch({ type: GET_ALL_LECTURE_REQUEST });
 
-    const { data } = await axios.get(
-      `${baseUrl}/api/v1/user/getAllLectures/${id}/${from}/${to}`
+    const { data } = await axios.post(
+      `https://schooloil-api.onrender.com/api/v1/user/getAllLectures/${id}/${from}/${to}`,{token}
     ); 
     console.log(data);
 
@@ -88,7 +90,7 @@ export const add_user_to_mark_attendace =
       dispatch({ type: PUSH_ID_AND_UPDATE_REQUEST });
 
       const { data } = await axios.post(
-        `${baseUrl}/api/v1/user/markMyAttendance/${updater}/${update}`
+        `https://schooloil-api.onrender.com/api/v1/user/markMyAttendance/${updater}/${update}`,{token}
       );
       console.log(data);
       dispatch({
@@ -112,8 +114,8 @@ export const find_lecture_by_id_and_replace_attendance =
       const config = { Headers: { "Content-Type": "application/json" } };
 
       const { data } = await axios.put(
-        `${baseUrl}/api/v1/user/attendance/repace`,
-        { id, array },
+        `https://schooloil-api.onrender.com/api/v1/user/attendance/repace`,
+        { id, array,token },
         config
       );
 
@@ -149,9 +151,11 @@ export const find_lecture_by_id_and_update_info =
       dispatch({ type: GET_LECUTURE_BY_ID_AND_REPLACE_PRESENTY_ARRAY_REQUEST });
       const config = { Headers: { "Content-Type": "application/json" } };
 
+      console.log(update);
+
       const { data } = await axios.put(
-        `${baseUrl}/api/v1/user/lecture/info/udpate`,
-        update,
+        `https://schooloil-api.onrender.com/api/v1/user/lecture/info/udpate`,
+        {...update,token},
         config
       );
 
@@ -183,8 +187,8 @@ export const find_lecture_by_id_and_update_info =
 export const delete_created_lecture = (id, lectures) => async (dispatch) => {
    try {
     dispatch({ type: DELETE_LECUTURE_REQUEST });
-   const { data } = await axios.delete(
-    `${baseUrl}/api/v1/user/lecture/${id}`
+   const { data } = await axios.post(
+    `https://schooloil-api.onrender.com/api/v1/user/lecture/${id}`,{token} 
     );
 
     const index = lectures.findIndex((datab) => {

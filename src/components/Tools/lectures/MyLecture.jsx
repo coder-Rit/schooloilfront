@@ -15,12 +15,9 @@ import { get_All_user } from "../../../actions/userListActions";
 import { sendWhatsApp_message } from "../../../actions/whatsAppAction";
  import "./lecture.css";
 import DemoTable from "./DemoTable";
- import ToolsPage from "../toolsPage";
  import HeaderComp from "../../layout/HeaderComp/HeaderComp";
 import "../../divison/allDivision.css";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import ClearIcon from "@mui/icons-material/Clear";
-import DeleteIcon from "@mui/icons-material/Delete";
+ 
 import useSizing from "../../../hooks/useSizing";
 import CreateLecture from "./CreateLecture";
 import CloseIcon from "@mui/icons-material/Close";
@@ -30,7 +27,6 @@ import { setAlldivisions } from "../../../actions/divisionAction";
 const MyLecture = (props) => {
   //hooks
   const dispatch = useDispatch();
-  const windowSizing = useSizing();
 
   const todayBTN = useRef(null);
   const thisMonthBTN = useRef(null);
@@ -50,9 +46,7 @@ const MyLecture = (props) => {
   const {
     divisions,
     division,
-    isDividionGeted,
     isDivisionUpdated,
-    isDivisionDataStored,
   } = useSelector((state) => state.division);
 
   const { isAllLecturesGained, lectures, isPresentyModified } = useSelector(
@@ -90,14 +84,11 @@ const MyLecture = (props) => {
   const [Selected_div, setSelected_div] = useState({});
  
 
-  const [attendacePersentage_lastMonth, set_attendacePersentage_lastMonth] =
-    useState([]);
   const [listOfStudentBatchViz, set_listOfStudentBatchViz] = useState([]);
   const [batchesList, set_batchesList] = useState([]);
   const [listOFStudentID, set_listOFStudentID] = useState([]);
   const [sortedLectures, set_sortedLectures] = useState([]);
   const [data_for_table, set_data_for_table] = useState([]);
-  const [data_for_whatsApp, set_data_for_whatsApp] = useState([]);
   const [editLEcture_state, seteditLEcture_state] = useState("");
   const [currentDate, set_currentDate] = useState("");
   const [currentSubject, set_currentSubject] = useState("");
@@ -106,7 +97,6 @@ const MyLecture = (props) => {
   const [isViewDamo, set_isViewDamo] = useState(false);
   const [openEditor, set_openEditor] = useState(false);
   const [openManula_atte_Editor, set_openManula_atte_Editor] = useState(false);
-  const [createNew_lecture, set_createNew_lecture] = useState(false);
   const [open_lecture_form, set_open_lecture_form] = useState(false);
   const [isSend_WhatsApp, set_isSend_WhatsApp] = useState(true);
   const [more_filters, set_more_filters] = useState(false);
@@ -285,8 +275,10 @@ const MyLecture = (props) => {
     let perfectData = selected_lecture_for_manul_attendace;
     delete perfectData["_id"];
 
+    console.log(userDetail);
+
     perfectData.postedBy = userDetail._id;
-    perfectData.faculty = userDetail.personalInfo.fistName;
+    perfectData.faculty = userDetail.Name;
     perfectData.duplicated = true;
 
     dispatch(create_lecture(perfectData));

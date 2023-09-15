@@ -1,6 +1,6 @@
 import {
     
-    CHANGE_THEME,
+    CHANGE_THEME, STORE_TOKEN,
   } from "../constants/settingConstant";
   
   export const settingReducer = (
@@ -14,6 +14,12 @@ import {
         return { 
           ...state,
           theme:action.payload
+        };
+
+      case STORE_TOKEN: 
+        return { 
+          ...state,
+          token:action.payload
         };
           
       default:
