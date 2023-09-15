@@ -31,7 +31,7 @@ const  HeaderComp = (props) => {
   };
 
   return (
-    <div className="componentheader" style={styles.header}>
+    <div className="componentheader blur4" style={styles.header}>
       <span onClick={redirectTobackpage}>
         <ArrowBackIcon></ArrowBackIcon>
       </span>

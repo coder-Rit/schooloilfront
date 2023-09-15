@@ -51,6 +51,13 @@ const ProtectedRoute = (props) => {
         pauseOnHover
         theme={props.Comp.props.main.alertMode}
       />
+      
+      <>
+      <div className="floadingOBJ1  border_radius50 "></div>
+      <div className="floadingOBJ2  border_radius50 "></div>
+      <div className="floadingOBJ3   border_radius50 "></div>
+      <div className="floadingOBJ4   border_radius50 "></div>
+      </>
      
 
       {windowSizing.innerWidth <= 14000 ? (

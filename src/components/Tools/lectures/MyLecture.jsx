@@ -18,7 +18,6 @@ import DemoTable from "./DemoTable";
  import HeaderComp from "../../layout/HeaderComp/HeaderComp";
 import "../../divison/allDivision.css";
  
-import useSizing from "../../../hooks/useSizing";
 import CreateLecture from "./CreateLecture";
 import CloseIcon from "@mui/icons-material/Close";
 import Note from "../../layout/note/Note";
@@ -37,7 +36,7 @@ const MyLecture = (props) => {
   const practicalBTN = useRef(null);
 
   //data form store
-  const { user, isAuthenticated } = useSelector((state) => state.user);
+  const {  isAuthenticated } = useSelector((state) => state.user);
 
   const { isUserDetailUpdated, userDetail, loading } = useSelector(
     (state) => state.userDetail
@@ -477,33 +476,6 @@ const MyLecture = (props) => {
   const calculateLast_monthAttendnce = () => {};
  
 
-  //use effect
-  // useEffect(() => {
-  //   if (isAuthenticated && typeof isUserDetailUpdated === "undefined") {
-  //     dispatch(getUserDetailFaculty(user.email));
-  //   }
-  // }, [isAuthenticated, isUserDetailUpdated]);
-
-  // useEffect(() => {
-  //   console.log(divisions);
-
-  //   if (typeof divisions === "undefined") {
-  //     dispatch(getAllDivision(userDetail));
-  //   } else {
-  //     if (
-  //       typeof isDividionGeted === "undefined" &&
-  //       JSON.stringify(divisions) === JSON.stringify([])
-  //     ) {
-  //       dispatch(getAllDivision(userDetail));
-  //     }
-  //   }
-  // }, [isUserDetailUpdated]);
-
-  // useEffect(() => {
-  //   if (isUserDetailUpdated) {
-  //     get_studentsList();
-  //   }
-  // }, [isUserDetailUpdated]);
 
   useEffect(() => {
     if (isAllLecturesGained) {

@@ -7,20 +7,15 @@ import { useNavigate } from "react-router-dom";
 import { getCollegeDetailsByName } from "../../../actions/clgDetailAction";
 import CloseIcon from "@mui/icons-material/Close";
 import {
-  change_updated_val,
   find_division_by_id_and_update_En_number,
   updateDivision,
 } from "../../../actions/divisionAction";
 import {
   find_student_by_id_and_update_role,
-  getUserDetailFaculty,
 } from "../../../actions/updateUserAction";
 import { get_All_user } from "../../../actions/userListActions";
 
 import "./division.css";
-import Button from "@mui/material/Button";
-import ToolsPage from "../toolsPage";
-import AllDivisions from "../../divison/AllDivisions";
 import HeaderComp from "../../layout/HeaderComp/HeaderComp";
 import useSizing from "../../../hooks/useSizing";
 
@@ -28,28 +23,23 @@ const UpdateDivision_elem = (props) => {
   //hooks
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
-  const windowSizing = useSizing();
 
   //states
   const { user, isAuthenticated } = useSelector((state) => state.user);
-  const { error, loading, isUserDetailUpdated, userDetail } = useSelector(
+  const {   isUserDetailUpdated, userDetail } = useSelector(
     (state) => state.userDetail
   );
   const { userList, is_all_user_data_ready } = useSelector(
     (state) => state.userList
   );
   const {
-    isDivisionUpdated,
-    id,
     division,
     divisions,
-    isIdUploaded,
     isDividionGeted,
-    isDivisionDataStored,
   } = useSelector((state) => state.division);
   const { clgDetail, isValueUdated } = useSelector((state) => state.clgDetail);
 
-  const { isUserDataSeted, accountDetail, isUsserDetailGainedForViewAccount } =
+  const {  isUsserDetailGainedForViewAccount } =
     useSelector((state) => state.accountDetail);
 
   //useState
@@ -271,31 +261,6 @@ const UpdateDivision_elem = (props) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (isDividionGeted) {
-  //     const { div, year, rollNumbers, CR, batches } = division;
-
-  //     set_Division_State({
-  //       div: div,
-  //       year: year,
-  //       from: rollNumbers.from,
-  //       To: rollNumbers.To,
-  //       batch_name1: batches.batch_1.name,
-  //       batch_name2: batches.batch_2.name,
-  //       batch_name3: batches.batch_3.name,
-  //       batch_name4: batches.batch_4.name,
-  //       RollFrom1: batches.batch_1.rollFrom,
-  //       RollFrom2: batches.batch_2.rollFrom,
-  //       RollFrom3: batches.batch_3.rollFrom,
-  //       RollFrom4: batches.batch_4.rollFrom,
-  //       RollTo1: batches.batch_1.RollTo,
-  //       RollTo2: batches.batch_2.RollTo,
-  //       RollTo3: batches.batch_3.RollTo,
-  //       RollTo4: batches.batch_4.RollTo,
-  //     });
-  //     set_CR_array_state(CR);
-  //   }
-  // }, [isDividionGeted]);
 
   useEffect(() => {
     if (isUserDetailUpdated) {
@@ -304,11 +269,7 @@ const UpdateDivision_elem = (props) => {
     }
   }, [isUserDetailUpdated]);
 
-  // useEffect(() => {
-  //   if (isIdUploaded) {
-  //     dispatch(getDivisionByID(id));
-  //   }
-  // }, [isIdUploaded]);
+
 
   useEffect(() => {
     if (isValueUdated) {

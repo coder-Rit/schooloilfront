@@ -6,8 +6,6 @@ import { getCollegeDetails } from '../../actions/clgDetailAction';
 const SearchedClg = (props) => {
 
   const dispatch = useDispatch()
-  const {error}=useSelector(state=>state.clgDetail)
-  const { user ,isAuthenticated} = useSelector((state) => state.user);
   const [clgCode, setClgCode] = useState("");
 
  

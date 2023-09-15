@@ -1,10 +1,7 @@
-import React, { Fragment, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { get_time_table_by_id, set_local_timeTable } from "../../../actions/timeTableAction";
-import HeaderComp from "../../layout/HeaderComp/HeaderComp";
-import Loader from "../../layout/Loader/Loader";
-import CreateLecture from "../lectures/CreateLecture";
 import Note from "../../layout/note/Note"
 import "./timeTable.css";
 import CachedIcon from '@mui/icons-material/Cached';
@@ -17,36 +14,21 @@ const TimetableComp = (props) => {
   const { timeTable, isTimetableGetByID } = useSelector(
     (state) => state.timeTable
   );
-  const { isDivisionUpdated, divisions, isDividionGeted, division } =
-    useSelector((state) => state.division);
 
   //uesState
   const [current_lecture_className, setcurrent_lecture_className] =
     useState("");
-  const { user, isAuthenticated } = useSelector((state) => state.user);
   const [currentDay, set_currentDay] = useState("");
-  const [is_User_is_CR, set_is_User_is_CR] = useState(false);
 
   //variables
   const d = new Date();
   let day = d.getDay();
-  let hours = d.getHours();
-  let min = d.getMinutes();
   let timeString = d.toTimeString();
   console.log(d.getDate());
   console.log(d.toTimeString());
   let currentTime = timeString.slice(0, 5);
 
-  //code feactures
-  // const createLectureBTN = (e) => {
-  //   console.log(props);
-  //      e.preventDefault()
-  //   if (props.props.userDetail.role === "CR") {
-  //     set_is_User_is_CR(true);
-  //   } else {
-  //     set_is_User_is_CR(false);
-  //   }
-  // };
+  
 
   //reload lectres 
   const laodTimeTable=()=>{

@@ -1,25 +1,15 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, {   useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { get_division_by_data } from "../../../actions/divisionAction";
 import { create_lecture } from "../../../actions/lectureActions";
-import { get_faculty_members_by_data } from "../../../actions/userListActions";
- import ToolsPage from "../toolsPage";
  import ClearIcon from '@mui/icons-material/Clear';
 
 const CreateLecture = (props) => {
   //hooks
-  const navigateTo = useNavigate();
   const dispatch = useDispatch();
  
-  //use selector
-
-  // const { facultyList, isFacultyListGainByData } = useSelector(
-  //   (state) => state.userList
-  // );
+  
 
   //use state
-  const [faculty_list_state, set_faculty_list_state] = useState([]);
   const [formData, setFormData] = useState({
     subject: "default",
     faculty: "",
@@ -70,23 +60,6 @@ const CreateLecture = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   console.log(props);
-  //   dispatch(get_faculty_members_by_data(props.userDetail));
-  // }, [props]);
-
-  // useEffect(() => {
-  //   if (isFacultyListGainByData) {
-  //     console.log(facultyList);
-  //     let nameList = [];
-  //     facultyList.map((data, index) => {
-  //       console.log(data.personalInfo.fistName);
-  //       const nameString = data.personalInfo.fistName;
-  //       nameList.push(nameString);
-  //     });
-  //     set_faculty_list_state(nameList);
-  //   }
-  // }, [isFacultyListGainByData]);
 
   const colorBlack ={color:"black"}
 

@@ -1,46 +1,27 @@
 import React, { Fragment } from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
-  delete_division,
  
   getAllDivision,
-  make_division_empty,
-  setDivisionID,
-  store_division_data,
 } from "../../../actions/divisionAction";
-import { getUserDetailFaculty } from "../../../actions/updateUserAction";
-import { DIVISION_ID } from "../../../constants/divisionConstants";
-import Loader from "../../layout/Loader/Loader";
 import "./division.css";
-import Button from "@mui/material/Button";
-import ToolsPage from "../toolsPage";
 import AllDivisions from "../../divison/AllDivisions";
 import HeaderComp from "../../layout/HeaderComp/HeaderComp";
 import AddIcon from "@mui/icons-material/Add";
-import useSizing from "../../../hooks/useSizing";
 import CachedIcon from '@mui/icons-material/Cached';
  
 const Divisions = (props) => {
   //hooks
   const navigateTo = useNavigate();
   const dispatch = useDispatch();
-  const windowSizing = useSizing();
 
   //use state
-  const { user, isAuthenticated } = useSelector((state) => state.user);
-  const { isUserDetailUpdated, userDetail } = useSelector(
+  const { userDetail } = useSelector(
     (state) => state.userDetail
   );
 
-  const {
-    divisions,
-    division,
-    isDividionGeted,
-    isDivisionUpdated,
-    isDivisionDataStored,
-  } = useSelector((state) => state.division);
+
 
  
 
@@ -56,18 +37,7 @@ const Divisions = (props) => {
     
     dispatch(getAllDivision(userDetail));
   }
-  // useEffect(() => {
-  //   if (typeof divisions === "undefined") {
-  //     dispatch(getAllDivision(userDetail));
-  //   } else {
-  //     if (
-  //       typeof isDividionGeted === "undefined" &&
-  //       JSON.stringify(divisions) === JSON.stringify([])
-  //     ) {
-  //      
-  //     }
-  //   }
-  // }, [isUserDetailUpdated]);
+  
  
 
 

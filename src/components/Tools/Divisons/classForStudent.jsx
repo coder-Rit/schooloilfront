@@ -1,11 +1,8 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { get_division_by_data, store_division_data } from "../../../actions/divisionAction";
-import { getUserDetail } from "../../../actions/updateUserAction";
 import "./division.css";
 import TimeTableForStudent from "../timeTable/timeTableForStudent";
-import { get_faculty_members_by_data } from "../../../actions/userListActions";
-import ToolsPage from "../toolsPage";
 import HeaderComp from "../../layout/HeaderComp/HeaderComp";
 
 const ClassForStudent = (props) => {
@@ -20,22 +17,13 @@ const ClassForStudent = (props) => {
   );
 
   const {
-    isDivisionUpdate,
-    id,
     division,
-    isIdUploaded,
     isDividionGeted,
     isDivisionDataStored,
-    isTimeTableID_updatedIn_division,
   } = useSelector((state) => state.division);
 
-  const [windowSize, setWindowSize] = useState(getWindowSize());
-  // //use effect
-  // useEffect(() => {
-  //   if (isAuthenticated && typeof isUserDetailUpdated === "undefined") {
-  //     dispatch(getUserDetail(user.email));
-  //   }
-  // }, [isAuthenticated, isUserDetailUpdated]);
+  const [ setWindowSize] = useState(getWindowSize());
+
 
   useEffect(() => {
     if (isUserDetailUpdated && user.role === "student") {

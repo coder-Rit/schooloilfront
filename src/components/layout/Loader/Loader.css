@@ -5,7 +5,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
- background-color: black;	 
 }
 
 
@@ -30,8 +29,8 @@
 
 .div78952{
 	height: 100vh;
-	background-color: black;
-	color: white;
+	background-color: rgba(153, 94, 255, 0.312);
+	color: rgb(0, 0, 0);
 }
 
 .div78952>span{

@@ -4,17 +4,11 @@ import { useNavigate } from "react-router-dom";
 import Loading from "../layout/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
  import {
-  getUserDetail,
-  getUserDetailFaculty,
   updatefaculty,
   updateUser,
 } from "../../actions/updateUserAction";
 import SearchedClg from "./SearchClg";
-import { updateUserBasicDetail } from "../../actions/userActions";
-import { get_division_by_data } from "../../actions/divisionAction";
 import axios from "axios";
-import { button, Checkbox, Radio } from "@mui/material";
-import ToolsPage from "../Tools/toolsPage";
 import HeaderComp from "../layout/HeaderComp/HeaderComp";
 import useSizing from "../../hooks/useSizing";
 import { genrateOTP_mobile } from "../../actions/whatsAppAction";
@@ -25,7 +19,6 @@ const UpdateStudentAccount = (props) => {
   // loops
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const windowSizing = useSizing();
 
   // data form redux
   const { clgDetail, isValueUdated, loadingClg,isError } = useSelector(
@@ -33,14 +26,11 @@ const UpdateStudentAccount = (props) => {
   );
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const {
-    error,
     loading,
     isUserDetailUpdated,
     userDetail,
     isUserDetailUpdated_real,
   } = useSelector((state) => state.userDetail);
-  const { isDivisionUpdate, id, division, isIdUploaded, isDividionGeted } =
-    useSelector((state) => state.division);
   //states
   const [userInfo, setUserInfo] = useState({
     Name: "",
@@ -70,8 +60,6 @@ const UpdateStudentAccount = (props) => {
     rollNumber,
     enNumber,
     course,
-    years,
-    OTP,
     year,
     role,
     degree,
@@ -296,17 +284,7 @@ const UpdateStudentAccount = (props) => {
     set_newSubjectEntry(!newSubjectEntry);
   };
 
-  //useEffect loops
-
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     if (user.role === "student") {
-  //       dispatch(getUserDetail(user.email));
-  //     } else {
-  //       dispatch(getUserDetailFaculty(user.email));
-  //     }
-  //   }
-  // }, [isAuthenticated]);
+ 
 
   useEffect(() => {
     if (isValueUdated && isAuthenticated) {
@@ -324,10 +302,7 @@ const UpdateStudentAccount = (props) => {
     }
   }, [isValueUdated, isAuthenticated, course, year, department, year_state]);
 
-  // allSubjects list reseter
-  // useEffect(() => {
-  //   setSelected_subjects([]);
-  // }, [allSub]);
+
 
   useEffect(() => {
     if (isUserDetailUpdated) {

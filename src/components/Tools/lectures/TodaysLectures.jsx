@@ -1,25 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
  import { useDispatch, useSelector } from "react-redux";
 import {
   get_division_by_data,
   store_division_data,
 } from "../../../actions/divisionAction";
 import {
-  add_user_to_mark_attendace,
-  delete_created_lecture,
   get_all_recent_lectures,
-  store_local_lectures_data,
 } from "../../../actions/lectureActions";
-import { getUserDetail } from "../../../actions/updateUserAction";
  import "./lecture.css";
- import ToolsPage from "../toolsPage";
 import HeaderComp from "../../layout/HeaderComp/HeaderComp";
 import LectureDiv from "../../layout/LectureDiv";
 import Note from "../../layout/note/Note";
 import CachedIcon from '@mui/icons-material/Cached';
 
 const TodaysLectures = (props) => {
-  const [windowSize, setWindowSize] = useState(getWindowSize());
 
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
@@ -32,9 +26,9 @@ const TodaysLectures = (props) => {
   const { isUserDetailUpdated, userDetail,   } = useSelector(
     (state) => state.userDetail
   );
-  const { division, isDividionGeted } = useSelector((state) => state.division);
+  const { division } = useSelector((state) => state.division);
 
-  const { isAllLecturesGained, lectures, isPresentyModified ,loading} = useSelector(
+  const { isAllLecturesGained, lectures} = useSelector(
     (state) => state.lecture
   );
 
@@ -77,12 +71,7 @@ const TodaysLectures = (props) => {
 
   useEffect(() => {
  console.log(156);
-      // let last_24_hoursLectures = sessionStorage.getItem("24hourLectures");
-      // if (last_24_hoursLectures) {
-      //   dispatch(
-      //     store_local_lectures_data(JSON.parse(last_24_hoursLectures))
-      //   );
-      // } else {
+     
        laodLectures()
       // }
    

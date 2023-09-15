@@ -4,23 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
  
 import { get_time_table_by_id } from "../../../actions/timeTableAction";
-import AllDivisions from "../../divison/AllDivisions";
  import Loader from "../../layout/Loader/Loader";
-import ToolsPage from "../toolsPage";
 import "./timeTable.css";
 
 const ViewTimeTable = (props) => {
   //hookes
-  const navigateTo = useNavigate();
   const dispatch = useDispatch();
 
-  const { timeTable, loading, isTimetableGetByID } = useSelector(
+  const { timeTable,  isTimetableGetByID } = useSelector(
     (state) => state.timeTable
   );
-  const { isUserDetailUpdated, userDetail } = useSelector(
-    (state) => state.userDetail
-  );
-  const { isDivisionUpdated, divisions,isDividionGeted,division } = useSelector(
+ 
+  const { division } = useSelector(
     (state) => state.division
   );
 

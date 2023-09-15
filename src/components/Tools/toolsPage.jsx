@@ -1,13 +1,10 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment,  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
-  getUserDetail,
-  getUserDetailFaculty,
   set_user_detail_to_view_account,
 } from "../../actions/updateUserAction";
 import "./toolsPage.css";
-import Button from "@mui/material/Button";
 import { makeStyles } from "@material-ui/core";
  
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -29,27 +26,16 @@ const ToolsPage = () => {
   //hooks
   let dispatch = useDispatch();
   const navigateTo = useNavigate();
-  const classes = useStyles();
 
   //from store
   const { user, isAuthenticated } = useSelector((state) => state.user);
-  const { userDetail, isUserDetailUpdated } = useSelector(
+  const { userDetail } = useSelector(
     (state) => state.userDetail
-  );
-  const { divisions, isDividionGeted, isDivisionUpdated } = useSelector(
-    (state) => state.division
   );
   const { theme } = useSelector((state) => state.settings);
 
 
   //state
-  const [selectedBTN, setselectedBTN] = useState({});
-
-  const is_userDetailUpdated = (props) => {
-    if (userDetail === null) {
-      return props;
-    }
-  };
 
 
   
@@ -158,12 +144,7 @@ const ToolsPage = () => {
                   </span>
                 </div>
                 <div
-                  // className={
-                  //   window.location.pathname === "/user/tools/timeTable" ||
-                  //   window.location.pathname === "/user/tools/timeTable/update"
-                  //     ? "iconNName_btnSelected iconNName_btn"
-                  //     : "iconNName_btn"
-                  // }
+                  
                   onClick={() => {
                     redirectTo_TimeTable();
                   }}
@@ -182,12 +163,7 @@ const ToolsPage = () => {
                   </span>
                 </div>
                 <div
-                  // className={
-                  //   window.location.pathname === "/user/tools/myStudents" ||
-                  //   window.location.pathname === "/user/student"
-                  //     ? "iconNName_btnSelected iconNName_btn"
-                  //     : "iconNName_btn"
-                  // }
+                   
                   onClick={() => {
                     redirectToAttendace();
                   }}

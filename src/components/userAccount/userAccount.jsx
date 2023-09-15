@@ -3,12 +3,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./userAccount.css";
 import {
-  getUserDetail,
   getUserDetailFaculty,
   getUserDetailbyEN,
   updateUsers_Email,
 } from "../../actions/updateUserAction";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
  
 import HeaderComp from "../layout/HeaderComp/HeaderComp";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -28,12 +27,10 @@ import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
 import CachedIcon from "@mui/icons-material/Cached";
  
 import UploadIcon from "@mui/icons-material/Upload";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import {
   get_division_by_data,
   store_division_data,
 } from "../../actions/divisionAction";
-import { loadUser, registerfaculty } from "../../actions/userActions";
 import { Skeleton } from "@mui/material";
 import NavigationBoxes from "../NavigationBoxs/NavigationBoxes";
 
@@ -44,10 +41,7 @@ const UserAccount = (props) => {
   let profileInfoDivRef = useRef(null);
 
   //state
-  const [userState, setUserState] = useState({
-    username: "",
-    clgShortName: "",
-  });
+  
   const [changeHeightState, setchangeHeightState] = useState(false);
   const [userDetailState, setUserDetailState] = useState({
     fistName: "",
@@ -80,13 +74,7 @@ const UserAccount = (props) => {
     avatar,
   } = userDetailState;
 
-  const [userData, setUserData] = useState({
-    Regusername: "",
-    email: "",
-    password: "",
 
-    role: "teacher",
-  });
 
   //   functionality
 
@@ -100,6 +88,10 @@ const UserAccount = (props) => {
     } else {
       dispatch(getUserDetailFaculty(user.email));
     }
+     
+    setchangeHeightState(true)
+    chagenHeight();
+    
   };
 
   const loadDivision = () => {
@@ -183,19 +175,14 @@ const UserAccount = (props) => {
   }, [userDetail, isUserDetailUpdated, isAuthenticated]);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      setUserState({
-        username: user.username,
-        clgShortName: user.clgShortName,
-      });
-    }
-    profileInfoDivRef.current.classList.remove("heightAuto");
-    profileInfoDivRef.current.classList.add("shrinkHeight");
+     
+    chagenHeight()
     
-  }, [isAuthenticated]);
+  }, []);
 
   return (
     <Fragment>
+      
       <div className="mobleDiv4865  " style={props.main.main}>
         {userDetail === null ? (
           <Popup main={props.main} type="updateAcc"></Popup>
@@ -218,7 +205,7 @@ const UserAccount = (props) => {
             </div>
 
             <div
-              className="profileInfoDiv glassTheme padding_10_20"
+              className="profileInfoDiv glassTheme blur3 borderBotton-none padding_10_20"
               style={props.main.div_box}
               ref={profileInfoDivRef}
             >
@@ -235,7 +222,7 @@ const UserAccount = (props) => {
                         <EmailIcon></EmailIcon>
                         <span className="spanText">{user.email}</span>
                       </div>
-                      {userDetail.email == "NA" ? (
+                      {userDetail.email === "NA" ? (
                         <UploadIcon
                           onClick={updateEmail}
                           className="wrapper"
@@ -270,11 +257,7 @@ const UserAccount = (props) => {
                       <AccountBalanceIcon></AccountBalanceIcon>
                       <span className="spanText">{userDetail.clgShortName}</span>
                     </div>
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <AutoStoriesIcon></AutoStoriesIcon>
-                      <span className="spanText">{userDetail.department}</span>
-                    </div>{" "}
+                   
                     <hr className="hr" />
                     <div className="flex_baselineStart_center gap20 ">
                       <AccessTimeFilledIcon></AccessTimeFilledIcon>
@@ -297,11 +280,7 @@ const UserAccount = (props) => {
                       <NumbersIcon></NumbersIcon>
                       <span className="spanText">{userDetail.rollNumber}</span>
                     </div>{" "}
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <TaskAltIcon></TaskAltIcon>
-                      <span className="spanText">{userDetail.role}</span>
-                    </div>
+                    
                   </div>
                 </div>
               ) : (
@@ -367,116 +346,20 @@ const UserAccount = (props) => {
                 </button> */}
             </div>
             <div
-              className="profileInfoDiv2ed glassThemeFor_adjuster textRight fontLink font_13"
+              className="profileInfoDiv2ed glassTheme blur3 borderTop-none  textRight fontLink font_13 textBtnColro"
+              
               onClick={() => chagenHeight()}
               style={props.main.div_box}
             >
               {
-                changeHeightState?"view more":"view less"
+                changeHeightState?"View more":"View less"
               }
               
             </div>
 
             <NavigationBoxes main={props.main}></NavigationBoxes>
 
-            {/* <div className="flex_column gap10 top20">
-              {userDetail.role === "HOD" ? (
-                <div
-                  className="padding_10_20 border_radius15  "
-                  style={props.main.div_box}
-                >
-                  <div className="flex flex_spaceBtw_center ">
-                    <span className="spanText">Add faculty Memeber</span>
-                    {currentHeigth === 0 ? (
-                      <AddIcon
-                        className="pointer"
-                        onClick={() => {
-                          setcurrentHeigth(230);
-                        }}
-                      ></AddIcon>
-                    ) : (
-                      <RemoveIcon
-                        className="pointer"
-                        onClick={() => {
-                          setcurrentHeigth(0);
-                        }}
-                      ></RemoveIcon>
-                    )}
-                  </div>
-                  <div
-                    style={{
-                      height: `${currentHeigth}px`,
-                      overflowY: "hidden",
-                    }}
-                  >
-                    <label className="custom-field one">
-                      <input
-                        type="text"
-                        required
-                        style={freeStyle.input}
-                        maxLength="12"
-                        value={Regusername}
-                        name="Regusername"
-                        onChange={registerDataChange}
-                        id="outlined-basic"
-                        label="Regusername"
-                        variant="outlined"
-                      />
-                      <span class="placeholder " style={freeStyle.span}>
-                        Username
-                      </span>
-                    </label>
-
-                    <label className="custom-field one">
-                      <input
-                        type="email"
-                        required
-                        style={freeStyle.input}
-                        value={email}
-                        name="email"
-                        onChange={registerDataChange}
-                        id="outlined-basic"
-                        label="Email"
-                        variant="outlined"
-                      />
-                      <span class="placeholder " style={freeStyle.span}>
-                        Email
-                      </span>
-                    </label>
-                    <label className="custom-field one">
-                      <input
-                        type="text"
-                        required
-                        style={freeStyle.input}
-                        maxLength="12"
-                        value={password}
-                        name="password"
-                        onChange={registerDataChange}
-                        id="outlined-basic"
-                        label="Password"
-                        variant="outlined"
-                      />
-                      <span class="placeholder " style={freeStyle.span}>
-                        Password
-                      </span>
-                    </label>
-                    <button className="btn_ligth" onClick={registerFacultyBTN}>
-                      Add
-                    </button>
-                  </div>
-                </div>
-              ) : null}
-              {userDetail.role === "teacher" || userDetail.role === "HOD" ? (
-                <div
-                  className="flex flex_spaceBtw_center padding_10_20 border_radius15"
-                  style={props.main.div_box}
-                  onClick={() => navigate("/addStudent")}
-                >
-                  <span className="spanText">Add Student</span>
-                  <OpenInNewIcon></OpenInNewIcon>
-                </div>
-              ) : null}
-            </div> */}
+            
             <div className="fakeDiv_userDetail"></div>
           </div>
         ) : <><div ref={profileInfoDivRef}></div></>}

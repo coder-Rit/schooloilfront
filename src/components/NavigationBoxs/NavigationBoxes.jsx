@@ -93,38 +93,38 @@ const NavigationBoxes = (props) => {
        
        {
         user.role!=="student"?<>
-        <div className='border_radius10  '   >
-        <div className='flex_center_center pointer glassTheme  navBox ' onClick={redirectToMyLecture} style={props.main.div_box}> 
+        <div className='border_radius10   '   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' onClick={redirectToMyLecture} style={props.main.div_box}> 
             <img src="../Images/lectures.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold'  style={props.main.fontColor}>Lectures</h5>
     </div>
-    <div className='border_radius10  '   >
-        <div className='flex_center_center pointer glassTheme  navBox ' onClick={redirectTo_TimeTable} style={props.main.div_box}> 
+    <div className='border_radius10   '   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' onClick={redirectTo_TimeTable} style={props.main.div_box}> 
             <img src="../Images/timeTable.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>Time Table</h5>
     </div>
-    <div className='border_radius10  '   >
-        <div className='flex_center_center pointer glassTheme  navBox ' onClick={redirectToAttendace} style={props.main.div_box}> 
+    <div className='border_radius10   '   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' onClick={redirectToAttendace} style={props.main.div_box}> 
             <img src="../Images/students.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>Students</h5>
     </div>
-    <div className='border_radius10  '   >
-        <div className='flex_center_center pointer glassTheme  navBox ' onClick={redirectTo_Divisions} style={props.main.div_box}> 
+    <div className='border_radius10   '   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' onClick={redirectTo_Divisions} style={props.main.div_box}> 
             <img src="../Images/classroom.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>Divisions</h5>
     </div>
-    <div className='border_radius10  '   >
-        <div className='flex_center_center pointer glassTheme  navBox ' onClick={addStudent} style={props.main.div_box}> 
+    <div className='border_radius10   '   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' onClick={addStudent} style={props.main.div_box}> 
             <img src="../Images/addStudents.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>Add students</h5>
     </div>
-    <div className='border_radius10  '   >
-        <div className='flex_center_center pointer glassTheme  navBox ' style={props.main.div_box}> 
+    <div className='border_radius10   '   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' style={props.main.div_box}> 
             <img src="../Images/addFaculty.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>Add Faculty</h5>
@@ -133,23 +133,23 @@ const NavigationBoxes = (props) => {
 
 
 
-    <div className='border_radius10  tempBlock'   >
-        <div className='flex_center_center pointer glassTheme  navBox ' style={props.main.div_box}> 
+    <div className='border_radius10   tempBlock'   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' style={props.main.div_box}> 
             <img src="../Images/assignment.png" className='navImg ' alt="" />
             
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>Assignment</h5>
         <h5 className='textCenter margin0  unBold' style={props.main.fontColor}>comming soon</h5>
     </div>
-    <div className='border_radius10  tempBlock'   >
-        <div className='flex_center_center pointer glassTheme  navBox ' style={props.main.div_box}> 
+    <div className='border_radius10   tempBlock'   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' style={props.main.div_box}> 
             <img src="../Images/growth.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>Performance</h5>
         <h5 className='textCenter margin0  unBold' style={props.main.fontColor}>comming soon</h5>
     </div>
-    <div className='border_radius10  tempBlock'   >
-        <div className='flex_center_center pointer glassTheme  navBox ' style={props.main.div_box}> 
+    <div className='border_radius10   tempBlock'   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' style={props.main.div_box}> 
             <img src="../Images/feedback.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>FeedBack</h5>
@@ -159,20 +159,20 @@ const NavigationBoxes = (props) => {
 
 
         </>:<>
-        <div className=' border_radius10  '   >
-            <div className='flex_center_center pointer glassTheme  navBox  ' onClick={redirectTo_attendace} style={props.main.div_box}> 
+        <div className=' border_radius10   '   >
+            <div className='flex_center_center pointer  glassTheme blur3  navBox  ' onClick={redirectTo_attendace} style={props.main.div_box}> 
                 <img src="../Images/speedometer.png" className='navImg ' alt="" />
             </div>
             <h5 className='textCenter margin0 top15 unBold   ' style={props.main.fontColor}>Attendence</h5>
         </div>
-        <div className='  border_radius10   '   >
-            <div className='flex_center_center pointer glassTheme  navBox   ' onClick={redirectTo_TodaysLecture} style={props.main.div_box}>  
+        <div className='  border_radius10    '   >
+            <div className='flex_center_center pointer  glassTheme blur3  navBox   ' onClick={redirectTo_TodaysLecture} style={props.main.div_box}>  
                 <img src="../Images/list.png" className='navImg  ' alt="" />
             </div>
             <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>Lectures</h5>
         </div>
-        <div className=' border_radius10  '   >
-        <div className='flex_center_center pointer glassTheme  navBox   ' onClick={redirectTo_Divisions} style={props.main.div_box}> 
+        <div className=' border_radius10   '   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox   ' onClick={redirectTo_Divisions} style={props.main.div_box}> 
             <img src="../Images/timeTable.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>Time Table</h5>
@@ -180,24 +180,24 @@ const NavigationBoxes = (props) => {
 
 
 
-    <div className='border_radius10  tempBlock'   >
-        <div className='flex_center_center pointer glassTheme  navBox ' style={props.main.div_box}> 
+    <div className='border_radius10   tempBlock'   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' style={props.main.div_box}> 
             <img src="../Images/assignment.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>Assignments</h5>
         <h5 className='textCenter margin0  unBold' style={props.main.fontColor}>comming soon</h5>
 
     </div>
-    <div className='border_radius10  tempBlock'   >
-        <div className='flex_center_center pointer glassTheme  navBox ' style={props.main.div_box}> 
+    <div className='border_radius10   tempBlock'   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' style={props.main.div_box}> 
             <img src="../Images/growth.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>Performance</h5>
         <h5 className='textCenter margin0  unBold' style={props.main.fontColor}>comming soon</h5>
 
     </div>
-    <div className='border_radius10  tempBlock'   >
-        <div className='flex_center_center pointer glassTheme  navBox ' style={props.main.div_box}> 
+    <div className='border_radius10   tempBlock'   >
+        <div className='flex_center_center pointer  glassTheme blur3  navBox ' style={props.main.div_box}> 
             <img src="../Images/feedback.png" className='navImg ' alt="" />
         </div>
         <h5 className='textCenter margin0 top15 unBold' style={props.main.fontColor}>News</h5>

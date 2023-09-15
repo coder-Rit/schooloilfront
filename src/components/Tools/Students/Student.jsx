@@ -1,63 +1,39 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
-  getAllDivision,
-  get_division_by_data,
   setAlldivisions,
 } from "../../../actions/divisionAction";
 import {
   get_all_recent_lectures,
-  set_lectures_localdata,
-  store_local_lectures_data,
 } from "../../../actions/lectureActions";
-import {
-  getUserDetail,
-  getUserDetail_copy,
-  updateUser,
-} from "../../../actions/updateUserAction";
-import { updateUserBasicDetail } from "../../../actions/userActions";
 import "./students.css";
-import Button from "@mui/material/Button";
-import ToolsPage from "../toolsPage";
 import HeaderComp from "../../layout/HeaderComp/HeaderComp";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
-import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import BlockIcon from "@mui/icons-material/Block";
 import useSizing from "../../../hooks/useSizing";
-import { maxHeight } from "@mui/system";
 import Note from "../../layout/note/Note";
-import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import CachedIcon from "@mui/icons-material/Cached";
 
 const Student = (props) => {
   //hooks
   const dispatch = useDispatch();
-  const navigateTo = useNavigate();
-  const windowSizing = useSizing();
 
   //data form store
 
-  const { isUserDetailUpdated, userDetail, loading } = useSelector(
-    (state) => state.userDetail
-  );
   const { user, isAuthenticated } = useSelector((state) => state.user);
 
-  const { isUserDataSeted, accountDetail, isUsserDetailGainedForViewAccount } =
+  const {  accountDetail, isUsserDetailGainedForViewAccount } =
     useSelector((state) => state.accountDetail);
 
-  const { division, isDividionGeted, isDivisionUpdated, divisions } =
+  const { division, isDividionGeted, divisions } =
     useSelector((state) => state.division);
 
-  const { isAllLecturesGained, lectures, isIDPushInLecture } = useSelector(
+  const { isAllLecturesGained, lectures } = useSelector(
     (state) => state.lecture
-  );
-  const { userList, is_all_user_data_ready } = useSelector(
-    (state) => state.userList
   );
 
   //use state

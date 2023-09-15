@@ -79,11 +79,13 @@ function App() {
           sub_body: {
             backgroundColor: "#000000",
             color: "white",
+
           },
 
           div_box: {
             backgroundColor: "#191528",
             color: "white",
+            border:"none"
           },
           BTN: {
             backgroundColor: "#191528",

@@ -28,7 +28,6 @@ export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
-    const config = { Headers: { "Content-Type": "application/json" } };
     const { data } = await axios.post(
       `https://schooloil-api.onrender.com/api/v1/login`,
       { email, password }

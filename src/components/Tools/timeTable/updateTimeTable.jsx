@@ -2,61 +2,41 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { unstable_HistoryRouter, useNavigate } from "react-router-dom";
-import {
-  find_division_by_data_and_update,
-  getDivisionByID,
-  setDivisionID,
-  store_division_data,
-} from "../../../actions/divisionAction";
+import {  useNavigate } from "react-router-dom";
+
 import {
   create_time_table,
   get_time_table_by_id,
-  setTimeTbaleID,
   set_local_timeTable,
-  updateTimeTableAction,
   update_time_table_by_id_in_data,
 } from "../../../actions/timeTableAction";
-import Button from "@mui/material/Button";
-import ToolsPage from "../toolsPage";
-import AllDivisions from "../../divison/AllDivisions";
+
 import HeaderComp from "../../layout/HeaderComp/HeaderComp";
-import useSizing from "../../../hooks/useSizing";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import {clearAlert} from "../../../actions/alertAction";
 
 const UpdateTimeTable = (props) => {
   //ho0ks
   const dispatch = useDispatch();
   const navigateTo = useNavigate();
-  const windowSizing = useSizing()
 
 
 
   //use selector
 
-  const { user } = useSelector((state) => state.user);
   const {
-    timeTableID,
     timeTable,
-    isTimeTableUpdate,
-    isDivisionGetByID,
-    isTimeTableIdGeted,
-    isTimeTableCreated,
+ 
     isTimetableGetByID,
   } = useSelector((state) => state.timeTable);
 
   const {
-    isDivisionUpdate,
-    id,
     division,
     divisions,
-    isIdUploaded,
-    isDividionGeted,
-    isDivisionDataStored,
+  
     isTimeTableID_updatedIn_division,
   } = useSelector((state) => state.division);
-  const { isUserDetailUpdated, userDetail } = useSelector(
+  const {  userDetail } = useSelector(
     (state) => state.userDetail
   );
 
@@ -427,16 +407,7 @@ const UpdateTimeTable = (props) => {
   const notify_success = (msg) => toast.success(`  ${msg} 👍 `, props.alert);
   const notify_error = (msg) => toast.error(` ${msg}`, props.alert);
 
-  //use effect
-
-  // useEffect(() => {
-  //   if (typeof isDivisionDataStored === "undefined") {
-  //     let divisionDatatemp = window.sessionStorage.getItem("divisionData");
-  //     divisionDatatemp = JSON.parse(divisionDatatemp);
-  //     set_divisionData(divisionDatatemp);
-  //     set_SubjectList(divisionDatatemp.subjects);
-  //   }
-  // }, []);
+ 
 
   useEffect(() => {
   
@@ -469,32 +440,8 @@ const UpdateTimeTable = (props) => {
 
 
   
-
-
-  useEffect(() => {
-    if (isTimeTableCreated) {
-      console.log(timeTable);
-      
-    //  dispatch(find_division_by_data_and_update({division, dataForUpdate: { timeTableID: timeTable._id } },divisions,0,"timetable"));
-      
-    }
-  }, [isTimeTableCreated]);
-
-  //geting time table if exit
-  // useEffect(() => {
-  //   if (window.sessionStorage.getItem("refreshCount") === null) {
-  //     window.sessionStorage.setItem("refreshCount", 1);
-  //   } else {
-  //     window.sessionStorage.removeItem("refreshCount");
-  //     window.sessionStorage.removeItem("divisionData");
-  //     navigateTo("/user/tools/timeTable");
-  //   }
-
-  //   if (division.timeTableID !== null) {
-  //     console.log("test 2");
-  //     dispatch(get_time_table_by_id(division.timeTableID));
-  //   }
-  // }, []);
+ 
+ 
 
   useEffect(() => {
     if (isTimeTableID_updatedIn_division) {
@@ -619,18 +566,7 @@ const UpdateTimeTable = (props) => {
   return (
     <Fragment>
        <div className="mobleDiv4865" style={props.main.main}>
-          <ToastContainer
-            position="top-center"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme={props.main.alertMode}
-          />
+          
           <HeaderComp type="Update Time Table"></HeaderComp>
         <div className="mobileDiv5656  flex flex_column gap10 "  style={props.main.sub_body}>
         {/* <div style={props.main.div_box} className="dic5656">Class {division.div}</div> */}
@@ -1479,7 +1415,6 @@ const UpdateTimeTable = (props) => {
           </div>
         <div className="fakeDiv_mobileAt_updateTimeTabl"></div>
         </div>
-        <ToolsPage></ToolsPage>
       </div>
     </Fragment>
 
