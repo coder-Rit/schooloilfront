@@ -109,7 +109,7 @@ const LandingPage = () => {
         </div>
         <div className="flex_center_center">
           <iframe
-            src="http://localhost:3000/user/auth"
+            src="https://schooloil-client.onrender.com/user/auth"
             className="iframe"
           ></iframe>
         </div>
