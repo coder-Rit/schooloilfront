@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
- 
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Mono&display=swap');
 body {
   padding: 0;
   margin: 0;
@@ -9,13 +8,8 @@ body {
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
    /* background-color: #D5D5D5; */
    background-color: #ffffff;
-  min-height: 100vh;
-
-  -webkit-user-select: none;
-  /* Safari */
-  -ms-user-select: none;
-  /* IE 10 and IE 11 */
-  user-select: none;
+  min-height: 100vh; 
+  
 }
 
  
@@ -504,6 +498,10 @@ margin: 0;
 .primarybg{
   background-color: #8a2be2;
 }
+.primaryFont{
+  
+  color: #8a2be2;
+}
 
 
 
@@ -540,20 +538,18 @@ margin: 0;
 
 /* desing */
 .glassTheme {
-  background-color: rgba(148, 148, 148, 0.204);
+  background-color: rgba(0, 0, 0, 0.054);
   -webkit-box-shadow: 0px 0px 10px -9px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 10px -9px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 10px -9px rgba(0, 0, 0, 0.75);
   border-radius: 15px;
 }
+ 
 .blur2{
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px); 
 }
-.blur3{
-  background-color: rgba(0, 0, 0, 0.054);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px); 
+.whiteBorder{ 
   border-right: 2px solid white;
   border-bottom: 2px solid white;
 }

@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./homePage.css";
+import CopyToClipboardButton from "../layout/CopyToClick/CopyToClipboardButton";
 
 const LandingPage = () => {
   const navigateTo = useNavigate();
@@ -9,61 +10,109 @@ const LandingPage = () => {
     navigateTo("/user/auth");
   };
 
-  useEffect(() => {
-    let st = JSON.parse(localStorage.getItem("login"));
-    if (st) {
-      navigateTo("/user/account");
-    }
-  }, []);
-
   return (
     <>
-      <div className="back">
-        <img src={require("../../images/group.jpg")} alt="" />
-      </div>
-      <div className="back blur2"></div>
-      <div className="langing_page  flex_column">
-        <div
-          className="flex_column  flex_center_center z1  "
-          style={{ height: "100vh" }}
-        >
-          <h1 style={{ margin: "0px" }}>Welcome to schoolOil </h1>
-          <p>A Learning Management System</p>
-          <button onClick={redirectoTO_auth} className="btn_ligth langingBTN">
-            SignUp/Login
-          </button>
-           
-          <div class="container z1">
-            <div class="field">
-              <div class="mouse"></div>
+    
+      <>
+        <img src="./Images/pattern.svg" className="patternBG" alt="" />
+        <div className="mover"></div>
+      </>
+      <div className="langing_page ">
+        <div className="flex_column contentdiv ">
+          <h1 className="top20">Welcome To Schooloil.online V2.0</h1>
+          <span className="subTitile">- A School Manegment Application</span>
+          <p className="top20">
+            SchoolOil is a cutting-edge application designed to streamline the
+            management of student attendance, lecture schedules, and community
+            polls. In addition to these essential features, SchoolOil is
+            actively developing file sharing, wait-less printing services, and
+            payment gateways.
+          </p>
+          <p className="top10">
+            Furthermore, I am diligently working on implementing an innovative
+            automation system to monitor student presence, ensuring a more
+            efficient and accurate record of their attendance. With SchoolOil, I
+            am committed to revolutionizing the educational experience and
+            enhancing administrative efficiency for educational institutions.
+          </p>
+
+
+            <h3>Experience the student and faculty accounts in action!</h3>
+
+          <h4>Student Account Credentials</h4>
+          <div>
+            <div className="flex gap30">
+              <div>
+                <span>Email</span>
+                <div className="credDiv flex_spaceBtw_center  ">
+                  <span>harshraj@gmail.com</span>
+                  <span className=" top5 pointer">
+                    {" "}
+                    <CopyToClipboardButton
+                      position={{ vertical: "top", horizontal: "center" }}
+                      text="harshraj@gmail.com"
+                      primaryFont={{color:"blueviolet"}}
+                    ></CopyToClipboardButton>
+                    {/*  */}
+                  </span>
+                </div>
+              </div>
+              <div>
+                <span className="top5">Password</span>
+                <div className="credDiv flex_spaceBtw_center  ">
+                  <span>harshraj@</span>
+                  <span className="top5 pointer">
+                    {" "}
+                    <CopyToClipboardButton
+                      position={{ vertical: "top", horizontal: "center" }}
+                      text="harshraj@"
+                      primaryFont={{color:"blueviolet"}}
+                    ></CopyToClipboardButton>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h4>Faculty Account Credentials</h4>
+          <div className="flex gap30">
+            <div>
+              <span>Email</span>
+              <div className="credDiv flex_spaceBtw_center  ">
+                <span>faculty@gmail.com</span>
+                <span className="top5 pointer">
+                  {" "}
+                  <CopyToClipboardButton
+                    position={{ vertical: "top", horizontal: "center" }}
+                    text="faculty@gmail.com"
+                    primaryFont={{color:"blueviolet"}}
+
+                  ></CopyToClipboardButton>
+                </span>
+              </div>
+            </div>
+            <div>
+              <span>Password</span>
+              <div className="credDiv flex_spaceBtw_center  ">
+                <span>faculty@</span>
+                <span className="top5 pointer">
+                  {" "}
+                  <CopyToClipboardButton
+                    position={{ vertical: "top", horizontal: "center" }}
+                    text="faculty@"
+                    primaryFont={{color:"blueviolet"}}
+                  ></CopyToClipboardButton>
+                </span>
+              </div>
             </div>
           </div>
         </div>
-        <div>
-          <h3 style={{ paddingLeft: "10px" }}>Bugs and Solutions</h3>
-
-          <div className="div4632 boxShodow blur">
-            <h4>Buffering Time Out Error</h4>
-            <p>
-              Solution: Restart The Application (Remove From Recent Apps) or
-              Check Sometime Latter.
-            </p>
-          </div>
-          <div className="div4632 boxShodow blur">
-            <h4>
-              Stuck Somewhare In Application Or Redirected To Login Page ?
-            </h4>
-            <p>Solution: Do a Refresh.</p>
-          </div>
-          <div className="div4632 boxShodow blur">
-            <h4>Something Else ?</h4>
-            <p>Solution: Reinstall The Application.</p>
-          </div>
+        <div className="flex_center_center">
+          <iframe
+            src="http://localhost:3000/user/auth"
+            className="iframe"
+          ></iframe>
         </div>
-        <marquee>
-          We Are Sorry For The Inconvenience. We Are Trying To Solve This Errors
-          To Improve The Experience.
-        </marquee>
       </div>
     </>
   );

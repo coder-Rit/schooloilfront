@@ -186,10 +186,7 @@ const Auth = (props) => {
               pauseOnHover
               theme={props.alertMode}
             />
-            <div className="back">
-              <img src={require("../../images/group.jpg")} alt="" />
-            </div>
-            <div className="back blur2"></div>
+            
             <div className="LoginSignUpBox">
               <div>
                 <div className="login_signUp_toggle">
@@ -199,31 +196,7 @@ const Auth = (props) => {
                 <button ref={switcherTab}></button>
               </div>
               <form className="loginForm" ref={loginTab} onSubmit={LoginSubmit}>
-                <div style={{ width: "300px", background: "white" }}>
-                  <table
-                    style={{ border: "1px solid black", fontSize: "15px" }}
-                  >
-                    <tr>
-                      <th style={{ border: "1px solid black" }}>Roll</th>
-                      <th style={{ border: "1px solid black" }}>Email</th>
-                      <th style={{ border: "1px solid black" }}>Password</th>
-                    </tr>
-                    <tr>
-                      <td style={{ border: "1px solid black" }}>faculty</td>
-                      <td style={{ border: "1px solid black" }}>
-                        faculty@gmail.com
-                      </td>
-                      <td style={{ border: "1px solid black" }}>faculty@</td>
-                    </tr>
-                    <tr>
-                      <td style={{ border: "1px solid black" }}>Student</td>
-                      <td style={{ border: "1px solid black" }}>
-                        user23@gmail.com
-                      </td>
-                      <td style={{ border: "1px solid black" }}>user23@</td>
-                    </tr>
-                  </table>
-                </div>
+                 
                 <label className="custom-field one">
                   <input
                     type="email"

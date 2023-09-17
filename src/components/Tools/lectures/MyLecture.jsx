@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Fragment } from "react";
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
- 
+
 import {
   create_lecture,
   delete_created_lecture,
@@ -13,16 +13,16 @@ import {
 } from "../../../actions/lectureActions";
 import { get_All_user } from "../../../actions/userListActions";
 import { sendWhatsApp_message } from "../../../actions/whatsAppAction";
- import "./lecture.css";
+import "./lecture.css";
 import DemoTable from "./DemoTable";
- import HeaderComp from "../../layout/HeaderComp/HeaderComp";
+import HeaderComp from "../../layout/HeaderComp/HeaderComp";
 import "../../divison/allDivision.css";
- 
+
 import CreateLecture from "./CreateLecture";
 import CloseIcon from "@mui/icons-material/Close";
 import Note from "../../layout/note/Note";
 import { setAlldivisions } from "../../../actions/divisionAction";
- 
+
 const MyLecture = (props) => {
   //hooks
   const dispatch = useDispatch();
@@ -36,17 +36,15 @@ const MyLecture = (props) => {
   const practicalBTN = useRef(null);
 
   //data form store
-  const {  isAuthenticated } = useSelector((state) => state.user);
+  const { isAuthenticated } = useSelector((state) => state.user);
 
   const { isUserDetailUpdated, userDetail, loading } = useSelector(
     (state) => state.userDetail
   );
 
-  const {
-    divisions,
-    division,
-    isDivisionUpdated,
-  } = useSelector((state) => state.division);
+  const { divisions, division, isDivisionUpdated } = useSelector(
+    (state) => state.division
+  );
 
   const { isAllLecturesGained, lectures, isPresentyModified } = useSelector(
     (state) => state.lecture
@@ -57,7 +55,6 @@ const MyLecture = (props) => {
   );
 
   const { theme } = useSelector((state) => state.settings);
-
 
   //states
   const [queryForm, set_queryForm] = useState({
@@ -81,7 +78,6 @@ const MyLecture = (props) => {
     left: 0,
   });
   const [Selected_div, setSelected_div] = useState({});
- 
 
   const [listOfStudentBatchViz, set_listOfStudentBatchViz] = useState([]);
   const [batchesList, set_batchesList] = useState([]);
@@ -101,11 +97,8 @@ const MyLecture = (props) => {
   const [more_filters, set_more_filters] = useState(false);
   const [display_list, set_display_list] = useState(false);
 
-
-
-
-  
-  const styles =  theme === "dark_theme"
+  const styles =
+    theme === "dark_theme"
       ? {
           div_box: {
             backgroundColor: "#191528",
@@ -113,9 +106,7 @@ const MyLecture = (props) => {
           },
           divisionBTNSelected: "divisionBTNSelected_dark",
         }
-      : { div_box: {}, divisionBTNSelected: "divisionBTNSelected" }
-    
-
+      : { div_box: {}, divisionBTNSelected: "divisionBTNSelected" };
 
   //code fuctionalty
   const get_studentsList = (params) => {
@@ -125,7 +116,7 @@ const MyLecture = (props) => {
       div: params.div,
       clgShortName: userDetail.clgShortName,
       department: userDetail.department,
-      id:params._id
+      id: params._id,
     };
     dispatch(get_All_user(tempOBJ));
   };
@@ -223,7 +214,7 @@ const MyLecture = (props) => {
     };
 
     dispatch(get_all_recent_lectures(dataForReq));
-   // get_studentsList();
+    // get_studentsList();
   };
 
   const getAttendancePersent = (betaData) => {
@@ -232,18 +223,17 @@ const MyLecture = (props) => {
     console.log(Selected_div === "{}");
     console.log(Selected_div.batches);
 
-    const batchesList = Object.values(Selected_div.batches); 
+    const batchesList = Object.values(Selected_div.batches);
     const filterdBatch = batchesList.filter((elem) => {
       return elem.name === betaData.batch;
     });
 
     if (typeof filterdBatch[0] !== "undefined") {
-
-      console.log(betaData.presentStudents.length ,filterdBatch[0].RollTo);
+      console.log(betaData.presentStudents.length, filterdBatch[0].RollTo);
       return (
         (betaData.presentStudents.length / filterdBatch[0].RollTo) *
         1000
-      ).toFixed(1); 
+      ).toFixed(1);
     }
   };
 
@@ -367,7 +357,7 @@ const MyLecture = (props) => {
       .map((data) => {
         xlData.push({
           RollNumber: data.rollNumber,
-          name: data.Name ,
+          name: data.Name,
         });
       });
 
@@ -457,11 +447,10 @@ const MyLecture = (props) => {
   // setting up the list
 
   const batchListSetter = (e, data) => {
-     e.preventDefault();
+    e.preventDefault();
 
-     
-     localStorage.setItem("SelectedDivision",JSON.stringify(data))
-     dispatch(setAlldivisions(divisions,data));
+    localStorage.setItem("SelectedDivision", JSON.stringify(data));
+    dispatch(setAlldivisions(divisions, data));
     e.currentTarget.classList.add("divisionBTNSelected");
     let a = [];
     Object.values(data.batches).map((data) => {
@@ -474,8 +463,6 @@ const MyLecture = (props) => {
 
   //calculating last month attendace for display
   const calculateLast_monthAttendnce = () => {};
- 
-
 
   useEffect(() => {
     if (isAllLecturesGained) {
@@ -516,559 +503,543 @@ const MyLecture = (props) => {
     set_sortedLectures([...sortedFilerdList]);
   }, [filetList]);
 
-
   useEffect(() => {
-      setSelected_div(division);
-      console.log(division);
-      get_studentsList(division); 
-  }, [ ])
- 
- 
+    setSelected_div(division);
+    console.log(division);
+    get_studentsList(division);
+  }, []);
+
   return (
     <Fragment>
-       
-        <div className="mobleDiv4865" style={props.main.main}>
-           
+      <div className="mobleDiv4865" style={props.main.main}>
+        <HeaderComp type="My Lectures"></HeaderComp>
+        {openEditor ? (
+          <div
+            className="glassTheme folater"
+            style={{
+              position: "absolute",
+              top: gettop_left.top + "px",
+              left: gettop_left.left - 120 + "px",
+              zIndex: 1,
+            }}
+          >
+            <div id="myDropdown" class="dropdown-content blur">
+              <a
+                onClick={() => {
+                  set_openEditor(false);
+                  set_openManula_atte_Editor(true);
+                  set_typeOfEdit("manual");
+                }}
+              >
+                Attendance
+              </a>
+              <a
+                onClick={() => {
+                  calculateLast_monthAttendnce();
 
-          <HeaderComp type="My Lectures"></HeaderComp>
-          {openEditor ? (
-            <div
-              className="glassTheme folater"
-              style={{
-                position: "absolute",
-                top: gettop_left.top + "px",
-                left: gettop_left.left - 120 + "px",
-                zIndex: 1,
-              }}
-            >
-              <div id="myDropdown" class="dropdown-content blur">
-                <a
-                  onClick={() => {
-                    set_openEditor(false);
-                    set_openManula_atte_Editor(true);
-                    set_typeOfEdit("manual");
-                  }}
-                >
-                  Attendance
-                </a>
-                <a
-                  onClick={() => {
-                    calculateLast_monthAttendnce();
-
-                    set_openEditor(false);
-                    seteditLEcture_state(
-                      selected_lecture_for_manul_attendace._id
-                    );
-                    set_currentSubject(
-                      selected_lecture_for_manul_attendace.subject
-                    );
-                    set_typeOfEdit("infoChange");
-                    set_openManula_atte_Editor(true);
-                  }}
-                >
-                  Change Info
-                </a>
-                <a onClick={DuplicateLecutre}>Duplicate</a>
-                <a className="deleteOption" onClick={deleteLecture}>
-                  Delete
-                </a>
-                <a onClick={() => set_openEditor(false)}>close</a>
-              </div>
+                  set_openEditor(false);
+                  seteditLEcture_state(
+                    selected_lecture_for_manul_attendace._id
+                  );
+                  set_currentSubject(
+                    selected_lecture_for_manul_attendace.subject
+                  );
+                  set_typeOfEdit("infoChange");
+                  set_openManula_atte_Editor(true);
+                }}
+              >
+                Change Info
+              </a>
+              <a onClick={DuplicateLecutre}>Duplicate</a>
+              <a className="deleteOption" onClick={deleteLecture}>
+                Delete
+              </a>
+              <a onClick={() => set_openEditor(false)}>close</a>
             </div>
-          ) : null}
-          <span>
-            {openManula_atte_Editor ? (
-              <div className="manulaAttendace_mobile_div4865 ">
-                <div className="mobilediv4632  glassTheme blur ">
-                  <div className="cancelIcon margin_10_20">
-                    <CloseIcon
-                      style={{ background: "white", borderRadius: "50%" }}
-                      onClick={() => set_openManula_atte_Editor(false)}
-                    ></CloseIcon>
-                  </div>
+          </div>
+        ) : null}
+        <span>
+          {openManula_atte_Editor ? (
+            <div className="manulaAttendace_mobile_div4865 ">
+              <div className="mobilediv4632  glassTheme blur ">
+                <div className="cancelIcon margin_10_20">
+                  <CloseIcon
+                    style={{ background: "white", borderRadius: "50%" }}
+                    onClick={() => set_openManula_atte_Editor(false)}
+                  ></CloseIcon>
+                </div>
 
-                  {typeOfEdit === "manual" ? (
-                    <div>
-                      <div className=" flex_column   margin_10_20 gap5  div5468133"  >
-                        {is_all_user_data_ready
-                          ? listOfStudentBatchViz.map((data) => {
-                              return (
-                                <span
-                                     className= "indi_studnet  padding_5_10 flex_baselineStart_center gap10 border_radius10"
-                                     onClick={(e)=>selectStudents(data)}
-                                >
-                                  <span>
-                                    <input type="checkBox"  checked={
-                                             listOFStudentID.includes(data._id)
-                                                ? "checked"
-                                                : null
-
-                                            } 
-                                            value={data._id}
-                                             />
-                                  </span>
-                                  <span>
-
-                                  {data.rollNumber}
-                                  </span>
-                                  <span>
-
-                                  {data.Name}
-                                  </span>
-                                  
+                {typeOfEdit === "manual" ? (
+                  <div>
+                    <div className=" flex_column   margin_10_20 gap5  div5468133">
+                      {is_all_user_data_ready
+                        ? listOfStudentBatchViz.map((data) => {
+                            return (
+                              <span
+                                className="indi_studnet  padding_5_10 flex_baselineStart_center gap10 border_radius10"
+                                onClick={(e) => selectStudents(data)}
+                              >
+                                <span>
+                                  <input
+                                    type="checkBox"
+                                    checked={
+                                      listOFStudentID.includes(data._id)
+                                        ? "checked"
+                                        : null
+                                    }
+                                    value={data._id}
+                                  />
                                 </span>
-                              );
-                            })
-                          : null}
-                      </div>
-                      {/* <input
+                                <span>{data.rollNumber}</span>
+                                <span>{data.Name}</span>
+                              </span>
+                            );
+                          })
+                        : null}
+                    </div>
+                    {/* <input
                         type="checkbox"
                         name=" Send What'sApp"
                         onChange={() => set_isSend_WhatsApp(!isSend_WhatsApp)}
                         defaultChecked
                       /> */}
-                      {/* <label for=" Send What'sApp"> Send What'sApp</label> */}
-                      <div className="flex_center_center">
-                        <button className="btn_ligth " onClick={markAttendace}>
-                          Update
-                        </button>
-                      </div>
-                    </div>
-                  ) : typeOfEdit === "infoChange" ? (
-                    <div className="flex_center_center flex_column">
-                      <label
-                        className="custom-field one"
-                        style={props.main.input.label}
-                      >
-                        <input
-                          type="text"
-                          style={props.main.input.input}
-                          value={currentSubject}
-                          list="SubjectsName"
-                          onChange={(e) => set_currentSubject(e.target.value)}
-                        />
-                        <span class="placeholder" style={props.main.input.span}>
-                          subject
-                        </span>
-                      </label>
-
-                      <label
-                        className="custom-field one"
-                        style={props.main.input.label}
-                      >
-                        <input
-                          style={props.main.input.input}
-                          type="Date"
-                          onChange={(e) => set_currentDate(e.target.value)}
-                        />
-                        <span class="placeholder" style={props.main.input.span}>
-                          Date
-                        </span>
-                      </label>
-                      <datalist
-                        id="SubjectsName"
-                        name="subject"
-                        value={currentSubject}
-                      >
-                        {Selected_div.subjects.map((data) => {
-                          return (
-                            <option key={data} value={data}>
-                              {data}
-                            </option>
-                          );
-                        })}
-                      </datalist>
-                      <button
-                        className="btn_ligth"
-                        onClick={() => {
-                          editLecture(selected_lecture_for_manul_attendace);
-                          set_openEditor(false);
-                        }}
-                      >
-                        update
+                    {/* <label for=" Send What'sApp"> Send What'sApp</label> */}
+                    <div className="flex_center_center">
+                      <button className="btn_ligth " onClick={markAttendace}>
+                        Update
                       </button>
                     </div>
-                  ) : null}
-                </div>
-              </div>
-            ) : null}
-          </span>
-
-          <div className="mobileDiv5656 glassTheme " style={props.main.sub_body}>
-            <div className="allDiv_filters_lists_alx_Div ">
-              <div className="allDivisions">
-                {isDivisionUpdated && isUserDetailUpdated && isAuthenticated ? (
-                  divisions.length === 0 ? (
-                    <Note
-                      msg="Please create a division to access or create lecture"
-                      type="empty"
-                      btnType="Create Division"
+                  </div>
+                ) : typeOfEdit === "infoChange" ? (
+                  <div className="flex_center_center flex_column">
+                    <label
+                      className="custom-field one"
+                      style={props.main.input.label}
                     >
-                      {" "}
-                    </Note>
-                  ) : (
-                    divisions.map((data) => {
-                      if (data.status === "inUse") {
+                      <input
+                        type="text"
+                        style={props.main.input.input}
+                        value={currentSubject}
+                        list="SubjectsName"
+                        onChange={(e) => set_currentSubject(e.target.value)}
+                      />
+                      <span class="placeholder" style={props.main.input.span}>
+                        subject
+                      </span>
+                    </label>
+
+                    <label
+                      className="custom-field one"
+                      style={props.main.input.label}
+                    >
+                      <input
+                        style={props.main.input.input}
+                        type="Date"
+                        onChange={(e) => set_currentDate(e.target.value)}
+                      />
+                      <span class="placeholder" style={props.main.input.span}>
+                        Date
+                      </span>
+                    </label>
+                    <datalist
+                      id="SubjectsName"
+                      name="subject"
+                      value={currentSubject}
+                    >
+                      {Selected_div.subjects.map((data) => {
                         return (
-                          <div
-                            className={
-                              Selected_div._id === data._id
-                                ? `light_btn division ${styles.divisionBTNSelected}`
-                                : "light_btn division"
-                            }
-                            onClick={(e) => {
-                              setSelected_div(data);
-                              batchListSetter(e, data);
-                              get_studentsList(data);
-                            
-                              set_open_lecture_form(false);
-                              set_more_filters(false);
-                              set_display_list(false);
-                            }}
-                            style={props.main.div_box}
-                          >
-                            <div>
-                              <span
-                                className="divisionYear"
-                                style={props.main.background1}
-                              >
-                                {data.department}
-                              </span>
-                            </div>
-                            <span className="divisionName">{data.div}</span>
-                            <span
-                              className="divisionYear"
-                              style={props.main.low_Resolution_font}
-                            >
-                              {data.year}
-                            </span>
-                          </div>
+                          <option key={data} value={data}>
+                            {data}
+                          </option>
                         );
-                      }
-                    })
-                  )
-                ) : null}
-              </div>
-
-             
-                <div>
-                  {open_lecture_form ? (
-                    <div
-                      className="div8679641 glassTheme"
-                      style={props.main.div_box}
-                    >
-                      <div className="cancelIcon">
-                        <CloseIcon
-                          onClick={() => set_open_lecture_form(false)}
-                        ></CloseIcon>
-                      </div>
-                      <CreateLecture
-                        userDetail={userDetail}
-                        selectedDivision={Selected_div}
-                        open_lecture_state={set_open_lecture_form}
-                        main={props.main}
-                      ></CreateLecture>
-                    </div>
-                  ) : (
+                      })}
+                    </datalist>
                     <button
                       className="btn_ligth"
-                      onClick={() => set_open_lecture_form(true)}
+                      onClick={() => {
+                        editLecture(selected_lecture_for_manul_attendace);
+                        set_openEditor(false);
+                      }}
                     >
-                      {" "}
-                      Create New Lecture
+                      update
                     </button>
-                  )}
-                </div>
-              
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          ) : null}
+        </span>
 
-              {typeof Selected_div.batches !== "undefined" ? (
-                <div className="filters_lists_alx_Div ">
-                  {/*filtes*/}
-                  
-                  <div className="filters_main_div">
+        <div className="mobileDiv5656  " style={props.main.sub_body}>
+          <div className="allDiv_filters_lists_alx_Div ">
+            <div className="allDivisions">
+              {isDivisionUpdated && isUserDetailUpdated && isAuthenticated ? (
+                divisions.length === 0 ? (
+                  <Note
+                    msg="Please create a division to access or create lecture"
+                    type="empty"
+                    btnType="Create Division"
+                  >
+                    {" "}
+                  </Note>
+                ) : (
+                  divisions.map((data) => {
+                    if (data.status === "inUse") {
+                      return (
+                        <div
+                          className={
+                            Selected_div._id === data._id
+                              ? `light_btn division ${styles.divisionBTNSelected}`
+                              : "light_btn division"
+                          }
+                          onClick={(e) => {
+                            setSelected_div(data);
+                            batchListSetter(e, data);
+                            get_studentsList(data);
+
+                            set_open_lecture_form(false);
+                            set_more_filters(false);
+                            set_display_list(false);
+                          }}
+                          style={props.main.div_box}
+                        >
+                          <div>
+                            <span
+                              className="divisionYear"
+                              style={props.main.background1}
+                            >
+                              {data.department}
+                            </span>
+                          </div>
+                          <span className="divisionName">{data.div}</span>
+                          <span
+                            className="divisionYear"
+                            style={props.main.low_Resolution_font}
+                          >
+                            {data.year}
+                          </span>
+                        </div>
+                      );
+                    }
+                  })
+                )
+              ) : null}
+            </div>
+
+            <div>
+              {open_lecture_form ? (
+                <div
+                  className="div8679641 glassTheme whiteBorder"
+                  style={props.main.div_box}
+                >
+                  <div className="cancelIcon">
+                    <CloseIcon
+                      onClick={() => set_open_lecture_form(false)}
+                    ></CloseIcon>
+                  </div>
+                  <CreateLecture
+                    userDetail={userDetail}
+                    selectedDivision={Selected_div}
+                    open_lecture_state={set_open_lecture_form}
+                    main={props.main}
+                  ></CreateLecture>
+                </div>
+              ) : (
+                <button
+                  className="btn_ligth"
+                  onClick={() => set_open_lecture_form(true)}
+                >
+                  {" "}
+                  Create New Lecture
+                </button>
+              )}
+            </div>
+
+            {typeof Selected_div.batches !== "undefined" ? (
+              <div className="filters_lists_alx_Div ">
+                {/*filtes*/}
+
+                <div className="filters_main_div">
+                  <div
+                    className="lectureDiv_Sort glassTheme whiteBorder"
+                    style={props.main.div_box}
+                  >
+                    <div>
+                      <span className="groupOfButtons">
+                        <button
+                          className="btn_ligth"
+                          ref={todayBTN}
+                          onClick={(e) => dataFromLast("today", e)}
+                        >
+                          Today
+                        </button>
+                        <button
+                          className="btn_ligth"
+                          ref={lastWeekBTN}
+                          onClick={(e) => dataFromLast("week", e)}
+                        >
+                          Week
+                        </button>
+                        <button
+                          className="btn_ligth"
+                          ref={thisMonthBTN}
+                          onClick={(e) => dataFromLast("month", e)}
+                        >
+                          Month
+                        </button>
+                      </span>
+                    </div>
+
+                    <span
+                      onClick={() => set_more_filters(false)}
+                      style={{ cursor: "pointer" }}
+                      className={
+                        more_filters
+                          ? "fontLink font_13"
+                          : "class_display_none "
+                      }
+                    >
+                      less filtes
+                    </span>
+                    {more_filters ? (
+                      <>
+                        <div
+                          className={
+                            more_filters ? "orLines" : "class_display_none"
+                          }
+                        >
+                          <span>
+                            <hr />
+                          </span>
+                          <h>or</h>
+                          <span>
+                            <hr />
+                          </span>
+                        </div>
+                        <div
+                          className={
+                            more_filters
+                              ? "DateNInput_div"
+                              : "class_display_none"
+                          }
+                        >
+                          <div>
+                            <label
+                              className="custom-field one"
+                              style={props.main.input.label}
+                            >
+                              <input
+                                type="date"
+                                name="formDate"
+                                style={props.main.input.input}
+                                value={queryForm.formDate}
+                                onChange={queryFormChange}
+                              />
+                              <span
+                                class="placeholder"
+                                style={props.main.input.span}
+                              >
+                                From
+                              </span>
+                            </label>
+                            <label
+                              className="custom-field one"
+                              style={props.main.input.label}
+                            >
+                              <input
+                                type="date"
+                                value={queryForm.toDate}
+                                name="toDate"
+                                style={props.main.input.input}
+                                onChange={queryFormChange}
+                              />
+                              <span
+                                class="placeholder"
+                                style={props.main.input.span}
+                              >
+                                To
+                              </span>
+                            </label>
+                          </div>
+                          <button
+                            className="btn_ligth primarybg"
+                            style={{ color: "white" }}
+                            ref={FetchBTN}
+                            onClick={fetch}
+                          >
+                            Fetch
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      <div style={props.main.low_Resolution_font}>
+                        <span
+                          onClick={() => set_more_filters(true)}
+                          style={{ cursor: "pointer" }}
+                          className={
+                            more_filters
+                              ? "class_display_none "
+                              : "fontLink font_13 "
+                          }
+                        >
+                          more filtes...
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {more_filters ? (
                     <div
-                      className="lectureDiv_Sort glassTheme"
+                      className="lectureDiv_Sort glassTheme whiteBorder"
                       style={props.main.div_box}
                     >
                       <div>
-                        <span className="groupOfButtons">
-                          <button
-                            className="btn_ligth"
-                            ref={todayBTN}
-                            onClick={(e) => dataFromLast("today", e)}
-                          >
-                            Today
-                          </button>
-                          <button
-                            className="btn_ligth"
-                            ref={lastWeekBTN}
-                            onClick={(e) => dataFromLast("week", e)}
-                          >
-                            Week
-                          </button>
-                          <button
-                            className="btn_ligth"
-                            ref={thisMonthBTN}
-                            onClick={(e) => dataFromLast("month", e)}
-                          >
-                            Month
-                          </button>
-                        </span>
+                        <button
+                          className="btn_ligth"
+                          name="Lecture"
+                          onClick={onFilterChange}
+                          ref={lectureBTN}
+                        >
+                          Lecture
+                        </button>
+                        <button
+                          className="btn_ligth"
+                          onClick={onFilterChange}
+                          name="Practical"
+                          ref={practicalBTN}
+                        >
+                          Practical
+                        </button>
                       </div>
-
-                      <span
-                        onClick={() => set_more_filters(false)}
-                        style={{ cursor: "pointer" }}
-                        className={
-                          more_filters
-                            ? "fontLink font_13"
-                            : "class_display_none "
-                        }
-                      >
-                        less filtes
+                      <span>
+                        {isUserDetailUpdated
+                          ? userDetail.subject.map((data) => {
+                              return (
+                                <div>
+                                  <input
+                                    name="sortSubject"
+                                    id={data}
+                                    onChange={onFilterChange}
+                                    value={data}
+                                    type="radio"
+                                  />
+                                  <label htmlFor={data}>{data}</label>
+                                </div>
+                              );
+                            })
+                          : null}
                       </span>
-                      {more_filters ? (
-                        <>
-                          <div
-                            className={
-                              more_filters ? "orLines" : "class_display_none"
-                            }
-                          >
-                            <span>
-                              <hr />
-                            </span>
-                            <h>or</h>
-                            <span>
-                              <hr />
-                            </span>
-                          </div>
-                          <div
-                            className={
-                              more_filters
-                                ? "DateNInput_div"
-                                : "class_display_none"
-                            }
-                          >
-                            <div>
-                              <label
-                                className="custom-field one"
-                                style={props.main.input.label}
-                              >
-                                <input
-                                  type="date"
-                                  name="formDate"
-                                  style={props.main.input.input}
-                                  value={queryForm.formDate}
-                                  onChange={queryFormChange}
-                                />
-                                <span
-                                  class="placeholder"
-                                  style={props.main.input.span}
+                      <div>
+                        {typeof Selected_div.batches === "object"
+                          ? batchesList.map((batchName) => {
+                              return (
+                                <button
+                                  className={
+                                    selctedBatch === batchName
+                                      ? "divisionBTNSelected btn_ligth"
+                                      : "btn_ligth"
+                                  }
+                                  onClick={(e) => {
+                                    onFilterChange(e, batchName);
+                                  }}
+                                  name="batch"
+                                  style={props.main.low_Resolution_font}
                                 >
-                                  From
-                                </span>
-                              </label>  
-                              <label
-                                className="custom-field one"
-                                style={props.main.input.label}
-                              >
-                                <input
-                                  type="date"
-                                  value={queryForm.toDate}
-                                  name="toDate"
-                                  style={props.main.input.input}
-                                  onChange={queryFormChange}
-                                />
-                                <span
-                                  class="placeholder"
-                                  style={props.main.input.span}
-                                >
-                                  To
-                                </span>
-                              </label>
-                            </div>
-                            <button
-                              className="btn_ligth primarybg"
-                              style={{color:"white"}}
-                              ref={FetchBTN}
-                              onClick={fetch}
-                            >
-                              Fetch
-                            </button>
-                          </div>
-                        </>
-                      ) : (
-                        <div style={props.main.low_Resolution_font}>
-                          <span
-                            onClick={() => set_more_filters(true)}
-                            style={{ cursor: "pointer" }}
-                            className={
-                              more_filters
-                                ? "class_display_none "
-                                : "fontLink font_13 "
-                            }
-                          >
-                            more filtes...
-                          </span>
-                        </div>
-                      )}
-                    </div>
-
-                    {more_filters ? (
-                      <div
-                        className="lectureDiv_Sort glassTheme"
-                        style={props.main.div_box}
-                      >
-                        <div>
-                          <button
-                            className="btn_ligth"
-                            name="Lecture"
-                            onClick={onFilterChange}
-                            ref={lectureBTN}
-                          >
-                            Lecture
-                          </button>
-                          <button
-                            className="btn_ligth"
-                            onClick={onFilterChange}
-                            name="Practical"
-                            ref={practicalBTN}
-                          >
-                            Practical
-                          </button>
-                        </div>
-                        <span>
-                          {isUserDetailUpdated
-                            ? userDetail.subject.map((data) => {
-                                return (
-                                  <div>
-                                    <input
-                                      name="sortSubject"
-                                      id={data}
-                                      onChange={onFilterChange}
-                                      value={data}
-                                      type="radio"
-                                    />
-                                    <label htmlFor={data}>{data}</label>
-                                  </div>
-                                );
-                              })
-                            : null}
-                        </span>
-                        <div>
-                          {typeof Selected_div.batches === "object"
-                            ? batchesList.map((batchName) => {
-                                return (
-                                  <button
-                                    className={
-                                      selctedBatch === batchName
-                                        ? "divisionBTNSelected btn_ligth"
-                                        : "btn_ligth"
-                                    }
-                                    onClick={(e) => {
-                                      onFilterChange(e, batchName);
-                                    }}
-                                    name="batch"
-                                    style={props.main.low_Resolution_font}
-                                  >
-                                    {batchName}
-                                  </button>
-                                );
-                              })
-                            : null}
-                        </div>
+                                  {batchName}
+                                </button>
+                              );
+                            })
+                          : null}
                       </div>
-                    ) : null}
-                  </div>
+                    </div>
+                  ) : null}
+                </div>
 
+                {display_list ? (
+                  <>
+                    {(isAllLecturesGained && is_all_user_data_ready) ||
+                    (isPresentyModified && is_all_user_data_ready) ? (
+                      lectures.length == 0 ? (
+                        <Note msg="No lecture available" type="empty"></Note>
+                      ) : (
+                        <div
+                          className="allLectures_div glassTheme whiteBorder"
+                          style={props.main.div_box}
+                        >
+                          {/*studnets maping*/}
+                          <table className="tableAt_lecturs_mobil">
+                            <tr>
+                              <th>Batch</th>
+                              <th>Type</th>
+                              <th>Subject</th>
 
-                  {display_list ? (
-                    <>
-                      {(isAllLecturesGained && is_all_user_data_ready) ||
-                      (isPresentyModified && is_all_user_data_ready) ? (
-                        lectures.length == 0 ? (
-                          <Note msg="No lecture available" type="empty"></Note>
-                        ) : (
-                          <div
-                            className="allLectures_div glassTheme"
-                            style={props.main.div_box}
-                          >
-                            {/*studnets maping*/}
-                            <table className="tableAt_lecturs_mobil">
-                              <tr>
-                                <th>Batch</th>
-                                <th>Type</th>
-                                <th>Subject</th>
+                              <th>Date</th>
+                              <th>%Atten</th>
+                              <th></th>
+                            </tr>
+                            {(isAllLecturesGained && is_all_user_data_ready) ||
+                            (isPresentyModified && is_all_user_data_ready)
+                              ? sortedLectures.map((betaData) => {
+                                  return (
+                                    <>
+                                      <tr
+                                        style={props.main.low_Resolution_font}
+                                      >
+                                        <th>
+                                          {betaData.duplicated ? "*" : null}
+                                          <span>{betaData.batch}</span>
+                                        </th>
+                                        <th>
+                                          <span>
+                                            {betaData.type.substring(0, 4)}
+                                          </span>
+                                        </th>
 
-                                <th>Date</th>
-                                <th>%Atten</th>
-                                <th></th>
-                              </tr>
-                              {(isAllLecturesGained &&
-                                is_all_user_data_ready) ||
-                              (isPresentyModified && is_all_user_data_ready)
-                                ? sortedLectures.map((betaData) => {
-                                    return (
-                                      <>
-                                        <tr
-                                          style={props.main.low_Resolution_font}
-                                        >
-                                          <th>
-                                            {betaData.duplicated ? "*" : null}
-                                            <span>{betaData.batch}</span>
-                                          </th>
-                                          <th>
-                                            <span>
-                                              {betaData.type.substring(0, 4)}
+                                        <th>
+                                          {/* subject: */}
+                                          <span> {betaData.subject}</span>
+                                        </th>
+                                        <th>
+                                          <span>
+                                            {formatDateTo_read(
+                                              new Date(
+                                                betaData.timeStamp
+                                              ).toLocaleDateString()
+                                            )}
+                                          </span>
+                                        </th>
+
+                                        <th>
+                                          <span>
+                                            {/* Attendace : */}
+                                            {getAttendancePersent(betaData)}%
+                                          </span>
+                                        </th>
+                                        <th></th>
+                                        <span className="lecturesController">
+                                          <div>
+                                            <span
+                                              onClick={(e) => {
+                                                set_openEditor(true);
+                                                set_gettop_left({
+                                                  top: e.clientY,
+                                                  left: e.clientX,
+                                                });
+                                                openRollnumbers(betaData);
+                                                seteditLEcture_state(
+                                                  betaData._id
+                                                );
+                                              }}
+                                            >
+                                              <MoreVertIcon
+                                                className="fontLink"
+                                                style={
+                                                  props.main.low_Resolution_font
+                                                }
+                                              ></MoreVertIcon>
                                             </span>
-                                          </th>
 
-                                          <th>
-                                            {/* subject: */}
-                                            <span> {betaData.subject}</span>
-                                          </th>
-                                          <th>
-                                            <span>
-                                              {formatDateTo_read(
-                                                new Date(
-                                                  betaData.timeStamp
-                                                ).toLocaleDateString()
-                                              )}
-                                            </span>
-                                          </th>
-
-                                          <th>
-                                            <span>
-                                              {/* Attendace : */}
-                                              {getAttendancePersent(betaData)}%
-                                            </span>
-                                          </th>
-                                          <th></th>
-                                          <span className="lecturesController">
-                                            <div>
-                                              <span
-                                                onClick={(e) => {
-                                                  set_openEditor(true);
-                                                  set_gettop_left({
-                                                    top: e.clientY,
-                                                    left: e.clientX,
-                                                  });
-                                                  openRollnumbers(betaData);
-                                                  seteditLEcture_state(
-                                                    betaData._id
-                                                  );
-                                                }}
-                                              >
-                                                <MoreVertIcon
-                                                  className="fontLink"
-                                                  style={
-                                                    props.main
-                                                      .low_Resolution_font
-                                                  }
-                                                ></MoreVertIcon>
-                                              </span>
-
-                                              {/* 
+                                            {/* 
                                            <button
                                              variant="contained"
                                              className="divisionBTNIcone"
@@ -1079,64 +1050,65 @@ const MyLecture = (props) => {
                                            >
                                              <ModeEditIcon className="muiIcon"></ModeEditIcon>
                                            </button> */}
-                                            </div>
-                                          </span>
-                                        </tr>
-                                      </>
-                                    );
-                                  })
-                                : null}
-                            </table>
+                                          </div>
+                                        </span>
+                                      </tr>
+                                    </>
+                                  );
+                                })
+                              : null}
+                          </table>
 
-                            <div
-                              className="flex_baselineEnd_center"
-                              style={props.main.low_Resolution_font}
+                          <div
+                            className="flex_baselineEnd_center"
+                            style={props.main.low_Resolution_font}
+                          >
+                            <span
+                              onClick={download}
+                              className="fontLink font_13"
                             >
-                              <span
-                                onClick={download}
-                                className="fontLink font_13"
-                              >
-                                Download data?
-                              </span>
+                              Download data?
+                            </span>
+                          </div>
+                        </div>
+                      )
+                    ) : (
+                      <span class="loader"></span>
+                    )}
+
+                    {/* download selction */}
+                    {isViewDamo ? (
+                      isAllLecturesGained ? (
+                        sortedLectures.length != 0 ? (
+                          <div
+                            className="divisionDivforLecture glassTheme whiteBorder"
+                            style={props.main.div_box}
+                          >
+                            <div className="flex_baselineEnd_center">
+                              <CloseIcon
+                                className="fontLink"
+                                onClick={() => set_isViewDamo(false)}
+                              ></CloseIcon>
+                            </div>
+                            <div>
+                              <DemoTable
+                                sheet={data_for_table}
+                                main={props.main}
+                              ></DemoTable>
                             </div>
                           </div>
-                        )
-                      ) : <span class="loader"></span>}
-
-                      {/* download selction */}
-                      {isViewDamo ? (
-                        isAllLecturesGained ? (
-                          sortedLectures.length != 0 ? (
-                            <div
-                              className="divisionDivforLecture glassTheme"
-                              style={props.main.div_box}
-                            >
-                              <div className="flex_baselineEnd_center">
-                                <CloseIcon
-                                  className="fontLink"
-                                  onClick={() => set_isViewDamo(false)}
-                                ></CloseIcon>
-                              </div>
-                              <div>
-                                <DemoTable
-                                  sheet={data_for_table}
-                                  main={props.main}
-                                ></DemoTable>
-                              </div>
-                            </div>
-                          ) : null
                         ) : null
-                      ) : null}
-                    </>
-                  ) : null}
-                </div>
-              ) : null}
-            </div>
-
-            <div className="fakeDiv_mobile"></div>
+                      ) : null
+                    ) : null}
+                  </>
+                ) : null}
+              </div>
+            ) : null}
           </div>
+
+          <div className="fakeDiv_mobile"></div>
         </div>
-      
+      </div>
     </Fragment>
   );
 };

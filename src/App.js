@@ -53,6 +53,9 @@ function App() {
     div_box: {},
     BTN: {},
     fontColor: {},
+    fontColor2: {
+      color:"rgba(0, 0, 0, 1)"
+    },
     low_Resolution_font: {},
     redioInput: {},
     input: { lable: {}, input: {}, span: {} },
@@ -99,6 +102,9 @@ function App() {
           },
           fontColor: {
             color: "white",
+          },
+          fontColor2: {
+            color: "rgba(255, 255, 255, 1)",
           },
           input: {
             lable: {},

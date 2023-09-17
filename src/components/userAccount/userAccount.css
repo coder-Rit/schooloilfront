@@ -119,7 +119,7 @@
 
 
 .heightAuto {
-    height: 500px;
+    height: 430px;
     transition: all 0.5s;
 }
 
@@ -188,3 +188,5 @@
 .textBtnColro{
     color: rgba(0, 0, 255, 0.814);
 }
+ 
+ 

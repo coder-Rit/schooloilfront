@@ -7,8 +7,8 @@ import {
   getUserDetailbyEN,
   updateUsers_Email,
 } from "../../actions/updateUserAction";
-import {  useNavigate } from "react-router-dom";
- 
+import { useNavigate } from "react-router-dom";
+
 import HeaderComp from "../layout/HeaderComp/HeaderComp";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Popup from "../layout/popups/Popup";
@@ -25,7 +25,7 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
 import CachedIcon from "@mui/icons-material/Cached";
- 
+
 import UploadIcon from "@mui/icons-material/Upload";
 import {
   get_division_by_data,
@@ -33,6 +33,7 @@ import {
 } from "../../actions/divisionAction";
 import { Skeleton } from "@mui/material";
 import NavigationBoxes from "../NavigationBoxs/NavigationBoxes";
+import CopyToClipboardButton from "../layout/CopyToClick/CopyToClipboardButton";
 
 const UserAccount = (props) => {
   //loops
@@ -41,7 +42,7 @@ const UserAccount = (props) => {
   let profileInfoDivRef = useRef(null);
 
   //state
-  
+
   const [changeHeightState, setchangeHeightState] = useState(false);
   const [userDetailState, setUserDetailState] = useState({
     fistName: "",
@@ -57,24 +58,20 @@ const UserAccount = (props) => {
     department: "",
   });
 
-  
   // data form redux
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const { userDetail, isUserDetailUpdated } = useSelector(
     (state) => state.userDetail
   );
 
-
   //destructured data
   const {
     Name,
- 
+
     enNumber,
-  
+
     avatar,
   } = userDetailState;
-
-
 
   //   functionality
 
@@ -88,18 +85,14 @@ const UserAccount = (props) => {
     } else {
       dispatch(getUserDetailFaculty(user.email));
     }
-     
-    setchangeHeightState(true)
+
+    setchangeHeightState(true);
     chagenHeight();
-    
   };
 
   const loadDivision = () => {
     dispatch(get_division_by_data(userDetail));
   };
-  
-
-   
 
   const chagenHeight = () => {
     if (changeHeightState) {
@@ -118,6 +111,8 @@ const UserAccount = (props) => {
     dispatch(updateUsers_Email({ email: user.email, id: userDetail._id }));
   };
 
+  const arrayForSkt = [0, 1, 8];
+
   useEffect(() => {
     if (isAuthenticated) {
       if (isUserDetailUpdated && user.role === "student") {
@@ -130,8 +125,6 @@ const UserAccount = (props) => {
       }
     }
   }, [isUserDetailUpdated, isAuthenticated]);
-
-  
 
   useEffect(() => {
     if (
@@ -170,19 +163,19 @@ const UserAccount = (props) => {
           enNumber: userDetail.enNumber,
           rollNumber: userDetail.rollNumber,
         });
+       
+
       }
     }
   }, [userDetail, isUserDetailUpdated, isAuthenticated]);
 
   useEffect(() => {
-     
-    chagenHeight()
-    
+    setchangeHeightState(true);
+    chagenHeight();
   }, []);
 
   return (
     <Fragment>
-      
       <div className="mobleDiv4865  " style={props.main.main}>
         {userDetail === null ? (
           <Popup main={props.main} type="updateAcc"></Popup>
@@ -204,22 +197,25 @@ const UserAccount = (props) => {
               ></CachedIcon>
             </div>
 
+<div className="glassTheme whiteBorder" style={props.main.div_box}>
+
             <div
-              className="profileInfoDiv glassTheme blur3 borderBotton-none padding_10_20"
-              style={props.main.div_box}
+              className="profileInfoDiv  padding_10_20"
+               
               ref={profileInfoDivRef}
             >
+              {/* //student */}
               {user.role === "student" ? (
                 <div className="flex flex_column gap10">
                   <div className="flex flex_column gap10 ">
                     <div className="flex_baselineStart_center gap20 ">
-                      <PersonIcon></PersonIcon>
+                      <PersonIcon style={props.main.fontColor2}></PersonIcon>
                       <span className="spanText">{Name}</span>
                     </div>
                     <hr className="hr" />
                     <div className="flex_spaceBtw_center">
                       <div className="flex_baselineStart_center gap20">
-                        <EmailIcon></EmailIcon>
+                        <EmailIcon style={props.main.fontColor2}></EmailIcon>
                         <span className="spanText">{user.email}</span>
                       </div>
                       {userDetail.email === "NA" ? (
@@ -231,42 +227,51 @@ const UserAccount = (props) => {
                     </div>
                     <hr className="hr" />
                     <div className="flex_baselineStart_center gap20 ">
-                      <LocalPhoneIcon></LocalPhoneIcon>
+                      <LocalPhoneIcon
+                        style={props.main.fontColor2}
+                      ></LocalPhoneIcon>
                       <span className="spanText">{userDetail.phoneNumber}</span>
                     </div>
-
-                    <h3>Educational Information</h3>
                   </div>
+                  <hr className="hr" />
                   <div className="flex flex_column gap10">
+                    <div className="flex_spaceBtw_center">
+                      <div className="flex_baselineStart_center gap20">
+                        <NumbersIcon
+                          style={props.main.fontColor2}
+                        ></NumbersIcon>
+                        <span id="enNumber"> {enNumber} </span>
+                      </div>
+                      <CopyToClipboardButton
+                        id="ContentCopyIcon"
+                        text={enNumber}
+                        className="fontLink"
+                        style={props.main.fontColor}
+                        position={{ vertical: "down", horizontal: "center" }}
+                      ></CopyToClipboardButton>
+                    </div>
+                    <hr className="hr" />
                     <div className="flex_baselineStart_center gap20 ">
-                      <NumbersIcon></NumbersIcon>
-                      <span id="enNumber">
-                        {" "}
-                        {enNumber}{" "}
-                        <ContentCopyIcon
-                          id="ContentCopyIcon"
-                          onClick={() => {
-                            window.alert("EN number copied");
-                            navigator.clipboard.writeText(enNumber);
-                          }}
-                        ></ContentCopyIcon>
+                      <AccountBalanceIcon
+                        style={props.main.fontColor2}
+                      ></AccountBalanceIcon>
+                      <span className="spanText">
+                        {userDetail.clgShortName}
                       </span>
                     </div>
                     <hr className="hr" />
                     <div className="flex_baselineStart_center gap20 ">
-                      <AccountBalanceIcon></AccountBalanceIcon>
-                      <span className="spanText">{userDetail.clgShortName}</span>
-                    </div>
-                   
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <AccessTimeFilledIcon></AccessTimeFilledIcon>
+                      <AccessTimeFilledIcon
+                        style={props.main.fontColor2}
+                      ></AccessTimeFilledIcon>
                       <span className="spanText">{userDetail.year}</span>
                     </div>
                     <hr className="hr" />
                     <div className="flex_spaceBtw_center">
                       <div className="flex_baselineStart_center gap20 ">
-                        <MeetingRoomIcon></MeetingRoomIcon>
+                        <MeetingRoomIcon
+                          style={props.main.fontColor2}
+                        ></MeetingRoomIcon>
                         <span className="spanText">{userDetail.div}</span>
                       </div>
                       <CachedIcon
@@ -277,146 +282,152 @@ const UserAccount = (props) => {
                     </div>{" "}
                     <hr className="hr" />
                     <div className="flex_baselineStart_center gap20 ">
-                      <NumbersIcon></NumbersIcon>
+                      <NumbersIcon style={props.main.fontColor2}></NumbersIcon>
                       <span className="spanText">{userDetail.rollNumber}</span>
                     </div>{" "}
-                    
                   </div>
                 </div>
               ) : (
                 <>
                   <div className="flex flex_column gap10">
                     <div className="flex_baselineStart_center gap20 ">
-                      <PersonIcon></PersonIcon>
+                      <PersonIcon style={props.main.fontColor2}></PersonIcon>
                       <span className="spanText">{Name}</span>
                     </div>
                     <hr className="hr" />
 
                     <div className="flex_baselineStart_center gap20 ">
-                      <EmailIcon></EmailIcon>
+                      <EmailIcon style={props.main.fontColor2}></EmailIcon>
                       <span className="spanText">{userDetail.email}</span>
                     </div>
                     <hr className="hr" />
                     <div className="flex_baselineStart_center gap20 ">
-                      <LocalPhoneIcon></LocalPhoneIcon>
+                      <LocalPhoneIcon
+                        style={props.main.fontColor2}
+                      ></LocalPhoneIcon>
                       <span className="spanText">{userDetail.phoneNumber}</span>
                     </div>
                     <hr className="hr" />
-
                     <div className="flex_baselineStart_center gap20 ">
-                      <WorkspacePremiumIcon></WorkspacePremiumIcon>
-                      <span className="spanText">{userDetail.course}</span>
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <SchoolIcon></SchoolIcon>
-                      <span className="spanText">{userDetail.degree}</span>
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <AutoStoriesIcon></AutoStoriesIcon>
-
-                      <span className="spanText">{userDetail.department}</span>
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <AccountBalanceIcon></AccountBalanceIcon>
-                      <span className="spanText">{userDetail.clgShortName}</span>
+                      <AccountBalanceIcon
+                        style={props.main.fontColor2}
+                      ></AccountBalanceIcon>
+                      <span className="spanText">
+                        {userDetail.clgShortName}
+                      </span>
                     </div>
                     <hr className="hr" />
                     <div className="flex gap20 ">
-                      <DynamicFeedIcon></DynamicFeedIcon>
+                      <DynamicFeedIcon
+                        style={props.main.fontColor2}
+                      ></DynamicFeedIcon>
                       <div className="flex_baselineStart_center gap10 ">
                         {userDetail.subject.map((sub) => (
                           <span className="myProfileSubject">{sub}</span>
                         ))}
                       </div>
                     </div>
+                    <hr className="hr" />
+
+                    <div className="flex_baselineStart_center gap20 ">
+                      <WorkspacePremiumIcon
+                        style={props.main.fontColor2}
+                      ></WorkspacePremiumIcon>
+                      <span className="spanText">{userDetail.course}</span>
+                    </div>
+                    <hr className="hr" />
+                    <div className="flex_baselineStart_center gap20 ">
+                      <SchoolIcon style={props.main.fontColor2}></SchoolIcon>
+                      <span className="spanText">{userDetail.degree}</span>
+                    </div>
+                    <hr className="hr" />
+                    <div className="flex_baselineStart_center gap20 ">
+                      <AutoStoriesIcon
+                        style={props.main.fontColor2}
+                      ></AutoStoriesIcon>
+
+                      <span className="spanText">{userDetail.department}</span>
+                    </div>
                   </div>
                 </>
               )}
-              {isAuthenticated && user.role === "teacher" ? (
+              {/* {isAuthenticated && user.role === "teacher" ? (
                 <button onClick={updateAccount} className="btn_ligth">
                   Update profile
                 </button>
-              ) : null}
-
-              {/* <button onClick={BT} className="btn_ligth">
-                  connect to BT
-                </button> */}
+              ) : null} */}
             </div>
             <div
-              className="profileInfoDiv2ed glassTheme blur3 borderTop-none  textRight fontLink font_13 textBtnColro"
-              
+              className="profileInfoDiv2ed   textRight fontLink font_13 textBtnColro"
               onClick={() => chagenHeight()}
-              style={props.main.div_box}
-            >
-              {
-                changeHeightState?"View more":"View less"
-              }
               
+            >
+              {changeHeightState ? "View more" : "View less"}
+            </div>
             </div>
 
             <NavigationBoxes main={props.main}></NavigationBoxes>
 
-            
             <div className="fakeDiv_userDetail"></div>
           </div>
-        ) : <><div ref={profileInfoDivRef}></div></>}
+        ) : (
+          <>
+             
+          </>
+        )}
 
+        {/* //Skeleton */}
         {!isUserDetailUpdated && isAuthenticated ? (
           <div className=" mobileDiv5656 div486623 animate-pulse">
             <div className="flex_center_center ">
               <div className="imgDiv boxShodow">
                 <Skeleton
                   variant="circular"
-                  sx={{ width: "100%", height: "100%", bgcolor: "grey.500" }}
+                  sx={{ width: "100%", height: "100%", bgcolor: "grey.350" }}
                 />
               </div>
             </div>
+            <div className="flex_baselineEnd_center  ">
+              <CachedIcon
+                className="fontLink"
+                onClick={laodUserDetail}
+                style={props.main.fontColor}
+              ></CachedIcon>
+            </div>
+
+            <div className="glassTheme whiteBorder" style={props.main.div_box}>
+
             <div
-              className="profileInfoDiv glassTheme padding_10_20"
-              style={props.main.div_box}
+              className="profileInfoDiv   padding_10_20"
+              ref={profileInfoDivRef}
             >
               <div className="flex flex_column gap10 ">
-                <div className="flex_baselineStart_center gap20 ">
-                  <Skeleton
-                    variant="circular"
-                    width={35}
-                    height={35}
-                    sx={{ bgcolor: "grey.500" }}
-                  />
-                  <Skeleton
-                    variant="rounded"
-                    sx={{ width: "80%", height: "25px", bgcolor: "grey.500" }}
-                  />
-                </div>
-                <hr className="hr" />
-                <div className="flex_baselineStart_center gap20 ">
-                  <Skeleton
-                    variant="circular"
-                    width={35}
-                    height={35}
-                    sx={{ bgcolor: "grey.500" }}
-                  />
-                  <Skeleton
-                    variant="rounded"
-                    sx={{ width: "80%", height: "25px", bgcolor: "grey.500" }}
-                  />
-                </div>
-                <hr className="hr" />
-                <div className="flex_baselineStart_center gap20 ">
-                  <Skeleton
-                    variant="circular"
-                    width={35}
-                    height={35}
-                    sx={{ bgcolor: "grey.500" }}
-                  />
-                  <Skeleton
-                    variant="rounded"
-                    sx={{ width: "80%", height: "25px", bgcolor: "grey.500" }}
-                  />
-                </div>
+                {arrayForSkt.map((data) => {
+                  return (
+                    <>
+                      <div className="flex_baselineStart_center gap20 ">
+                        <Skeleton
+                          variant="circular"
+                          width={24}
+                          height={24}
+                          sx={{ bgcolor: "grey.450" }}
+                        />
+                        <Skeleton
+                          variant="rounded"
+                          sx={{
+                            width: "80%",
+                            height: "24px",
+                            bgcolor: "grey.450",
+                          }}
+                        />
+                      </div>
+                      <hr
+                        className="hr"
+                        style={data == 8 ? { display: "none" } : null}
+                      />
+                    </>
+                  );
+                })}
               </div>
 
               {isUserDetailUpdated && isAuthenticated ? (
@@ -425,11 +436,21 @@ const UserAccount = (props) => {
                 </button>
               ) : null}
             </div>
+            <div
+              className="  profileInfoDiv2ed   textRight fontLink font_13 textBtnColro"
+              onClick={() => chagenHeight()}
+              
+            >
+              {changeHeightState ? "View more" : "View less"}
+            </div>
+            </div>
+
+            <NavigationBoxes main={props.main}></NavigationBoxes>
+
 
             <div className="fakeDiv_userDetail"></div>
           </div>
         ) : null}
-
       </div>
     </Fragment>
   );
