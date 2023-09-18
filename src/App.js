@@ -217,22 +217,22 @@ function App() {
       <Routes>
      
         <Route index element={<LandingPage />} />
-        <Route path="/user/auth" element={<Auth main={styles}  alert ={alertLogic}  />} />
-        <Route path="/password/forget" element={<ForgetPass main={styles} />} />
+        <Route path="user/auth" element={<Auth main={styles}  alert ={alertLogic}  />} />
+        <Route path="password/forget" element={<ForgetPass main={styles} />} />
 
         <Route
-          path="/user/account"
+          path="user/account"
           element={<ProtectedRoute Comp={<HomePage main={styles}  alert ={alertLogic} />} />}
         />
         <Route
-          path="/update/userDetail"
+          path="pdate/userDetail"
           element={
             <ProtectedRoute Comp={<UpdateUserAccount main={styles} />} />
           }
         />
 
         <Route
-          path="/user/tools/timeTable"
+          path="user/tools/timeTable"
           element={
             <ProtectedRoute
               Comp={<Avalable_Divisions_For_Time_Table main={styles} />}
@@ -240,51 +240,51 @@ function App() {
           }
         />
         <Route
-          path="/user/tools/timeTable/inspect"
+          path="user/tools/timeTable/inspect"
           element={<ProtectedRoute Comp={<ViewTimeTable main={styles} />} />}
         />
         <Route
-          path="/user/tools/divisions"
+          path="user/tools/divisions"
           element={<ProtectedRoute Comp={<Divisions main={styles} />} />}
         />
         <Route
-          path="/user/tools/divisons/update"
+          path="user/tools/divisons/update"
           element={
             <ProtectedRoute Comp={<UpdateDivision_elem main={styles} />} />
           }
         />
 
         <Route
-          path="/user/tools/timeTable/update"
+          path="user/tools/timeTable/update"
           element={<ProtectedRoute Comp={<UpdateTimeTable main={styles} />} />}
         />
 
         <Route
-          path="/user/tools/myClass"
+          path="user/tools/myClass"
           element={<ProtectedRoute Comp={<ClassForStudent main={styles} />} />}
         />
         <Route
-          path="/user/tools/lectures"
+          path="user/tools/lectures"
           element={<ProtectedRoute Comp={<TodaysLectures main={styles} />} />}
         />
         <Route
-          path="/user/tools/myLectures"
+          path="user/tools/myLectures"
           element={<ProtectedRoute Comp={<MyLecture main={styles} />} />}
         />
         <Route
-          path="/user/tools/myStudents"
+          path="user/tools/myStudents"
           element={<ProtectedRoute Comp={<MyStudents main={styles} />} />}
         />
         <Route
-          path="/user/settings"
+          path="user/settings"
           element={<ProtectedRoute Comp={<Settings main={styles} />} />}
         />
         <Route
-          path="/user/student"
+          path="user/student"
           element={<ProtectedRoute Comp={<Student main={styles} />} />}
         />
         <Route
-          path="/addStudent"
+          path="addStudent"
           element={<ProtectedRoute Comp={<AddStudent main={styles} />} />}
         />
       </Routes>
