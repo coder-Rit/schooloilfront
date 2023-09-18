@@ -33,11 +33,11 @@ const  HeaderComp = (props) => {
   return (
     <div className="componentheader blur4" style={styles.header}>
       <span onClick={redirectTobackpage}>
-        <ArrowBackIcon></ArrowBackIcon>
+        <ArrowBackIcon className="pointer"></ArrowBackIcon>
       </span>
       <span>{props.type}</span>
       <span>
-        <SettingsIcon  style={window.location.pathname === "/user/settings"
+        <SettingsIcon  className="pointer" style={window.location.pathname === "/user/settings"
                   ? { color: " #8a2be2" }:{}} onClick={redirectToProfile}></SettingsIcon>
       </span>
     </div>

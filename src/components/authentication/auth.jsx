@@ -10,6 +10,7 @@ import DynoLogo from "../layout/Loader/DynoLogo";
 import { clearAlert } from "../../actions/alertAction";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import { TextField } from "@mui/material";
 
 const Auth = (props) => {
   //loops
@@ -51,9 +52,7 @@ const Auth = (props) => {
   });
 
   // data form reduc
-  const { loading,isAuthenticated } = useSelector(
-    (state) => state.user
-  );
+  const { loading, isAuthenticated } = useSelector((state) => state.user);
 
   //destructured data
   const { username, email, password, OTP } = userData;
@@ -173,7 +172,16 @@ const Auth = (props) => {
         <DynoLogo />
       ) : (
         <Fragment>
-          <div className="LoginSignUpContainer" style={freeStyle.txt}>
+          <>
+            <div className="floadingOBJ1  border_radius50 "></div>
+            <div className="floadingOBJ2  border_radius50 "></div>
+            <div className="floadingOBJ3   border_radius50 "></div>
+            <div className="floadingOBJ4   border_radius50 "></div>
+          </>
+          <div
+            className="LoginSignUpContainer flex_center_center"
+            style={freeStyle.txt}
+          >
             <ToastContainer
               position="top-center"
               autoClose={3000}
@@ -186,8 +194,8 @@ const Auth = (props) => {
               pauseOnHover
               theme={props.alertMode}
             />
-            
-            <div className="LoginSignUpBox">
+
+            <div className="LoginSignUpBox  glassTheme whiteBorder">
               <div>
                 <div className="login_signUp_toggle">
                   <p onClick={(e) => switchTabs(e, "login")}>LOGIN</p>
@@ -195,40 +203,41 @@ const Auth = (props) => {
                 </div>
                 <button ref={switcherTab}></button>
               </div>
-              <form className="loginForm" ref={loginTab} onSubmit={LoginSubmit}>
-                 
-                <label className="custom-field one">
-                  <input
-                    type="email"
-                    required
-                    style={freeStyle.input}
-                    value={loginEmail}
-                    onChange={(e) => setLoginEmail(e.target.value)}
-                    id="outlined-basic"
-                    label="Email"
-                    variant="outlined"
-                  />
-                  <span class="placeholder " style={freeStyle.span}>
-                    Email
-                  </span>
-                </label>
-                <label className="custom-field one">
-                  <input
-                    type="password"
-                    maxLength="12"
-                    required
-                    style={freeStyle.input}
-                    value={loginPassword}
-                    onChange={(e) => setLoginPassword(e.target.value)}
-                    id="outlined-basic"
-                    label="Password"
-                    variant="outlined"
-                  />
-                  <span class="placeholder " style={freeStyle.span}>
-                    Password
-                  </span>
-                </label>
-                <Link to="/password/forget" style={freeStyle.txt}>
+              <form
+                className="loginForm flex_column gap10   top30"
+                ref={loginTab}
+                onSubmit={LoginSubmit}
+              >
+                <TextField
+                  id="filled-basic"
+                  className="width100per"
+                  label="Email"
+                  variant="filled"
+                  color="secondary"
+                  type="email"
+                  required
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                />
+
+                <TextField
+                  id="filled-basic"
+                  className="width100per"
+                  label="Password"
+                  variant="filled"
+                  type="password"
+                  maxLength="12"
+                  color="secondary"
+                  required
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                />
+
+                <Link
+                  to="/password/forget"
+                  className="forgetLink fontLink"
+                  style={freeStyle.txt}
+                >
                   Forget Password?
                 </Link>
 
@@ -236,99 +245,83 @@ const Auth = (props) => {
               </form>
 
               <form
-                className="signUpForm"
+                className="signUpForm gap10 top40"
                 ref={registerTabs}
                 onSubmit={registerSubmit}
               >
-                <label className="custom-field one">
-                  <input
-                    type="text"
-                    required
-                    style={freeStyle.input}
-                    maxLength="12"
-                    value={username.trim()}
-                    name="username"
-                    onChange={registerDataChange}
-                    id="outlined-basic"
-                    label="Username"
-                    variant="outlined"
-                  />
-                  <span class="placeholder " style={freeStyle.span}>
-                    EN Number
-                  </span>
-                </label>
+                <TextField
+                  type="text"
+                  required
+                  className="width100per  "
+                  maxLength="12"
+                  value={username.trim()}
+                  color="secondary"
+                  name="username"
+                  onChange={registerDataChange}
+                  id="filled-basic"
+                  label="EN Number"
+                  variant="filled"
+                />
 
-                <label className="custom-field one">
-                  <input
-                    type="email"
-                    required
-                    style={freeStyle.input}
-                    value={email}
-                    name="email"
-                    onChange={registerDataChange}
-                    id="outlined-basic"
-                    label="Email"
-                    variant="outlined"
-                  />
-                  <span class="placeholder " style={freeStyle.span}>
-                    Email
-                  </span>
-                </label>
+<div className="width100per flex_baselineEnd_center flex_column">
+
+                <TextField
+                  type="email"
+                  required
+                  className="  width100per"
+                  value={email}
+                  color="secondary"
+                  name="email"
+                  onChange={registerDataChange}
+                  id="filled-basic"
+                  label="Email"
+                  variant="filled"
+                />
+
                 {
-                  <div
-                    className="flex_baselineEnd_center"
-                    style={{ color: "white" }}
-                  >
+                  
                     <span
                       onClick={
                         msg2 === "Send OTP" || "Resend OTP" ? getOTP : null
                       }
-                      className="fontLink"
+                      className="fontLink forgetLink top5"
                     >
                       {msg2}
                     </span>
-                  </div>
                 }
-                {isOtp_input ? (
-                  <label className="custom-field one">
-                    <input
-                      type="text"
-                      required
-                      style={freeStyle.input}
-                      maxLength="6"
-                      value={OTP}
-                      name="OTP"
-                      onChange={registerDataChange}
-                      id="outlined-basic"
-                      label="OTP"
-                      variant="outlined"
-                    />
-                    <span class="placeholder " style={freeStyle.span}>
-                      OTP ({otp_Time}
-                      s)
-                    </span>
-                  </label>
-                ) : null}
+</div>
 
-                <label className="custom-field one">
-                  <input
+                {isOtp_input &&otp_Time>0? (
+                  <TextField
                     type="text"
                     required
-                    style={freeStyle.input}
-                    maxLength="12"
-                    value={password}
-                    name="password"
+                    maxLength="6"
+                    className="width100per  " 
+                    value={OTP}
+                    name="OTP"
                     onChange={registerDataChange}
-                    id="outlined-basic"
-                    label="Password"
-                    variant="outlined"
+                    id="filled-basic"
+                    color="secondary"
+                    label={`OTP (${otp_Time})`}
+                    variant="filled"
                   />
-                  <span class="placeholder " style={freeStyle.span}>
-                    Password
-                  </span>
-                </label>
+                ) : null}
 
-                <input type="submit" value="Register" className="signUpBtn" />
+                <TextField
+                  type="text"
+                  required
+                  maxLength="12"
+                  className="width100per  "
+                  value={password}
+                  name="password"
+                  onChange={registerDataChange}
+                  id="filled-basic"
+                  label="Password"
+                  color="secondary"
+                  variant="filled"
+                />
+
+                <input type="submit" value="Register" className="signUpBtn top30" />
               </form>
             </div>
           </div>

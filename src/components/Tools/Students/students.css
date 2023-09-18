@@ -34,7 +34,6 @@
 }
 .presentyDataDiv{ 
     background-color: rgba(255, 255, 255, 0.294); 
-    border-radius: 17px;
  }
 .filterDivAtStudent{
     margin: 0 20px ;
@@ -224,7 +223,6 @@ padding-left: 10px;
 .presentyDataDiv>div:nth-child(3){
     background-color: transparent;
     width: 100%;
- border-top: 1px solid black;
  display: flex;  
  justify-content: space-around;
  align-items: center;
@@ -237,9 +235,9 @@ padding-left: 10px;
  padding:  5px 10px;
  width: 50%;
 }
-.presentyDataDiv>div:nth-child(3)>div:nth-child(2){ 
-  border-left: 1px solid black;
-}
+/* .presentyDataDiv>div:nth-child(3)>div:nth-child(2){ 
+  border-left: 2px solid rgba(159, 159, 159, 0.297);
+} */
 
 .paddingAdjester{
     width: 10px;

@@ -2,12 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  setAlldivisions,
-} from "../../../actions/divisionAction";
-import {
-  get_all_recent_lectures,
-} from "../../../actions/lectureActions";
+import { setAlldivisions } from "../../../actions/divisionAction";
+import { get_all_recent_lectures } from "../../../actions/lectureActions";
 import "./students.css";
 import HeaderComp from "../../layout/HeaderComp/HeaderComp";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -17,6 +13,7 @@ import "react-circular-progressbar/dist/styles.css";
 import useSizing from "../../../hooks/useSizing";
 import Note from "../../layout/note/Note";
 import CachedIcon from "@mui/icons-material/Cached";
+import { Skeleton } from "@mui/material";
 
 const Student = (props) => {
   //hooks
@@ -26,11 +23,13 @@ const Student = (props) => {
 
   const { user, isAuthenticated } = useSelector((state) => state.user);
 
-  const {  accountDetail, isUsserDetailGainedForViewAccount } =
-    useSelector((state) => state.accountDetail);
+  const { accountDetail, isUsserDetailGainedForViewAccount } = useSelector(
+    (state) => state.accountDetail
+  );
 
-  const { division, isDividionGeted, divisions } =
-    useSelector((state) => state.division);
+  const { division, isDividionGeted, divisions } = useSelector(
+    (state) => state.division
+  );
 
   const { isAllLecturesGained, lectures } = useSelector(
     (state) => state.lecture
@@ -67,9 +66,8 @@ const Student = (props) => {
       from: startMili,
       to: endMili,
     };
-   
-      dispatch(get_all_recent_lectures(dataForReq, Current_selected));
 
+    dispatch(get_all_recent_lectures(dataForReq, Current_selected));
   };
 
   const calculatePresenty = (typeOfPresnety) => {
@@ -119,8 +117,6 @@ const Student = (props) => {
     }
   };
 
-   
-
   //reload attendance
   const laodAttendnce = () => {
     if (Current_selected === "lastWeek") {
@@ -131,6 +127,35 @@ const Student = (props) => {
       lecturesData(2592000000 * 5, "last5Month"); //five month
     }
   };
+
+  // tip elem 
+  const Tip = ()=>{
+
+    const forLectures =Math.ceil(
+      (No_of_Undoned_Lecture + No_of_doned_Lecture) * 0.75
+    ) - No_of_doned_Lecture
+    const forPracticals =Math.ceil(
+      (No_of_Undoned_Practical + No_of_doned_Practical) * 0.75
+    ) - No_of_doned_Practical
+
+    if (forLectures>0||forPracticals>0) {
+      
+      return (
+
+        <Note
+        msg={`  ${
+          forLectures
+        } lectures For +75%,  ${
+          forPracticals
+        } Practicals For +75%`}
+        type="tip"
+      ></Note>
+      )
+    }else{
+     return null
+    }
+
+  }
 
   //useeffect
 
@@ -216,126 +241,322 @@ const Student = (props) => {
     Current_selected,
   ]);
 
+
+  const ProgressSkelton = Array(1).fill( <div className="attendaceDivAtStudent">
+  {/* fake */}
+  <div
+    className="presentyDataDiv glassTheme whiteBorder"
+    style={props.main.div_box}
+  >
+    <div>
+      <span>
+        {" "}
+        <Skeleton
+          variant="rounded"
+          width={80}
+          height={20}
+          sx={{ bgcolor: "grey.450" }}
+        />{" "}
+      </span>
+    </div>
+    <div>
+      <span className="paddingAdjester"></span>
+
+      <div
+        className="circlBarDiv flex_center_center"
+        style={{
+          width: "40vw",
+          height: "40vw",
+          maxHeight: 150,
+          maxWidth: 170,
+          position: "relative",
+        }}
+      >
+        <Skeleton
+          variant="circular"
+          width={"40vw"}
+          height={"40vw"}
+          sx={{ bgcolor: "grey.450", position: "absolute" }}
+        />
+        <div
+          className="flex_center_center "
+          style={{
+            position: "absolute",
+            width: "32vw",
+            height: "32vw",
+            maxHeight: 150,
+            maxWidth: 170,
+            background: "white",
+            borderRadius: "50%",
+          }}
+        >
+          {" "}
+          <Skeleton
+            variant="rounded"
+            width={"50px"}
+            height={"28px"}
+            sx={{ bgcolor: "grey.450", position: "absolute" }}
+          />
+        </div>
+      </div>
+      <span className="paddingAdjester"></span>
+    </div>
+    <div>
+      <div>
+        <span>
+          {" "}
+          <Skeleton
+            variant="rounded"
+            width={"21px"}
+            height={"21px"}
+            sx={{ bgcolor: "grey.450" }}
+          />
+        </span>
+        <span className="top5">
+          {" "}
+          <Skeleton
+            variant="rounded"
+            width={"50px"}
+            height={"21px"}
+            sx={{ bgcolor: "grey.450" }}
+          />
+        </span>
+      </div>
+      <div>
+        <span>
+          {" "}
+          <Skeleton
+            variant="rounded"
+            width={"21px"}
+            height={"21px"}
+            sx={{ bgcolor: "grey.450" }}
+          />
+        </span>
+        <span className="top5">
+          {" "}
+          <Skeleton
+            variant="rounded"
+            width={"50px"}
+            height={"21px"}
+            sx={{ bgcolor: "grey.450" }}
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+  <div
+    className="presentyDataDiv glassTheme whiteBorder"
+    style={props.main.div_box}
+  >
+    <div>
+      <span>
+        {" "}
+        <Skeleton
+          variant="rounded"
+          width={80}
+          height={20}
+          sx={{ bgcolor: "grey.450" }}
+        />{" "}
+      </span>
+    </div>
+    <div>
+      <span className="paddingAdjester"></span>
+
+      <div
+        className="circlBarDiv flex_center_center"
+        style={{
+          width: "40vw",
+          height: "40vw",
+          maxHeight: 150,
+          maxWidth: 170,
+          position: "relative",
+        }}
+      >
+        <Skeleton
+          variant="circular"
+          width={"40vw"}
+          height={"40vw"}
+          sx={{ bgcolor: "grey.450", position: "absolute" }}
+        />
+        <div
+          className="flex_center_center "
+          style={{
+            position: "absolute",
+            width: "32vw",
+            height: "32vw",
+            maxHeight: 150,
+            maxWidth: 170,
+            background: "white",
+            borderRadius: "50%",
+          }}
+        >
+          {" "}
+          <Skeleton
+            variant="rounded"
+            width={"50px"}
+            height={"28px"}
+            sx={{ bgcolor: "grey.450", position: "absolute" }}
+          />
+        </div>
+      </div>
+      <span className="paddingAdjester"></span>
+    </div>
+    <div>
+      <div>
+        <span>
+          {" "}
+          <Skeleton
+            variant="rounded"
+            width={"21px"}
+            height={"21px"}
+            sx={{ bgcolor: "grey.450" }}
+          />
+        </span>
+        <span className="top5">
+          {" "}
+          <Skeleton
+            variant="rounded"
+            width={"50px"}
+            height={"21px"}
+            sx={{ bgcolor: "grey.450" }}
+          />
+        </span>
+      </div>
+      <div>
+        <span>
+          {" "}
+          <Skeleton
+            variant="rounded"
+            width={"21px"}
+            height={"21px"}
+            sx={{ bgcolor: "grey.450" }}
+          />
+        </span>
+        <span className="top5">
+          {" "}
+          <Skeleton
+            variant="rounded"
+            width={"50px"}
+            height={"21px"}
+            sx={{ bgcolor: "grey.450" }}
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>)
+
   return (
     <>
       <div className="mobleDiv4865" style={props.main.main}>
-          <HeaderComp
-            type={
-              typeof acountdetails.email !== "undefined"
-                ? `${acountdetails.Name} `
-                : null
-            }
-          ></HeaderComp>
+        <HeaderComp
+          type={
+            typeof acountdetails.email !== "undefined"
+              ? `${acountdetails.Name} `
+              : null
+          }
+        ></HeaderComp>
 
-          <div
-            className="mobileDiv84392 mobileDiv5656 "
-            style={props.main.sub_body}
-          >
-            {isAuthenticated ? (
-              typeof acountdetails.email !== "undefined" &&
-              // isDividionGeted &&
-              user.role != "student" ? (
-                <>
-                  <div className="div786 glassTheme" style={props.main.div_box}>
-                    <div>
-                      <div className="profileImageDiv">
-                        <img
-                          src={acountdetails.avatar.url}
-                          className="view_account_img"
-                          alt=""
-                        />
-                      </div>
-
-                      <div>
-                        
-                        <span>Roll number: {acountdetails.rollNumber}</span>
-                        <span>Depart.: {acountdetails.department}</span>
-                         <span>enNumber: {acountdetails.enNumber}</span>
-                        <span>
-                          {" "}
-                          {acountdetails.role} at division {division.div}{" "}
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      <div>
-                        <span>
-                          {acountdetails. Name}{" "}
-                         
-                        </span>
-                      </div>
-                      <div className="contactInfo">
-                        <span> {acountdetails.phoneNumber}</span>
-                        <a href={`tel:${acountdetails.phoneNumber}`}>
-                          <PhoneIcon></PhoneIcon>{" "}
-                        </a>
-                      </div>
-                      <div className="contactInfo">
-                        <span>{acountdetails.email}</span>
-                        <a href={`mailto:${acountdetails.email}`}>
-                          <EmailIcon></EmailIcon>
-                        </a>
-                      </div>
-
-                      <div></div>
+        <div
+          className="mobileDiv84392 mobileDiv5656 "
+          style={props.main.sub_body}
+        >
+          {isAuthenticated ? (
+            typeof acountdetails.email !== "undefined" &&
+            // isDividionGeted &&
+            user.role != "student" ? (
+              <>
+                <div className="div786 glassTheme" style={props.main.div_box}>
+                  <div>
+                    <div className="profileImageDiv">
+                      <img
+                        src={acountdetails.avatar.url}
+                        className="view_account_img"
+                        alt=""
+                      />
                     </div>
 
-                   
+                    <div>
+                      <span>Roll number: {acountdetails.rollNumber}</span>
+                      <span>Depart.: {acountdetails.department}</span>
+                      <span>enNumber: {acountdetails.enNumber}</span>
+                      <span>
+                        {" "}
+                        {acountdetails.role} at division {division.div}{" "}
+                      </span>
+                    </div>
                   </div>
-                </>
-              ) : null
-            ) : null}
+                  <div>
+                    <div>
+                      <span>{acountdetails.Name} </span>
+                    </div>
+                    <div className="contactInfo">
+                      <span> {acountdetails.phoneNumber}</span>
+                      <a href={`tel:${acountdetails.phoneNumber}`}>
+                        <PhoneIcon></PhoneIcon>{" "}
+                      </a>
+                    </div>
+                    <div className="contactInfo">
+                      <span>{acountdetails.email}</span>
+                      <a href={`mailto:${acountdetails.email}`}>
+                        <EmailIcon></EmailIcon>
+                      </a>
+                    </div>
 
-             
+                    <div></div>
+                  </div>
+                </div>
+              </>
+            ) : null
+          ) : null}
 
-            <div className="filterDivAtStudent">
-              <button
-                className={
-                  Current_selected === "lastWeek"
-                    ? `btn_ligth ${props.main.selectedBTN}`
-                    : "btn_ligth"
-                }
-                style={props.main.BTN}
-                onClick={() => set_Current_selected("lastWeek")}
-              >
-                Last Week
-              </button>
-              <button
-                className={
-                  Current_selected === "lastMonth"
-                    ? `btn_ligth ${props.main.selectedBTN}`
-                    : "btn_ligth"
-                }
-                style={props.main.BTN}
-                onClick={() => set_Current_selected("lastMonth")}
-              >
-                Last Month
-              </button>
-              <button
-                className={
-                  Current_selected === "last5Month"
-                    ? `btn_ligth ${props.main.selectedBTN}`
-                    : "btn_ligth"
-                }
-                style={props.main.BTN}
-                onClick={() => set_Current_selected("last5Month")}
-              >
-                All Time
-              </button>
-            </div>
+          <div className="filterDivAtStudent">
+            <button
+              className={
+                Current_selected === "lastWeek"
+                  ? `btn_ligth ${props.main.selectedBTN}`
+                  : "btn_ligth"
+              }
+              style={props.main.BTN}
+              onClick={() => set_Current_selected("lastWeek")}
+            >
+              Last Week
+            </button>
+            <button
+              className={
+                Current_selected === "lastMonth"
+                  ? `btn_ligth ${props.main.selectedBTN}`
+                  : "btn_ligth"
+              }
+              style={props.main.BTN}
+              onClick={() => set_Current_selected("lastMonth")}
+            >
+              Last Month
+            </button>
+            <button
+              className={
+                Current_selected === "last5Month"
+                  ? `btn_ligth ${props.main.selectedBTN}`
+                  : "btn_ligth"
+              }
+              style={props.main.BTN}
+              onClick={() => set_Current_selected("last5Month")}
+            >
+              All Time
+            </button>
+          </div>
 
+          <div className="flex_baselineEnd_center">
+            <CachedIcon
+              className="fontLink"
+              onClick={laodAttendnce}
+            ></CachedIcon>
+          </div>
 
-            <div className="flex_baselineEnd_center">
-              <CachedIcon
-                className="fontLink"
-                onClick={laodAttendnce}
-              ></CachedIcon>
-            </div>
-
-
+          {isAllLecturesGained ? (
             <div className="attendaceDivAtStudent">
               <div
-                className="presentyDataDiv glassTheme"
+                className="presentyDataDiv glassTheme whiteBorder"
                 style={props.main.div_box}
               >
                 <div>
@@ -353,9 +574,6 @@ const Student = (props) => {
                       maxWidth: 170,
                     }}
                   >
-                    {
-                      console.log(presentageOfPresence_Lecture)
-                    }
                     <CircularProgressbar
                       value={presentageOfPresence_Lecture}
                       strokeWidth={10}
@@ -405,16 +623,16 @@ const Student = (props) => {
                 <div>
                   <div>
                     <span>{No_of_doned_Lecture}</span>
-                    <span> Attended</span>
+                    <span className="top5"> Attended</span>
                   </div>
                   <div>
                     <span>{No_of_Undoned_Lecture}</span>
-                    <span> Skiped</span>
+                    <span className="top5"> Skiped</span>
                   </div>
                 </div>
               </div>
               <div
-                className="presentyDataDiv glassTheme"
+                className="presentyDataDiv glassTheme whiteBorder"
                 style={props.main.div_box}
               >
                 <div>
@@ -481,37 +699,30 @@ const Student = (props) => {
                 <div>
                   <div>
                     <span>{No_of_doned_Practical}</span>
-                    <span> Attended</span>
+                    <span className="top5"> Attended</span>
                   </div>
                   <div>
                     <span>{No_of_Undoned_Practical}</span>
-                    <span> Skiped</span>
+                    <span className="top5"> Skiped</span>
                   </div>
                 </div>
               </div>
             </div>
+          ) : (
+           ProgressSkelton[0]
 
+          )}
 
-            <div className="div864329">
-              {isAuthenticated ? (
-                user.role === "student" ? (
-                  <Note
-                    msg={`  ${
-                      Math.ceil(
-                        (No_of_Undoned_Lecture + No_of_doned_Lecture) * 0.75
-                      ) - No_of_doned_Lecture
-                    } lectures For +75%,  ${
-                      Math.ceil(
-                        (No_of_Undoned_Practical + No_of_doned_Practical) * 0.75
-                      ) - No_of_doned_Practical
-                    } Practicals For +75%`}
-                    type="tip"
-                  ></Note>
-                ) : null
-              ) : null}
-            </div>
+          <div className="div864329">
+            
+            {isAuthenticated ? (
+              user.role === "student" ? (
+               Tip()
+              ) : null
+            ) : null}
           </div>
         </div>
+      </div>
     </>
   );
 };

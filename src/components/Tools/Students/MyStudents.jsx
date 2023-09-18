@@ -63,7 +63,7 @@ const MyStudents = (props) => {
 
 <div className="mobleDiv4865" style={props.main.main}>
 <HeaderComp type="Student"></HeaderComp>
-  <div className="mobileDiv5656 boxShodow" style={props.main.sub_body}>
+  <div className="mobileDiv5656 " style={props.main.sub_body}>
   <Fragment>
           <AllDivisions type="student"  main={props.main}></AllDivisions>
           <div className="flex_baselineEnd_center"><CachedIcon className="fontLink" onClick={loadUsers} style={props.main.fontColor} ></CachedIcon></div>

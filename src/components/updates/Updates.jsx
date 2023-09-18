@@ -8,7 +8,7 @@ import "./Updates.css";
 const Updates = () => {
   return (
     <div>
-      <h4>Upcoming Features</h4>
+      <h4 className="margin0 top30">Upcoming Features</h4>
       <div className="flex_baselineStart_center">
 
       <div class="flip-card ">

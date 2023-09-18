@@ -74,20 +74,19 @@ const Setting = (props) => {
 
   return (
     <Fragment>
-      {windowSizing.innerWidth >= 768 ? (
-        <div className="userAcountMainDiv" style={props.main.main}>
-
-          <div className="div4661" style={props.main.sub_body}></div>
-        </div>
-      ) : (
+       
         <div className="mobleDiv4865" style={props.main.main}>
         
           <HeaderComp type="Profile"></HeaderComp>
-          <div className=" mobileDiv5656 boxShodow" style={props.main.sub_body}>
-            <div>
-              <h4>Dark Mode</h4>
+          <div className=" mobileDiv5656  " style={props.main.sub_body}>
+          <h4 className="margin0 top30">Settings</h4>
+            <div className="glassTheme whiteBorder padding10 top20" style={props.main.div_box}>
+
+            <div className="flex_spaceBtw_center">
+              <span>Dark Mode</span>
+
               {isAuthenticated ? (
-                <label class="switch ">
+                <label class="switch">
                   <input
                     type="checkbox"
                     checked={theme === "dark_theme" ? "checked" : null}
@@ -97,8 +96,17 @@ const Setting = (props) => {
                 </label>
               ) : null}
             </div>
-
-            <div>
+            <div className="top10"></div>
+            <hr className="hr  " />
+            <div className="flex_spaceBtw_center top10">
+              <span>Logout</span>
+                <button onClick={logout} className="btn_ligth">
+                  Log Out
+                </button>
+              
+            </div>
+            </div>
+            {/* <div className="glassTheme whiteBorder padding10" style={props.main.div_box}>
               <h4>Change Password</h4>
 
               <div>
@@ -156,22 +164,14 @@ const Setting = (props) => {
                   </button>
                 </div>
               </div>
-            </div>
-            <div>
-              <h4>Logout</h4>
-              <div>
-                <button onClick={logout} className="btn_ligth">
-                  Log Out
-                </button>
-              
-              </div>
-            </div>
+            </div> */}
+            
             <Updates></Updates>
             <div className="fakeDiv_setting"></div>
           </div>
 
         </div>
-      )}
+     
     </Fragment>
   );
 };

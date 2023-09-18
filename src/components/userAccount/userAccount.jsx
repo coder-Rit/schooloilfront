@@ -86,8 +86,11 @@ const UserAccount = (props) => {
       dispatch(getUserDetailFaculty(user.email));
     }
 
-    setchangeHeightState(true);
-    chagenHeight();
+    if (changeHeightState) {
+      
+      setchangeHeightState(false);
+      chagenHeight();
+    }
   };
 
   const loadDivision = () => {
@@ -163,14 +166,21 @@ const UserAccount = (props) => {
           enNumber: userDetail.enNumber,
           rollNumber: userDetail.rollNumber,
         });
-       
-
       }
     }
   }, [userDetail, isUserDetailUpdated, isAuthenticated]);
 
   useEffect(() => {
-    setchangeHeightState(true);
+     if (isUserDetailUpdated) {
+      
+       setchangeHeightState(false);
+       chagenHeight();
+     }
+  }, [isUserDetailUpdated])
+  
+
+  useEffect(() => {
+    setchangeHeightState(false);
     chagenHeight();
   }, []);
 
@@ -197,173 +207,180 @@ const UserAccount = (props) => {
               ></CachedIcon>
             </div>
 
-<div className="glassTheme whiteBorder" style={props.main.div_box}>
-
-            <div
-              className="profileInfoDiv  padding_10_20"
-               
-              ref={profileInfoDivRef}
-            >
-              {/* //student */}
-              {user.role === "student" ? (
-                <div className="flex flex_column gap10">
-                  <div className="flex flex_column gap10 ">
-                    <div className="flex_baselineStart_center gap20 ">
-                      <PersonIcon style={props.main.fontColor2}></PersonIcon>
-                      <span className="spanText">{Name}</span>
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex_spaceBtw_center">
-                      <div className="flex_baselineStart_center gap20">
-                        <EmailIcon style={props.main.fontColor2}></EmailIcon>
-                        <span className="spanText">{user.email}</span>
-                      </div>
-                      {userDetail.email === "NA" ? (
-                        <UploadIcon
-                          onClick={updateEmail}
-                          className="wrapper"
-                        ></UploadIcon>
-                      ) : null}
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <LocalPhoneIcon
-                        style={props.main.fontColor2}
-                      ></LocalPhoneIcon>
-                      <span className="spanText">{userDetail.phoneNumber}</span>
-                    </div>
-                  </div>
-                  <hr className="hr" />
+            <div className="glassTheme whiteBorder" style={props.main.div_box}>
+              <div
+                className="profileInfoDiv  padding_10_20"
+                ref={profileInfoDivRef}
+              >
+                {/* //student */}
+                {user.role === "student" ? (
                   <div className="flex flex_column gap10">
-                    <div className="flex_spaceBtw_center">
-                      <div className="flex_baselineStart_center gap20">
+                    <div className="flex flex_column gap10 ">
+                      <div className="flex_baselineStart_center gap20 ">
+                        <PersonIcon style={props.main.fontColor2}></PersonIcon>
+                        <span className="spanText">{Name}</span>
+                      </div>
+                      <hr className="hr" />
+                      <div className="flex_spaceBtw_center">
+                        <div className="flex_baselineStart_center gap20">
+                          <EmailIcon style={props.main.fontColor2}></EmailIcon>
+                          <span className="spanText">{user.email}</span>
+                        </div>
+                        {userDetail.email === "NA" ? (
+                          <UploadIcon
+                            onClick={updateEmail}
+                            className="wrapper"
+                          ></UploadIcon>
+                        ) : null}
+                      </div>
+                      <hr className="hr" />
+                      <div className="flex_baselineStart_center gap20 ">
+                        <LocalPhoneIcon
+                          style={props.main.fontColor2}
+                        ></LocalPhoneIcon>
+                        <span className="spanText">
+                          {userDetail.phoneNumber}
+                        </span>
+                      </div>
+                    </div>
+                    <hr className="hr" />
+                    <div className="flex flex_column gap10">
+                      <div className="flex_spaceBtw_center">
+                        <div className="flex_baselineStart_center gap20">
+                          <NumbersIcon
+                            style={props.main.fontColor2}
+                          ></NumbersIcon>
+                          <span id="enNumber"> {enNumber} </span>
+                        </div>
+                        <CopyToClipboardButton
+                          id="ContentCopyIcon"
+                          text={enNumber}
+                          className="fontLink"
+                          style={props.main.fontColor}
+                          position={{ vertical: "down", horizontal: "center" }}
+                        ></CopyToClipboardButton>
+                      </div>
+                      <hr className="hr" />
+                      <div className="flex_baselineStart_center gap20 ">
+                        <AccountBalanceIcon
+                          style={props.main.fontColor2}
+                        ></AccountBalanceIcon>
+                        <span className="spanText">
+                          {userDetail.clgShortName}
+                        </span>
+                      </div>
+                      <hr className="hr" />
+                      <div className="flex_baselineStart_center gap20 ">
+                        <AccessTimeFilledIcon
+                          style={props.main.fontColor2}
+                        ></AccessTimeFilledIcon>
+                        <span className="spanText">{userDetail.year}</span>
+                      </div>
+                      <hr className="hr" />
+                      <div className="flex_spaceBtw_center">
+                        <div className="flex_baselineStart_center gap20 ">
+                          <MeetingRoomIcon
+                            style={props.main.fontColor2}
+                          ></MeetingRoomIcon>
+                          <span className="spanText">{userDetail.div}</span>
+                        </div>
+                        <CachedIcon
+                          className="fontLink"
+                          onClick={loadDivision}
+                          style={props.main.fontColor}
+                        ></CachedIcon>
+                      </div>{" "}
+                      <hr className="hr" />
+                      <div className="flex_baselineStart_center gap20 ">
                         <NumbersIcon
                           style={props.main.fontColor2}
                         ></NumbersIcon>
-                        <span id="enNumber"> {enNumber} </span>
-                      </div>
-                      <CopyToClipboardButton
-                        id="ContentCopyIcon"
-                        text={enNumber}
-                        className="fontLink"
-                        style={props.main.fontColor}
-                        position={{ vertical: "down", horizontal: "center" }}
-                      ></CopyToClipboardButton>
+                        <span className="spanText">
+                          {userDetail.rollNumber}
+                        </span>
+                      </div>{" "}
                     </div>
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <AccountBalanceIcon
-                        style={props.main.fontColor2}
-                      ></AccountBalanceIcon>
-                      <span className="spanText">
-                        {userDetail.clgShortName}
-                      </span>
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <AccessTimeFilledIcon
-                        style={props.main.fontColor2}
-                      ></AccessTimeFilledIcon>
-                      <span className="spanText">{userDetail.year}</span>
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex_spaceBtw_center">
+                  </div>
+                ) : (
+                  <>
+                    <div className="flex flex_column gap10">
                       <div className="flex_baselineStart_center gap20 ">
-                        <MeetingRoomIcon
+                        <PersonIcon style={props.main.fontColor2}></PersonIcon>
+                        <span className="spanText">{Name}</span>
+                      </div>
+                      <hr className="hr" />
+
+                      <div className="flex_baselineStart_center gap20 ">
+                        <EmailIcon style={props.main.fontColor2}></EmailIcon>
+                        <span className="spanText">{userDetail.email}</span>
+                      </div>
+                      <hr className="hr" />
+                      <div className="flex_baselineStart_center gap20 ">
+                        <LocalPhoneIcon
                           style={props.main.fontColor2}
-                        ></MeetingRoomIcon>
-                        <span className="spanText">{userDetail.div}</span>
+                        ></LocalPhoneIcon>
+                        <span className="spanText">
+                          {userDetail.phoneNumber}
+                        </span>
                       </div>
-                      <CachedIcon
-                        className="fontLink"
-                        onClick={loadDivision}
-                        style={props.main.fontColor}
-                      ></CachedIcon>
-                    </div>{" "}
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <NumbersIcon style={props.main.fontColor2}></NumbersIcon>
-                      <span className="spanText">{userDetail.rollNumber}</span>
-                    </div>{" "}
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <div className="flex flex_column gap10">
-                    <div className="flex_baselineStart_center gap20 ">
-                      <PersonIcon style={props.main.fontColor2}></PersonIcon>
-                      <span className="spanText">{Name}</span>
-                    </div>
-                    <hr className="hr" />
+                      <hr className="hr" />
+                      <div className="flex_baselineStart_center gap20 ">
+                        <AccountBalanceIcon
+                          style={props.main.fontColor2}
+                        ></AccountBalanceIcon>
+                        <span className="spanText">
+                          {userDetail.clgShortName}
+                        </span>
+                      </div>
+                      <hr className="hr" />
+                      <div className="flex gap20 ">
+                        <DynamicFeedIcon
+                          style={props.main.fontColor2}
+                        ></DynamicFeedIcon>
+                        <div className="flex_baselineStart_center gap10 ">
+                          {userDetail.subject.map((sub) => (
+                            <span className="myProfileSubject">{sub}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <hr className="hr" />
 
-                    <div className="flex_baselineStart_center gap20 ">
-                      <EmailIcon style={props.main.fontColor2}></EmailIcon>
-                      <span className="spanText">{userDetail.email}</span>
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <LocalPhoneIcon
-                        style={props.main.fontColor2}
-                      ></LocalPhoneIcon>
-                      <span className="spanText">{userDetail.phoneNumber}</span>
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <AccountBalanceIcon
-                        style={props.main.fontColor2}
-                      ></AccountBalanceIcon>
-                      <span className="spanText">
-                        {userDetail.clgShortName}
-                      </span>
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex gap20 ">
-                      <DynamicFeedIcon
-                        style={props.main.fontColor2}
-                      ></DynamicFeedIcon>
-                      <div className="flex_baselineStart_center gap10 ">
-                        {userDetail.subject.map((sub) => (
-                          <span className="myProfileSubject">{sub}</span>
-                        ))}
+                      <div className="flex_baselineStart_center gap20 ">
+                        <WorkspacePremiumIcon
+                          style={props.main.fontColor2}
+                        ></WorkspacePremiumIcon>
+                        <span className="spanText">{userDetail.course}</span>
+                      </div>
+                      <hr className="hr" />
+                      <div className="flex_baselineStart_center gap20 ">
+                        <SchoolIcon style={props.main.fontColor2}></SchoolIcon>
+                        <span className="spanText">{userDetail.degree}</span>
+                      </div>
+                      <hr className="hr" />
+                      <div className="flex_baselineStart_center gap20 ">
+                        <AutoStoriesIcon
+                          style={props.main.fontColor2}
+                        ></AutoStoriesIcon>
+
+                        <span className="spanText">
+                          {userDetail.department}
+                        </span>
                       </div>
                     </div>
-                    <hr className="hr" />
-
-                    <div className="flex_baselineStart_center gap20 ">
-                      <WorkspacePremiumIcon
-                        style={props.main.fontColor2}
-                      ></WorkspacePremiumIcon>
-                      <span className="spanText">{userDetail.course}</span>
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <SchoolIcon style={props.main.fontColor2}></SchoolIcon>
-                      <span className="spanText">{userDetail.degree}</span>
-                    </div>
-                    <hr className="hr" />
-                    <div className="flex_baselineStart_center gap20 ">
-                      <AutoStoriesIcon
-                        style={props.main.fontColor2}
-                      ></AutoStoriesIcon>
-
-                      <span className="spanText">{userDetail.department}</span>
-                    </div>
-                  </div>
-                </>
-              )}
-              {/* {isAuthenticated && user.role === "teacher" ? (
+                  </>
+                )}
+                {/* {isAuthenticated && user.role === "teacher" ? (
                 <button onClick={updateAccount} className="btn_ligth">
                   Update profile
                 </button>
               ) : null} */}
-            </div>
-            <div
-              className="profileInfoDiv2ed   textRight fontLink font_13 textBtnColro"
-              onClick={() => chagenHeight()}
-              
-            >
-              {changeHeightState ? "View more" : "View less"}
-            </div>
+              </div>
+              <div
+                className="profileInfoDiv2ed   textRight fontLink font_13 textBtnColro"
+                onClick={() => chagenHeight()}
+              >
+                {changeHeightState ? "View more" : "View less"}
+              </div>
             </div>
 
             <NavigationBoxes main={props.main}></NavigationBoxes>
@@ -371,9 +388,7 @@ const UserAccount = (props) => {
             <div className="fakeDiv_userDetail"></div>
           </div>
         ) : (
-          <>
-             
-          </>
+          <></>
         )}
 
         {/* //Skeleton */}
@@ -396,57 +411,54 @@ const UserAccount = (props) => {
             </div>
 
             <div className="glassTheme whiteBorder" style={props.main.div_box}>
+              <div
+                className="profileInfoDiv   padding_10_20"
+                ref={profileInfoDivRef}
+              >
+                <div className="flex flex_column gap10 ">
+                  {arrayForSkt.map((data) => {
+                    return (
+                      <>
+                        <div className="flex_baselineStart_center gap20 ">
+                          <Skeleton
+                            variant="circular"
+                            width={24}
+                            height={24}
+                            sx={{ bgcolor: "grey.450" }}
+                          />
+                          <Skeleton
+                            variant="rounded"
+                            sx={{
+                              width: "80%",
+                              height: "24px",
+                              bgcolor: "grey.450",
+                            }}
+                          />
+                        </div>
+                        <hr
+                          className="hr"
+                          style={data == 8 ? { display: "none" } : null}
+                        />
+                      </>
+                    );
+                  })}
+                </div>
 
-            <div
-              className="profileInfoDiv   padding_10_20"
-              ref={profileInfoDivRef}
-            >
-              <div className="flex flex_column gap10 ">
-                {arrayForSkt.map((data) => {
-                  return (
-                    <>
-                      <div className="flex_baselineStart_center gap20 ">
-                        <Skeleton
-                          variant="circular"
-                          width={24}
-                          height={24}
-                          sx={{ bgcolor: "grey.450" }}
-                        />
-                        <Skeleton
-                          variant="rounded"
-                          sx={{
-                            width: "80%",
-                            height: "24px",
-                            bgcolor: "grey.450",
-                          }}
-                        />
-                      </div>
-                      <hr
-                        className="hr"
-                        style={data == 8 ? { display: "none" } : null}
-                      />
-                    </>
-                  );
-                })}
+                {isUserDetailUpdated && isAuthenticated ? (
+                  <button onClick={updateAccount} className="btn_ligth">
+                    Update profile
+                  </button>
+                ) : null}
               </div>
-
-              {isUserDetailUpdated && isAuthenticated ? (
-                <button onClick={updateAccount} className="btn_ligth">
-                  Update profile
-                </button>
-              ) : null}
-            </div>
-            <div
-              className="  profileInfoDiv2ed   textRight fontLink font_13 textBtnColro"
-              onClick={() => chagenHeight()}
-              
-            >
-              {changeHeightState ? "View more" : "View less"}
-            </div>
+              <div
+                className="  profileInfoDiv2ed   textRight fontLink font_13 textBtnColro"
+                onClick={() => chagenHeight()}
+              >
+                {changeHeightState ? "View more" : "View less"}
+              </div>
             </div>
 
             <NavigationBoxes main={props.main}></NavigationBoxes>
-
 
             <div className="fakeDiv_userDetail"></div>
           </div>

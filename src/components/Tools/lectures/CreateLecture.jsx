@@ -86,7 +86,7 @@ const CreateLecture = (props) => {
               value="Lecture"
               onClick={onFormDataChange}
             />
-            <label htmlFor="val3"   style={colorBlack}>Lecture</label>
+            <label htmlFor="val3" className="font_13"  style={colorBlack}>Lecture</label>
           </div>
           <div  className="div98649 flex_center_center gap5 pointer">
             <input
@@ -95,7 +95,7 @@ const CreateLecture = (props) => {
               value="Practical"
               onClick={onFormDataChange}
             />
-            <label htmlFor="val3"  style={colorBlack}>Practical</label>
+            <label htmlFor="val3" className="font_13"  style={colorBlack}>Practical</label>
           </div>
         </div>
 
@@ -108,7 +108,7 @@ const CreateLecture = (props) => {
           {batchesList.map((data, index) => {
             console.log(props.selectedDivision);
             return (
-              <div  className="div986499 flex_baselineStart_center gap5 top10 pointer"> 
+              <div  className="div986499 flex_baselineStart_center gap5 top10 pointer font_13"> 
                 <input
                   type="radio"
                   name="batch"

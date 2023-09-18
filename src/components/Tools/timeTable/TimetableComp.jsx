@@ -135,7 +135,7 @@ const TimetableComp = (props) => {
           <div style={props.props.main.div_box} className="dic5656">Class {props.props.class}</div>
           <div ><CachedIcon className="fontLink" onClick={laodTimeTable} style={props.props.main.fontColor} ></CachedIcon></div>
           </div>
-          <div style={props.props.main.div_box} className="glassTheme" >
+          <div style={props.props.main.div_box} className="glassTheme whiteBorder" >
 
           {
             isTimetableGetByID?(

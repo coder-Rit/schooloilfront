@@ -2,8 +2,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { is_user_exist, login_withoutPassAc } from "../../actions/userActions";
-import axios from 'axios'
+import axios from "axios";
 import "./auth.css";
+import { TextField } from "@mui/material";
 
 const ForgetPass = () => {
   const navigateTo = useNavigate();
@@ -17,29 +18,18 @@ const ForgetPass = () => {
   const [isOtp_input, set_isOtp_input] = useState(false);
   const [otp_Time, set_otp_Time] = useState(120);
 
-
-
   const { user, isAuthenticated } = useSelector((state) => state.user);
 
-  const freeStyle = {
-    span: { background: "#111111", color: "white" },
-    input: {
-      border: "1px solid white",
-      background: "transparent",
-      color: "white",
-    },
-    txt: { color: "white" },
-  };
-  const startTimer =()=>{    
-    const new1  = setInterval(() => {
-      set_otp_Time(otp_Time=>otp_Time-1)
+   
+  const startTimer = () => {
+    const new1 = setInterval(() => {
+      set_otp_Time((otp_Time) => otp_Time - 1);
     }, 1000);
 
     setTimeout(() => {
-      clearInterval(new1)
-     }, 120000);
-
-  }
+      clearInterval(new1);
+    }, 120000);
+  };
 
   const sendOTP = (e) => {
     const _OTP = Math.round(Math.random() * 1000000);
@@ -48,20 +38,19 @@ const ForgetPass = () => {
     set_btn_state("Login");
   };
 
-  
   const getOTP = async () => {
     const _OTP = Math.round(Math.random() * 1000000);
     set_OTP_state(_OTP);
 
-    const localData = {  email: email_State, OTP: _OTP };
-    set_msg("proccessing");
+    const localData = { email: email_State, OTP: _OTP };
+    set_msg("proccessing...");
     await axios
       .post(`/api/v1/user/gerateOTP/email`, localData)
       .then((data) => {
         set_msg(data.data.msg);
         set_isOtp_input(true);
-        set_otp_Time(120)
-         startTimer()
+        set_otp_Time(120);
+        startTimer();
       })
       .catch((err) => {
         set_msg(err.response.data.msg);
@@ -70,8 +59,6 @@ const ForgetPass = () => {
         }, 5000);
       });
   };
-
-  
 
   const login = () => {
     console.log(user_OTP_state, OTP_state);
@@ -91,76 +78,66 @@ const ForgetPass = () => {
 
   return (
     <Fragment>
-      <div className="LoginSignUpContainer"  style={freeStyle.txt}>
-      <div className="back">
-      <img src={require("../../images/group.jpg")}   alt="" />
-      </div>
-      <div className="back blur2">
+      <>
+        <div className="floadingOBJ1  border_radius50 "></div>
+        <div className="floadingOBJ2  border_radius50 "></div>
+        <div className="floadingOBJ3   border_radius50 "></div>
+        <div className="floadingOBJ4   border_radius50 "></div>
+      </>
 
-      </div>
-        <div className="LoginSignUpBox">
-          <h3>Login Without Password</h3>
-          <p>
+      <div className="LoginSignUpContainer   ">
+        <div className="LoginSignUpBox  glassTheme whiteBorder top50 padding30 marginLeftAuto marginRightAuto">
+          <h3 className="margin0">Login without password</h3>
+          <p className="margin0 top5">
             Enter your user account's verified email address and we will send
             you a OTP .
           </p>
-          <label className="custom-field one">
-                  <input
-                    type="email"
-                    required
-                    style={freeStyle.input}
-                    value={email_State}
-                    name="email"
-                    onChange={(e)=>set_email_State(e.target.value)}
-                    id="outlined-basic"
-                    label="Email"
-                    variant="outlined"
-                  />
-                  <span class="placeholder " style={freeStyle.span}>
-                    Email
-                  </span>
-                </label>
-                {
-                  <div className="flex_baselineEnd_center">
-                    <span
-                      onClick={
-                        msg2 === "Send OTP" || "Resend OTP" ? getOTP : null
-                      }
-                      className="fontLink"
-                    >
-                      {msg2}
-                    </span>
-                  </div>
-                }
-                {isOtp_input ? (
-                  <label className="custom-field one">
-                    <input
-                      type="text"
-                      required
-                      style={freeStyle.input}
-                      maxLength="6"
-                      value={user_OTP_state}
-                      name="OTP"
-                      onChange={(e)=>set_user_OTP_state(e.target.value)}
-                      id="outlined-basic"
-                      label="OTP"
-                      variant="outlined"
-                    />
-                    <span class="placeholder " style={freeStyle.span}>
-                      OTP (
-                       { otp_Time}
-                      s)
-                    </span>
-                  </label>
-                ) : null}
 
-              
+          <div className="top20">
 
+          </div>
 
-          <button
-            className="signUpBtn"
-            onClick={login}
-          >
+          <TextField
+            id="filled-basic"
+            className="width100per"
+            label="Email"
+            variant="filled"
+            color="secondary"
+            type="email"
+            required
+            value={email_State}
+            onChange={(e) => set_email_State(e.target.value)}
+          />
+
+          {
+            <div className="flex_baselineEnd_center top5">
+              <span
+                onClick={msg2 === "Send OTP" || "Resend OTP" ? getOTP : null}
+                className="fontLink forgetLink "
+              >
+                {msg2}
+              </span>
+            </div>
+          }
+          <div className="top10"></div>
+          {isOtp_input &&otp_Time>0? (
+            
+            <TextField
+              id="filled-basic"
+              className="width100per  "
+              label={`OTP (${otp_Time})`}
+              variant="filled"
+              maxLength="6"
+              type="email"
+              color="secondary"
+              required
+              name="OTP"
+              onChange={(e) => set_user_OTP_state(e.target.value)}
+              value={user_OTP_state}
+            />
+          ) : null}
+
+          <button className="signUpBtn top20" onClick={login}>
             LOGIN
           </button>
         </div>

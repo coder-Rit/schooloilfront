@@ -19,7 +19,7 @@ const Avalable_Divisions_For_Time_Table = (props) => {
     <Fragment>
        <div className="mobleDiv4865" style={props.main.main}>
           <HeaderComp type="Time Table"></HeaderComp>
-          <div className=" mobileDiv5656 boxShodow" style={props.main.sub_body}>
+          <div className=" mobileDiv5656 " style={props.main.sub_body}>
             <AllDivisions
               type="timeTable"
               hitpoints="2"

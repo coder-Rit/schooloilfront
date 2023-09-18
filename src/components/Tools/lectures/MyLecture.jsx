@@ -1081,7 +1081,7 @@ const MyLecture = (props) => {
                       isAllLecturesGained ? (
                         sortedLectures.length != 0 ? (
                           <div
-                            className="divisionDivforLecture glassTheme whiteBorder"
+                            className="divisionDivforLecture glassTheme whiteBorder font_9"
                             style={props.main.div_box}
                           >
                             <div className="flex_baselineEnd_center">

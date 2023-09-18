@@ -51,7 +51,7 @@ const Divisions = (props) => {
       <div className="mobleDiv4865" style={props.main.main}>
            
            <HeaderComp type="Division"></HeaderComp>
-           <div className=" mobileDiv5656 boxShodow mobileDiv665 " style={props.main.sub_body}>
+           <div className=" mobileDiv5656 mobileDiv665 " style={props.main.sub_body}>
              <div className="allDivisionsAtDivisionDiv_main_mobile">
                <div>
                  <AllDivisions type="division"  main={props.main}></AllDivisions>
