@@ -15,64 +15,43 @@ const NavigationBoxes = (props) => {
   const { isDivisionUpdated ,isDividionGeted} = useSelector((state) => state.division);
 
   const redirectTo_TimeTable = () => {
-    if (userDetail === null) {
-      navigateTo("/user/account");
-    } else {
+    
       navigateTo("/user/tools/timeTable");
-    }
   };
   const redirectTo_Divisions = () => {
-    if (userDetail === null) {
-      navigateTo("/user/account");
-    } else {
+    
       if (user.role === "teacher") {
         navigateTo("/user/tools/divisions");
       } else {
         navigateTo("/user/tools/myClass");
-      }
     }
   };
 
   const redirectTo_TodaysLecture = () => {
-    if (userDetail === null) {
-      navigateTo("/user/account");
-    } else {
+   
       navigateTo("/user/tools/lectures");
-    }
   };
 
   const redirectToMyLecture = () => {
-    if (userDetail === null) {
-      navigateTo("/user/account");
-    } else {
+  
       navigateTo("/user/tools/myLectures");
-    }
   };
 
   const redirectToAttendace = () => {
-    if (userDetail === null) {
-      navigateTo("/user/account");
-    } else {
+  
       navigateTo("/user/tools/myStudents");
-    }
   };
 
   const redirectTo_attendace = () => {
-    if (userDetail === null) {
-      navigateTo("/user/account");
-    } else {
+  
       dispatch(set_user_detail_to_view_account(userDetail));
       navigateTo("/user/student");
-    }
   };
 
   const addStudent = () => {
-    if (userDetail === null) {
-      navigateTo("/user/account");
-    } else {
+   
       dispatch(set_user_detail_to_view_account(userDetail));
       navigateTo("/addStudent");
-    }
   };
 
   const redirectToAccount = () => {

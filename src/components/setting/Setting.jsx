@@ -5,7 +5,7 @@ import { change_password, logOut_user } from "../../actions/userActions";
 import { change_theme_setting } from "../../actions/settingAction";
 import useSizing from "../../hooks/useSizing";
 import HeaderComp from "../layout/HeaderComp/HeaderComp";
-import ToolsPage from "../Tools/toolsPage";
+
 import "./Setting.css";
 
 import Updates from "../updates/Updates"

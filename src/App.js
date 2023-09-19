@@ -34,6 +34,7 @@ import {
   get_division_by_data,
   setAlldivisions,
 } from "./actions/divisionAction";
+import NotFound from "./components/notFound/NotFound";
    
 function App() {
   const dispatch = useDispatch();
@@ -286,6 +287,10 @@ function App() {
         <Route
           path="addStudent"
           element={<ProtectedRoute Comp={<AddStudent main={styles} />} />}
+        />
+        <Route
+          path="*"
+          element={<ProtectedRoute Comp={<NotFound main={styles} />} />}
         />
       </Routes>
     </BrowserRouter>
