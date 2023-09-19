@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Auth from "./components/authentication/auth";
 import UpdateUserAccount from "./components/updateUser/updateUserAccount";
 import { useEffect } from "react";
@@ -214,11 +214,11 @@ function App() {
   //window.addEventListener("contextmenu", (e) => e.preventDefault());
 
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
      
         <Route index element={<LandingPage />} />
-        <Route exact path="user/auth" element={<Auth main={styles}  alert ={alertLogic}  />} />
+        <Route   path="user/auth" element={<Auth main={styles}  alert ={alertLogic}  />} />
         <Route   path="password/forget" element={<ForgetPass main={styles} />} />
 
         <Route
@@ -294,7 +294,7 @@ function App() {
           element={<ProtectedRoute Comp={<NotFound main={styles} />} />}
         />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
