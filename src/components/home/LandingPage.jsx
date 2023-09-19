@@ -113,11 +113,11 @@ const LandingPage = () => {
           <div className="top30"></div>
         </div>
         <div className="flex_center_center flex_column iframeBox">
-         <a href="" className="btn_ligth" src="https://schooloil-client.onrender.com/user/auth" target="_blank">Open app in new Tab</a> 
+         <a href="" className="btn_ligth" src="https://schooloil.online/user/auth" target="_blank">Open app in new Tab</a> 
         
           
           <iframe
-            src="https://schooloil-client.onrender.com/user/auth"
+            src="https://schooloil.online/user/auth"
             // src="http://localhost:3000/user/auth"
             className="iframe"
           ></iframe>
