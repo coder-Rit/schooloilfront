@@ -218,11 +218,12 @@ function App() {
       <Routes>
      
         <Route index element={<LandingPage />} />
-        <Route path="user/auth" element={<Auth main={styles}  alert ={alertLogic}  />} />
-        <Route path="password/forget" element={<ForgetPass main={styles} />} />
+        <Route exact path="user/auth" element={<Auth main={styles}  alert ={alertLogic}  />} />
+        <Route   path="password/forget" element={<ForgetPass main={styles} />} />
 
         <Route
           path="user/account"
+          exact
           element={<ProtectedRoute Comp={<HomePage main={styles}  alert ={alertLogic} />} />}
         />
         <Route
