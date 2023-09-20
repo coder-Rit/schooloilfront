@@ -25,7 +25,7 @@ const LandingPage = () => {
             SchoolOil is a cutting-edge application designed to streamline the
             management of student attendance, lecture schedules, and community
             polls. In addition to these essential features, SchoolOil is
-            actively developing file sharing, wait-less printing services, and
+            actively developing file sharing, wait-less printing services,feedback forms, and
             payment gateways.
           </p>
           <p  style={{marginTop:"20px"}} >
@@ -113,7 +113,7 @@ const LandingPage = () => {
           <div className="top30"></div>
         </div>
         <div className="flex_center_center flex_column iframeBox">
-         <a href="" className="btn_ligth" src="https://schooloil.online/user/auth" target="_blank">Open app in new Tab</a> 
+         <a href="" className="btn_ligth displayNone_destok" src="https://schooloil.online/user/auth" target="_blank">Open app in new Tab</a> 
         
           
           <iframe

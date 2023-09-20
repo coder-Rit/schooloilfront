@@ -69,13 +69,17 @@
 
 }
 
+.iframeBox{
+   height: 100vh;
 
+}
 
 .iframe {
    position: fixed;
-   margin-top: 30px;
+   background-color: white;
+   margin: auto;
    width: 360px;
-   height: 90vh;
+   height: 700px;
    border-radius: 25px;
    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 
@@ -168,8 +172,17 @@
    }
    
 }
-@media only screen and (max-width: 1390px){
-.displayNone_mobile{
+
+.displayNone_destok{
    display: none;
 }
+@media only screen and (max-width: 1390px){
+   .displayNone_mobile{
+      display: none;
+   }
+   .displayNone_destok{
+      display: block;
+   }
 }
+
+ 
