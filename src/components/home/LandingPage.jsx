@@ -117,7 +117,7 @@ const LandingPage = () => {
         
           
           <iframe
-            src="https://schooloil.online/user/auth"
+            src="https://schooloil-client.onrender.com/user/auth"
             // src="http://localhost:3000/user/auth"
             className="iframe"
           ></iframe>
